@@ -1,4 +1,6 @@
 
+
+
 <html lang="en">
  <head>
   <meta charset="utf-8"/>
@@ -1310,362 +1312,391 @@
 
   <script>
    // Navigation and page switching
-   const navButtons = document.querySelectorAll('nav button.nav-item');
-   const pages = document.querySelectorAll('main section.page');
+const navButtons = document.querySelectorAll('nav button.nav-item');
+const pages = document.querySelectorAll('main section.page');
 
-   function setActivePage(targetId) {
-     pages.forEach(page => {
-       if (page.id === targetId) {
-         page.classList.remove('hidden');
-         page.classList.add('block');
-       } else {
-         page.classList.add('hidden');
-         page.classList.remove('block');
-       }
-     });
+function setActivePage(targetId) {
+  pages.forEach(page => {
+    if (page.id === targetId) {
+      page.classList.remove('hidden');
+      page.classList.add('block');
+    } else {
+      page.classList.add('hidden');
+      page.classList.remove('block');
+    }
+  });
 
-     navButtons.forEach(btn => {
-       if (btn.dataset.target === targetId) {
-         btn.classList.add('text-pink-500', 'active');
-         btn.classList.remove('text-gray-600');
-       } else {
-         btn.classList.remove('text-pink-500', 'active');
-         btn.classList.add('text-gray-600');
-       }
-     });
-   }
+  navButtons.forEach(btn => {
+    if (btn.dataset.target === targetId) {
+      btn.classList.add('text-pink-500', 'active');
+      btn.classList.remove('text-gray-600');
+    } else {
+      btn.classList.remove('text-pink-500', 'active');
+      btn.classList.add('text-gray-600');
+    }
+  });
+}
 
-   navButtons.forEach(button => {
-     button.addEventListener('click', () => {
-       setActivePage(button.dataset.target);
-     });
-   });
+navButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    setActivePage(button.dataset.target);
+  });
+});
 
-   // Initialize default active page
-   setActivePage('home');
+// Initialize default active page
+setActivePage('home');
 
-   // Flying hearts logic with 10s duration on page load
-   const heartsContainer = document.getElementById('hearts-container');
-   const names = ['Khusbu', 'Love', 'Abhishek', 'Forever', 'Together'];
-   const heartUnicode = '❤️';
-   const emojis = ['😍', '🥰', '💖', '💕', '💘', '💓', '💗', '💞'];
+// Flying hearts logic with 10s duration on page load
+const heartsContainer = document.getElementById('hearts-container');
+const names = ['Khusbu', 'Love', 'Abhishek', 'Forever', 'Together'];
+const heartUnicode = '❤️';
+const emojis = ['😍', '🥰', '💖', '💕', '💘', '💓', '💗', '💞'];
 
-   function randomRange(min, max) {
-     return Math.random() * (max - min) + min;
-   }
+function randomRange(min, max) {
+  return Math.random() * (max - min) + min;
+}
 
-   function createHeart() {
-     const heart = document.createElement('div');
-     heart.classList.add('heart-fly');
-     heart.style.left = `${randomRange(0, 100)}vw`;
-     heart.style.fontSize = `${randomRange(16, 32)}px`;
-     heart.style.animationDuration = `${randomRange(4000, 8000)}ms`;
-     heart.style.animationDelay = `${randomRange(0, 5000)}ms`;
-     heart.style.color = `hsl(${randomRange(330, 360)}, 80%, 70%)`;
-     heart.style.userSelect = 'none';
-     heart.style.position = 'absolute';
-     heart.style.bottom = '-30px';
-     heart.style.whiteSpace = 'nowrap';
-     heart.style.fontWeight = '700';
-     heart.style.fontFamily = "'Montserrat', sans-serif";
-     
-     // Randomly pick content
-     const textChoice = Math.random();
-     if (textChoice < 0.4) {
-       heart.textContent = heartUnicode;
-     } else if (textChoice < 0.7) {
-       heart.textContent = names[Math.floor(randomRange(0, names.length))];
-     } else {
-       heart.textContent = emojis[Math.floor(randomRange(0, emojis.length))];
-     }
-     
-     heartsContainer.appendChild(heart);
+function createHeart() {
+  const heart = document.createElement('div');
+  heart.classList.add('heart-fly');
+  heart.style.left = `${randomRange(0, 100)}vw`;
+  heart.style.fontSize = `${randomRange(16, 32)}px`;
+  heart.style.animationDuration = `${randomRange(4000, 8000)}ms`;
+  heart.style.animationDelay = `${randomRange(0, 5000)}ms`;
+  heart.style.color = `hsl(${randomRange(330, 360)}, 80%, 70%)`;
+  heart.style.userSelect = 'none';
+  heart.style.position = 'absolute';
+  heart.style.bottom = '-30px';
+  heart.style.whiteSpace = 'nowrap';
+  heart.style.fontWeight = '700';
+  heart.style.fontFamily = "'Montserrat', sans-serif";
+  
+  // Randomly pick content
+  const textChoice = Math.random();
+  if (textChoice < 0.4) {
+    heart.textContent = heartUnicode;
+  } else if (textChoice < 0.7) {
+    heart.textContent = names[Math.floor(randomRange(0, names.length))];
+  } else {
+    heart.textContent = emojis[Math.floor(randomRange(0, emojis.length))];
+  }
+  
+  heartsContainer.appendChild(heart);
 
-     // Remove heart after animation ends
-     heart.addEventListener('animationend', () => {
-       heartsContainer.removeChild(heart);
-     });
-   }
+  // Remove heart after animation ends
+  heart.addEventListener('animationend', () => {
+    heartsContainer.removeChild(heart);
+  });
+}
 
-   // Start creating hearts on load
-   let heartInterval = null;
-   function startHearts() {
-     heartInterval = setInterval(() => {
-       createHeart();
-     }, 300);
-   }
+// Start creating hearts on load
+let heartInterval = null;
+function startHearts() {
+  heartInterval = setInterval(() => {
+    createHeart();
+  }, 300);
+}
 
-   // Stop creating hearts after 10 seconds
-   function stopHearts() {
-     clearInterval(heartInterval);
-   }
+// Stop creating hearts after 10 seconds
+function stopHearts() {
+  clearInterval(heartInterval);
+}
 
-   // Run on page load
-   window.addEventListener('load', () => {
-     startHearts();
-     setTimeout(() => {
-       stopHearts();
-     }, 10000);
-     
-     // Calculate love duration
-     calculateLoveDuration();
-   });
+// Run on page load
+window.addEventListener('load', () => {
+  startHearts();
+  setTimeout(() => {
+    stopHearts();
+  }, 10000);
+  
+  // Calculate love duration
+  calculateLoveDuration();
+  
+  // Auto-play our song with full volume
+  const ourSong = document.getElementById('our-song');
+  ourSong.volume = 1.0; // Full volume
+  ourSong.play().catch(e => {
+    console.log("Auto-play was prevented. Please click play button to start the song.");
+  });
+  
+  // Update play button state
+  const playSongBtn = document.getElementById('play-our-song');
+  playSongBtn.innerHTML = '<i class="fas fa-pause"></i>';
+});
 
-   // Calculate love duration (days, months, years)
-   function calculateLoveDuration() {
-     // Set your anniversary date (year, month-1, day)
-     const anniversaryDate = new Date(2022, 2, 15); // March 15, 2022 (month is 0-indexed)
-     const today = new Date();
-     
-     // Calculate difference in milliseconds
-     const diffTime = Math.abs(today - anniversaryDate);
-     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-     const diffMonths = (today.getFullYear() - anniversaryDate.getFullYear()) * 12 + 
-                       (today.getMonth() - anniversaryDate.getMonth());
-     const diffYears = today.getFullYear() - anniversaryDate.getFullYear();
-     
-     // Update the DOM
-     document.getElementById('love-days').textContent = diffDays;
-     document.getElementById('love-months').textContent = diffMonths;
-     document.getElementById('love-years').textContent = diffYears;
-   }
+// Calculate love duration (days, months, years)
+function calculateLoveDuration() {
+  // Set your anniversary date (year, month-1, day)
+  const anniversaryDate = new Date(2022, 2, 15); // March 15, 2022 (month is 0-indexed)
+  const today = new Date();
+  
+  // Calculate difference in milliseconds
+  const diffTime = Math.abs(today - anniversaryDate);
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  const diffMonths = (today.getFullYear() - anniversaryDate.getFullYear()) * 12 + 
+                    (today.getMonth() - anniversaryDate.getMonth());
+  const diffYears = today.getFullYear() - anniversaryDate.getFullYear();
+  
+  // Update the DOM
+  document.getElementById('love-days').textContent = diffDays;
+  document.getElementById('love-months').textContent = diffMonths;
+  document.getElementById('love-years').textContent = diffYears;
+}
 
-   // Reels video play/pause logic with repeat and download
-   const reelsContainer = document.getElementById('reels-container');
-   const refreshBtn = document.getElementById('refresh-reels');
+// Reels video play/pause logic with repeat and download
+const reelsContainer = document.getElementById('reels-container');
+const refreshBtn = document.getElementById('refresh-reels');
 
-   function pauseAllVideos() {
-     const videos = reelsContainer.querySelectorAll('video');
-     videos.forEach(video => {
-       video.pause();
-       video.currentTime = 0;
-     });
-     // Reset all play buttons icons
-     reelsContainer.querySelectorAll('button').forEach(btn => {
-       btn.querySelector('i').classList.remove('fa-pause');
-       btn.querySelector('i').classList.add('fa-play');
-     });
-   }
+function pauseAllVideos() {
+  const videos = reelsContainer.querySelectorAll('video');
+  videos.forEach(video => {
+    video.pause();
+    video.currentTime = 0;
+  });
+  // Reset all play buttons icons
+  reelsContainer.querySelectorAll('button').forEach(btn => {
+    btn.querySelector('i').classList.remove('fa-pause');
+    btn.querySelector('i').classList.add('fa-play');
+  });
+}
 
-   function playVideo(video, button) {
-     pauseAllVideos();
-     video.play();
-     button.querySelector('i').classList.remove('fa-play');
-     button.querySelector('i').classList.add('fa-pause');
-   }
+function playVideo(video, button) {
+  pauseAllVideos();
+  video.play();
+  button.querySelector('i').classList.remove('fa-play');
+  button.querySelector('i').classList.add('fa-pause');
+}
 
-   function pauseVideo(video, button) {
-     video.pause();
-     button.querySelector('i').classList.remove('fa-pause');
-     button.querySelector('i').classList.add('fa-play');
-   }
+function pauseVideo(video, button) {
+  video.pause();
+  button.querySelector('i').classList.remove('fa-pause');
+  button.querySelector('i').classList.add('fa-play');
+}
 
-   reelsContainer.querySelectorAll('.reel-item').forEach(item => {
-     const video = item.querySelector('video');
-     const btn = item.querySelector('button');
+reelsContainer.querySelectorAll('.reel-item').forEach(item => {
+  const video = item.querySelector('video');
+  const btn = item.querySelector('button');
 
-     // Ensure video loops (also set loop attribute in HTML)
-     video.loop = true;
+  // Ensure video loops (also set loop attribute in HTML)
+  video.loop = true;
 
-     btn.addEventListener('click', () => {
-       if (video.paused) {
-         playVideo(video, btn);
-       } else {
-         pauseVideo(video, btn);
-       }
-     });
+  btn.addEventListener('click', () => {
+    if (video.paused) {
+      playVideo(video, btn);
+    } else {
+      pauseVideo(video, btn);
+    }
+  });
 
-     // When video ends (shouldn't happen due to loop), reset button icon
-     video.addEventListener('ended', () => {
-       btn.querySelector('i').classList.remove('fa-pause');
-       btn.querySelector('i').classList.add('fa-play');
-       video.currentTime = 0;
-     });
-   });
+  // When video ends (shouldn't happen due to loop), reset button icon
+  video.addEventListener('ended', () => {
+    btn.querySelector('i').classList.remove('fa-pause');
+    btn.querySelector('i').classList.add('fa-play');
+    video.currentTime = 0;
+  });
+});
 
-   // Pause videos when switching pages
-   navButtons.forEach(button => {
-     button.addEventListener('click', () => {
-       pauseAllVideos();
-     });
-   });
+// Pause videos when switching pages
+navButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    pauseAllVideos();
+  });
+});
 
-   // Refresh button resets all videos and scrolls to top
-   refreshBtn.addEventListener('click', () => {
-     pauseAllVideos();
-     reelsContainer.scrollTo({top: 0, behavior: 'smooth'});
-   });
+// Refresh button resets all videos and scrolls to top
+refreshBtn.addEventListener('click', () => {
+  pauseAllVideos();
+  reelsContainer.scrollTo({top: 0, behavior: 'smooth'});
+});
 
-   // Optional: Pause videos when user scrolls to another reel
-   let scrollTimeout;
-   reelsContainer.addEventListener('scroll', () => {
-     clearTimeout(scrollTimeout);
-     scrollTimeout = setTimeout(() => {
-       // Find the reel fully in view (closest to top)
-       const reels = Array.from(reelsContainer.querySelectorAll('.reel-item'));
-       let closestReel = null;
-       let closestDistance = Infinity;
-       const containerTop = reelsContainer.getBoundingClientRect().top;
-       reels.forEach(reel => {
-         const rect = reel.getBoundingClientRect();
-         const distance = Math.abs(rect.top - containerTop);
-         if (distance < closestDistance) {
-           closestDistance = distance;
-           closestReel = reel;
-         }
-       });
-       if (closestReel) {
-         reels.forEach(reel => {
-           const video = reel.querySelector('video');
-           const btn = reel.querySelector('button');
-           if (reel === closestReel) {
-             // Play this video if paused
-             if (video.paused) {
-               playVideo(video, btn);
-             }
-           } else {
-             // Pause others
-             if (!video.paused) {
-               pauseVideo(video, btn);
-             }
-           }
-         });
-       }
-     }, 150);
-   });
+// Optional: Pause videos when user scrolls to another reel
+let scrollTimeout;
+reelsContainer.addEventListener('scroll', () => {
+  clearTimeout(scrollTimeout);
+  scrollTimeout = setTimeout(() => {
+    // Find the reel fully in view (closest to top)
+    const reels = Array.from(reelsContainer.querySelectorAll('.reel-item'));
+    let closestReel = null;
+    let closestDistance = Infinity;
+    const containerTop = reelsContainer.getBoundingClientRect().top;
+    reels.forEach(reel => {
+      const rect = reel.getBoundingClientRect();
+      const distance = Math.abs(rect.top - containerTop);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestReel = reel;
+      }
+    });
+    if (closestReel) {
+      reels.forEach(reel => {
+        const video = reel.querySelector('video');
+        const btn = reel.querySelector('button');
+        if (reel === closestReel) {
+          // Play this video if paused
+          if (video.paused) {
+            playVideo(video, btn);
+          }
+        } else {
+          // Pause others
+          if (!video.paused) {
+            pauseVideo(video, btn);
+          }
+        }
+      });
+    }
+  }, 150);
+});
 
-   // Sweet alert logic
-   const sweetAlertOverlay = document.getElementById('sweet-alert-overlay');
-   const sweetAlertClose = document.getElementById('sweet-alert-close');
-   const heartsInAlert = sweetAlertOverlay.querySelector('.hearts-container');
+// Sweet alert logic
+const sweetAlertOverlay = document.getElementById('sweet-alert-overlay');
+const sweetAlertClose = document.getElementById('sweet-alert-close');
+const heartsInAlert = sweetAlertOverlay.querySelector('.hearts-container');
 
-   function createSweetHeart() {
-     const heart = document.createElement('div');
-     heart.classList.add('heart');
-     heart.style.left = `${Math.random() * 80 + 10}%`;
-     heart.style.bottom = '0';
-     heart.style.animationDelay = `${Math.random() * 2}s`;
-     heart.innerHTML = Math.random() > 0.5 ? '❤️' : '💖';
-     heartsInAlert.appendChild(heart);
-     heart.addEventListener('animationend', () => {
-       heartsInAlert.removeChild(heart);
-     });
-   }
+function createSweetHeart() {
+  const heart = document.createElement('div');
+  heart.classList.add('heart');
+  heart.style.left = `${Math.random() * 80 + 10}%`;
+  heart.style.bottom = '0';
+  heart.style.animationDelay = `${Math.random() * 2}s`;
+  heart.innerHTML = Math.random() > 0.5 ? '❤️' : '💖';
+  heartsInAlert.appendChild(heart);
+  heart.addEventListener('animationend', () => {
+    heartsInAlert.removeChild(heart);
+  });
+}
 
-   let sweetHeartInterval;
+let sweetHeartInterval;
 
-   function startSweetHearts() {
-     sweetHeartInterval = setInterval(() => {
-       createSweetHeart();
-     }, 300);
-   }
+function startSweetHearts() {
+  sweetHeartInterval = setInterval(() => {
+    createSweetHeart();
+  }, 300);
+}
 
-   function stopSweetHearts() {
-     clearInterval(sweetHeartInterval);
-     heartsInAlert.innerHTML = '';
-   }
+function stopSweetHearts() {
+  clearInterval(sweetHeartInterval);
+  heartsInAlert.innerHTML = '';
+}
 
-   function showSweetAlert() {
-     sweetAlertOverlay.classList.add('active');
-     startSweetHearts();
-   }
+function showSweetAlert() {
+  sweetAlertOverlay.classList.add('active');
+  startSweetHearts();
+}
 
-   function hideSweetAlert() {
-     sweetAlertOverlay.classList.remove('active');
-     stopSweetHearts();
-   }
+function hideSweetAlert() {
+  sweetAlertOverlay.classList.remove('active');
+  stopSweetHearts();
+}
 
-   // Attach click and keyboard events to header photos
-   const photoMe = document.getElementById('photo-me');
-   const photoGf = document.getElementById('photo-gf');
+// Attach click and keyboard events to header photos
+const photoMe = document.getElementById('photo-me');
+const photoGf = document.getElementById('photo-gf');
 
-   [photoMe, photoGf].forEach(photo => {
-     photo.addEventListener('click', () => {
-       showSweetAlert();
-     });
-     photo.addEventListener('keydown', e => {
-       if (e.key === 'Enter' || e.key === ' ') {
-         e.preventDefault();
-         showSweetAlert();
-       }
-     });
-   });
+[photoMe, photoGf].forEach(photo => {
+  photo.addEventListener('click', () => {
+    showSweetAlert();
+  });
+  photo.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      showSweetAlert();
+    }
+  });
+});
 
-   sweetAlertClose.addEventListener('click', hideSweetAlert);
+sweetAlertClose.addEventListener('click', hideSweetAlert);
 
-   // Close alert on overlay click (outside alert box)
-   sweetAlertOverlay.addEventListener('click', e => {
-     if (e.target === sweetAlertOverlay) {
-       hideSweetAlert();
-     }
-   });
+// Close alert on overlay click (outside alert box)
+sweetAlertOverlay.addEventListener('click', e => {
+  if (e.target === sweetAlertOverlay) {
+    hideSweetAlert();
+  }
+});
 
-   // Close alert on Escape key
-   window.addEventListener('keydown', e => {
-     if (e.key === 'Escape' && sweetAlertOverlay.classList.contains('active')) {
-       hideSweetAlert();
-     }
-   });
+// Close alert on Escape key
+window.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && sweetAlertOverlay.classList.contains('active')) {
+    hideSweetAlert();
+  }
+});
 
-   // Our song play button
-   const playSongBtn = document.getElementById('play-our-song');
-   const ourSong = document.getElementById('our-song');
-   let isSongPlaying = false;
+// Our song play button and volume control
+const playSongBtn = document.getElementById('play-our-song');
+const ourSong = document.getElementById('our-song');
+const volumeControl = document.getElementById('volume-control');
+let isSongPlaying = false;
 
-   playSongBtn.addEventListener('click', () => {
-     if (isSongPlaying) {
-       ourSong.pause();
-       playSongBtn.innerHTML = '<i class="fas fa-play"></i>';
-     } else {
-       ourSong.play();
-       playSongBtn.innerHTML = '<i class="fas fa-pause"></i>';
-     }
-     isSongPlaying = !isSongPlaying;
-   });
+// Initialize volume control
+volumeControl.addEventListener('input', (e) => {
+  ourSong.volume = e.target.value;
+});
 
-   // Keyboard accessibility for playSongBtn
-   playSongBtn.addEventListener('keydown', e => {
-     if (e.key === 'Enter' || e.key === ' ') {
-       e.preventDefault();
-       playSongBtn.click();
-     }
-   });
+// Auto-play on load (handled in window load event)
+// But we still need to handle cases where auto-play is blocked
+ourSong.addEventListener('play', () => {
+  isSongPlaying = true;
+  playSongBtn.innerHTML = '<i class="fas fa-pause"></i>';
+});
 
-   // When song ends, reset button
-   ourSong.addEventListener('ended', () => {
-     playSongBtn.innerHTML = '<i class="fas fa-play"></i>';
-     isSongPlaying = false;
-   });
+ourSong.addEventListener('pause', () => {
+  isSongPlaying = false;
+  playSongBtn.innerHTML = '<i class="fas fa-play"></i>';
+});
 
-   // Add floating hearts when clicking anywhere on the page
-   document.addEventListener('click', (e) => {
-     // Don't create hearts if clicking on interactive elements
-     if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A' || e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
-       return;
-     }
-     
-     // Create 3 hearts at click position
-     for (let i = 0; i < 3; i++) {
-       setTimeout(() => {
-         const heart = document.createElement('div');
-         heart.classList.add('heart-fly');
-         heart.style.left = `${e.clientX - 15}px`;
-         heart.style.bottom = `${window.innerHeight - e.clientY}px`;
-         heart.style.fontSize = `${randomRange(20, 40)}px`;
-         heart.style.animationDuration = `${randomRange(3000, 6000)}ms`;
-         heart.style.color = `hsl(${randomRange(330, 360)}, 80%, 70%)`;
-         heart.style.position = 'fixed';
-         heart.style.zIndex = '100';
-         heart.innerHTML = '❤️';
-         
-         heartsContainer.appendChild(heart);
-         
-         heart.addEventListener('animationend', () => {
-           heartsContainer.removeChild(heart);
-         });
-       }, i * 200);
-     }
-   });
+playSongBtn.addEventListener('click', () => {
+  if (isSongPlaying) {
+    ourSong.pause();
+  } else {
+    ourSong.play().catch(e => {
+      console.log("Playback was prevented. Please interact with the page first.");
+    });
+  }
+});
+
+// Keyboard accessibility for playSongBtn
+playSongBtn.addEventListener('keydown', e => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    playSongBtn.click();
+  }
+});
+
+// When song ends, reset button
+ourSong.addEventListener('ended', () => {
+  playSongBtn.innerHTML = '<i class="fas fa-play"></i>';
+  isSongPlaying = false;
+  ourSong.currentTime = 0;
+});
+
+// Add floating hearts when clicking anywhere on the page
+document.addEventListener('click', (e) => {
+  // Don't create hearts if clicking on interactive elements
+  if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A' || e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+    return;
+  }
+  
+  // Create 3 hearts at click position
+  for (let i = 0; i < 3; i++) {
+    setTimeout(() => {
+      const heart = document.createElement('div');
+      heart.classList.add('heart-fly');
+      heart.style.left = `${e.clientX - 15}px`;
+      heart.style.bottom = `${window.innerHeight - e.clientY}px`;
+      heart.style.fontSize = `${randomRange(20, 40)}px`;
+      heart.style.animationDuration = `${randomRange(3000, 6000)}ms`;
+      heart.style.color = `hsl(${randomRange(330, 360)}, 80%, 70%)`;
+      heart.style.position = 'fixed';
+      heart.style.zIndex = '100';
+      heart.innerHTML = '❤️';
+      
+      heartsContainer.appendChild(heart);
+      
+      heart.addEventListener('animationend', () => {
+        heartsContainer.removeChild(heart);
+      });
+    }, i * 200);
+  }
+});
   </script>
  </body>
 </html>

@@ -1,6 +1,3 @@
-
-
-
 <html lang="en">
  <head>
   <meta charset="utf-8"/>
@@ -258,6 +255,46 @@
    .nav-item.active i {
      transform: scale(1.2);
    }
+   /* Fullscreen photo viewer */
+   #photo-viewer {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background: rgba(0,0,0,0.9);
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     z-index: 100;
+     opacity: 0;
+     pointer-events: none;
+     transition: opacity 0.3s ease;
+   }
+   #photo-viewer.active {
+     opacity: 1;
+     pointer-events: auto;
+   }
+   #photo-viewer img {
+     max-width: 90%;
+     max-height: 90%;
+     object-fit: contain;
+   }
+   #photo-viewer .close-btn {
+     position: absolute;
+     top: 20px;
+     right: 20px;
+     color: white;
+     font-size: 2rem;
+     cursor: pointer;
+     background: rgba(0,0,0,0.5);
+     width: 50px;
+     height: 50px;
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+   }
   </style>
  </head>
  <body class="font-montserrat bg-white pb-16 flex flex-col min-h-screen relative overflow-x-hidden">
@@ -305,14 +342,14 @@
      
      <div class="flex justify-center gap-6 mt-4">
       <div class="relative group">
-       <img alt="Photo of me smiling with a soft natural background, circular cropped" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-pink-300 shadow-lg photo-frame" height="112" src="https://storage.googleapis.com/a1aa/image/369ccea8-6914-46c7-c162-49874eb4f1c5.jpg" width="112"/>
+       <img alt="Photo of me smiling with a soft natural background, circular cropped" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-pink-300 shadow-lg photo-frame" height="112" src="a.jpg" width="112"/>
        <div class="absolute inset-0 bg-pink-400 bg-opacity-30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
         <span class="text-white font-bold">My Love</span>
        </div>
       </div>
 
       <div class="relative group">
-       <img alt="Photo of my girlfriend smiling with a warm outdoor background, circular cropped" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-pink-300 shadow-lg photo-frame" height="112" src="https://storage.googleapis.com/a1aa/image/8ea0520c-233e-4d9c-bdbc-5dbaa0df718d.jpg" width="112"/>
+       <img alt="Photo of my girlfriend smiling with a warm outdoor background, circular cropped" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-pink-300 shadow-lg photo-frame" height="112" src="a.jpg" width="112"/>
        <div class="absolute inset-0 bg-pink-400 bg-opacity-30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
         <span class="text-white font-bold">My Heart</span>
        </div>
@@ -426,13 +463,13 @@
     
     <div class="mt-10 flex justify-center gap-6 flex-wrap">
      <div class="relative group">
-      <img alt="Illustration of two hands forming a heart shape with soft pastel colors" class="w-32 h-32 sm:w-40 sm:h-40 object-cover rounded-lg photo-frame" height="160" src="https://storage.googleapis.com/a1aa/image/563d5004-986e-44e9-cbc3-0753a586dd97.jpg" width="160"/>
+      <img alt="Illustration of two hands forming a heart shape with soft pastel colors" class="w-32 h-32 sm:w-40 sm:h-40 object-cover rounded-lg photo-frame" height="160" src="a.jpg" width="160"/>
       <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
        <span class="text-white font-bold text-center px-2">Our Connection</span>
       </div>
      </div>
      <div class="relative group">
-      <img alt="Illustration of a pink heart with sparkles and glowing effects" class="w-32 h-32 sm:w-40 sm:h-40 object-cover rounded-lg photo-frame" height="160" src="https://storage.googleapis.com/a1aa/image/70114041-6265-4c04-c3a7-611a20e32324.jpg" width="160"/>
+      <img alt="Illustration of a pink heart with sparkles and glowing effects" class="w-32 h-32 sm:w-40 sm:h-40 object-cover rounded-lg photo-frame" height="160" src="a.jpg" width="160"/>
       <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
        <span class="text-white font-bold text-center px-2">Our Love</span>
       </div>
@@ -498,7 +535,6 @@
      
      <div class="reel-item snap-start rounded-lg overflow-hidden shadow-lg bg-black relative" style="aspect-ratio:9/14;">
       <video class="w-full h-full object-cover" controls loop muted playsinline preload="metadata" poster="b.jpg" aria-label="Video of celebrating your birthday">
-       <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/tank.webm" type="video/webm"/>
        <source src="v3.mp4" type="video/mp4"/>
        Your browser does not support the video tag.
       </video>
@@ -513,9 +549,8 @@
       </button>
      </div>
 
-  <div class="reel-item snap-start rounded-lg overflow-hidden shadow-lg bg-black relative" style="aspect-ratio:9/14;">
+     <div class="reel-item snap-start rounded-lg overflow-hidden shadow-lg bg-black relative" style="aspect-ratio:9/14;">
       <video class="w-full h-full object-cover" controls loop muted playsinline preload="metadata" poster="b.jpg" aria-label="Video of celebrating your birthday">
-       <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/tank.webm" type="video/webm"/>
        <source src="v5.mp4" type="video/mp4"/>
        Your browser does not support the video tag.
       </video>
@@ -530,10 +565,8 @@
       </button>
      </div>
 
-
-  <div class="reel-item snap-start rounded-lg overflow-hidden shadow-lg bg-black relative" style="aspect-ratio:9/14;">
+     <div class="reel-item snap-start rounded-lg overflow-hidden shadow-lg bg-black relative" style="aspect-ratio:9/14;">
       <video class="w-full h-full object-cover" controls loop muted playsinline preload="metadata" poster="b.jpg" aria-label="Video of celebrating your birthday">
-       <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/tank.webm" type="video/webm"/>
        <source src="v6.mp4" type="video/mp4"/>
        Your browser does not support the video tag.
       </video>
@@ -547,223 +580,6 @@
        <i class="fas fa-play"></i>
       </button>
      </div>
- <div class="reel-item snap-start rounded-lg overflow-hidden shadow-lg bg-black relative" style="aspect-ratio:9/14;">
-      <video class="w-full h-full object-cover" controls loop muted playsinline preload="metadata" poster="b.jpg" aria-label="Video of celebrating your birthday">
-       <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/tank.webm" type="video/webm"/>
-       <source src="v7.mp4" type="video/mp4"/>
-       Your browser does not support the video tag.
-      </video>
-      <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end p-4">
-       <p class="text-white font-medium">Celebrating your birthday</p>
-      </div>
-      <a aria-label="v3.mp4" class="absolute top-3 left-3 bg-pink-500 bg-opacity-80 hover:bg-opacity-100 text-white rounded-full p-2 shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-400 transition-transform transform hover:scale-110" download="v6.mp4" href="v7.mp4" title="Download video">
-       <i class="fas fa-download"></i>
-      </a>
-      <button aria-label="Play or pause video of celebrating your birthday" class="absolute bottom-3 right-3 bg-pink-500 bg-opacity-80 hover:bg-opacity-100 text-white rounded-full p-2 shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-400 transition-transform transform hover:scale-110" type="button">
-       <i class="fas fa-play"></i>
-      </button>
-     </div>
-
- <div class="reel-item snap-start rounded-lg overflow-hidden shadow-lg bg-black relative" style="aspect-ratio:9/14;">
-      <video class="w-full h-full object-cover" controls loop muted playsinline preload="metadata" poster="b.jpg" aria-label="Video of celebrating your birthday">
-       <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/tank.webm" type="video/webm"/>
-       <source src="v7.mp4" type="video/mp4"/>
-       Your browser does not support the video tag.
-      </video>
-      <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end p-4">
-       <p class="text-white font-medium">Celebrating your birthday</p>
-      </div>
-      <a aria-label="v8.mp4" class="absolute top-3 left-3 bg-pink-500 bg-opacity-80 hover:bg-opacity-100 text-white rounded-full p-2 shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-400 transition-transform transform hover:scale-110" download="v6.mp4" href="v8.mp4" title="Download video">
-       <i class="fas fa-download"></i>
-      </a>
-      <button aria-label="Play or pause video of celebrating your birthday" class="absolute bottom-3 right-3 bg-pink-500 bg-opacity-80 hover:bg-opacity-100 text-white rounded-full p-2 shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-400 transition-transform transform hover:scale-110" type="button">
-       <i class="fas fa-play"></i>
-      </button>
-     </div>
-
-
- <div class="reel-item snap-start rounded-lg overflow-hidden shadow-lg bg-black relative" style="aspect-ratio:9/14;">
-      <video class="w-full h-full object-cover" controls loop muted playsinline preload="metadata" poster="b.jpg" aria-label="Video of celebrating your birthday">
-       <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/tank.webm" type="video/webm"/>
-       <source src="v9.mp4" type="video/mp4"/>
-       Your browser does not support the video tag.
-      </video>
-      <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end p-4">
-       <p class="text-white font-medium">Celebrating your birthday</p>
-      </div>
-      <a aria-label="v9.mp4" class="absolute top-3 left-3 bg-pink-500 bg-opacity-80 hover:bg-opacity-100 text-white rounded-full p-2 shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-400 transition-transform transform hover:scale-110" download="v6.mp4" href="v9.mp4" title="Download video">
-       <i class="fas fa-download"></i>
-      </a>
-      <button aria-label="Play or pause video of celebrating your birthday" class="absolute bottom-3 right-3 bg-pink-500 bg-opacity-80 hover:bg-opacity-100 text-white rounded-full p-2 shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-400 transition-transform transform hover:scale-110" type="button">
-       <i class="fas fa-play"></i>
-      </button>
-     </div>
-
- <div class="reel-item snap-start rounded-lg overflow-hidden shadow-lg bg-black relative" style="aspect-ratio:9/14;">
-      <video class="w-full h-full object-cover" controls loop muted playsinline preload="metadata" poster="b.jpg" aria-label="Video of celebrating your birthday">
-       <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/tank.webm" type="video/webm"/>
-       <source src="v10.mp4" type="video/mp4"/>
-       Your browser does not support the video tag.
-      </video>
-      <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end p-4">
-       <p class="text-white font-medium">Celebrating your birthday</p>
-      </div>
-      <a aria-label="v10.mp4" class="absolute top-3 left-3 bg-pink-500 bg-opacity-80 hover:bg-opacity-100 text-white rounded-full p-2 shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-400 transition-transform transform hover:scale-110" download="v10.mp4" href="v3.mp4" title="Download video">
-       <i class="fas fa-download"></i>
-      </a>
-      <button aria-label="Play or pause video of celebrating your birthday" class="absolute bottom-3 right-3 bg-pink-500 bg-opacity-80 hover:bg-opacity-100 text-white rounded-full p-2 shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-400 transition-transform transform hover:scale-110" type="button">
-       <i class="fas fa-play"></i>
-      </button>
-     </div>
-
-
- <div class="reel-item snap-start rounded-lg overflow-hidden shadow-lg bg-black relative" style="aspect-ratio:9/14;">
-      <video class="w-full h-full object-cover" controls loop muted playsinline preload="metadata" poster="b.jpg" aria-label="Video of celebrating your birthday">
-       <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/tank.webm" type="video/webm"/>
-       <source src="v11.mp4" type="video/mp4"/>
-       Your browser does not support the video tag.
-      </video>
-      <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end p-4">
-       <p class="text-white font-medium">Celebrating your birthday</p>
-      </div>
-      <a aria-label="v11.mp4" class="absolute top-3 left-3 bg-pink-500 bg-opacity-80 hover:bg-opacity-100 text-white rounded-full p-2 shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-400 transition-transform transform hover:scale-110" download="v6.mp4" href="v11.mp4" title="Download video">
-       <i class="fas fa-download"></i>
-      </a>
-      <button aria-label="Play or pause video of celebrating your birthday" class="absolute bottom-3 right-3 bg-pink-500 bg-opacity-80 hover:bg-opacity-100 text-white rounded-full p-2 shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-400 transition-transform transform hover:scale-110" type="button">
-       <i class="fas fa-play"></i>
-      </button>
-     </div>
-
-
-
- <div class="reel-item snap-start rounded-lg overflow-hidden shadow-lg bg-black relative" style="aspect-ratio:9/14;">
-      <video class="w-full h-full object-cover" controls loop muted playsinline preload="metadata" poster="b.jpg" aria-label="Video of celebrating your birthday">
-       <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/tank.webm" type="video/webm"/>
-       <source src="v12.mp4" type="video/mp4"/>
-       Your browser does not support the video tag.
-      </video>
-      <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end p-4">
-       <p class="text-white font-medium">Celebrating your birthday</p>
-      </div>
-      <a aria-label="v12.mp4" class="absolute top-3 left-3 bg-pink-500 bg-opacity-80 hover:bg-opacity-100 text-white rounded-full p-2 shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-400 transition-transform transform hover:scale-110" download="v6.mp4" href="v12.mp4" title="Download video">
-       <i class="fas fa-download"></i>
-      </a>
-      <button aria-label="Play or pause video of celebrating your birthday" class="absolute bottom-3 right-3 bg-pink-500 bg-opacity-80 hover:bg-opacity-100 text-white rounded-full p-2 shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-400 transition-transform transform hover:scale-110" type="button">
-       <i class="fas fa-play"></i>
-      </button>
-     </div>
-
-
-
- <div class="reel-item snap-start rounded-lg overflow-hidden shadow-lg bg-black relative" style="aspect-ratio:9/14;">
-      <video class="w-full h-full object-cover" controls loop muted playsinline preload="metadata" poster="b.jpg" aria-label="Video of celebrating your birthday">
-       <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/tank.webm" type="video/webm"/>
-       <source src="v13.mp4" type="video/mp4"/>
-       Your browser does not support the video tag.
-      </video>
-      <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end p-4">
-       <p class="text-white font-medium">Celebrating your birthday</p>
-      </div>
-      <a aria-label="v13.mp4" class="absolute top-3 left-3 bg-pink-500 bg-opacity-80 hover:bg-opacity-100 text-white rounded-full p-2 shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-400 transition-transform transform hover:scale-110" download="v13.mp4" href="v3.mp4" title="Download video">
-       <i class="fas fa-download"></i>
-      </a>
-      <button aria-label="Play or pause video of celebrating your birthday" class="absolute bottom-3 right-3 bg-pink-500 bg-opacity-80 hover:bg-opacity-100 text-white rounded-full p-2 shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-400 transition-transform transform hover:scale-110" type="button">
-       <i class="fas fa-play"></i>
-      </button>
-     </div>
-
-
-
-
- <div class="reel-item snap-start rounded-lg overflow-hidden shadow-lg bg-black relative" style="aspect-ratio:9/14;">
-      <video class="w-full h-full object-cover" controls loop muted playsinline preload="metadata" poster="b.jpg" aria-label="Video of celebrating your birthday">
-       <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/tank.webm" type="video/webm"/>
-       <source src="v14.mp4" type="video/mp4"/>
-       Your browser does not support the video tag.
-      </video>
-      <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end p-4">
-       <p class="text-white font-medium">Celebrating your birthday</p>
-      </div>
-      <a aria-label="v3.mp4" class="absolute top-3 left-3 bg-pink-500 bg-opacity-80 hover:bg-opacity-100 text-white rounded-full p-2 shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-400 transition-transform transform hover:scale-110" download="v14.mp4" href="v14.mp4" title="Download video">
-       <i class="fas fa-download"></i>
-      </a>
-      <button aria-label="Play or pause video of celebrating your birthday" class="absolute bottom-3 right-3 bg-pink-500 bg-opacity-80 hover:bg-opacity-100 text-white rounded-full p-2 shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-400 transition-transform transform hover:scale-110" type="button">
-       <i class="fas fa-play"></i>
-      </button>
-     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
      
      <div class="reel-item snap-start rounded-lg overflow-hidden shadow-lg bg-black relative" style="aspect-ratio:9/14;">
       <video class="w-full h-full object-cover" controls loop muted playsinline preload="metadata" poster="b.jpg" aria-label="Video of our beach getaway">
@@ -800,385 +616,42 @@
     
     <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
      <div class="relative group">
-      <img alt="A smiling couple sitting on a park bench surrounded by autumn leaves" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="a.jpg" width="400"/>
+      <img alt="A smiling couple sitting on a park bench surrounded by autumn leaves" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="a.jpg" width="400" data-photo="a.jpg"/>
       <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
        <span class="text-white font-bold">Autumn Love</span>
       </div>
      </div>
      <div class="relative group">
-      <img alt="Couple holding hands walking along a forest trail with sunlight filtering through trees" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="b.jpg" width="400"/>
+      <img alt="Couple holding hands walking along a forest trail with sunlight filtering through trees" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="b.jpg" width="400" data-photo="b.jpg"/>
       <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
        <span class="text-white font-bold">Forest Walk</span>
       </div>
      </div>
      <div class="relative group">
-      <img alt="Couple laughing together while sharing a picnic on a sunny day in a meadow" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="c.jpg" width="400"/>
+      <img alt="Couple laughing together while sharing a picnic on a sunny day in a meadow" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="c.jpg" width="400" data-photo="c.jpg"/>
       <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
        <span class="text-white font-bold">Picnic Day</span>
       </div>
      </div>
      <div class="relative group">
-      <img alt="Couple embracing on a city rooftop at sunset with skyline in the background" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="d.jpg" width="400"/>
+      <img alt="Couple embracing on a city rooftop at sunset with skyline in the background" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="d.jpg" width="400" data-photo="d.jpg"/>
       <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
        <span class="text-white font-bold">Sunset Embrace</span>
       </div>
      </div>
      <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="e.jpg" width="400"/>
+      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="e.jpg" width="400" data-photo="e.jpg"/>
       <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
        <span class="text-white font-bold">Starry Night</span>
       </div>
      </div>
      <div class="relative group">
-      <img alt="Couple sharing a joyful moment while riding bicycles on a country road" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="f.jpg" width="400"/>
+      <img alt="Couple sharing a joyful moment while riding bicycles on a country road" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="f.jpg" width="400" data-photo="f.jpg"/>
       <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
        <span class="text-white font-bold">Bike Adventure</span>
       </div>
      </div>
-  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="g.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>
-  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="h.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>
-  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="i.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>
-  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="j.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>
-  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="k.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>
-  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="l.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>
-  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="m.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>
-  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="n.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>
-  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="o.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>
-  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="p.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>
-  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="q.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>
-  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="r.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>
-  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="s.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>
-  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="t.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>
-  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="u.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>
-  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="v.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>
-  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="w.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>
-  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="x.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>
-  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="y.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>
-  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="z.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>
-  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="aa.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>
-  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="bb.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="cc.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="ee.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="dd.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="ff.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="gg.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="hh.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="ii.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="jj.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="kk.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="ll.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="mm.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="nn.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="oo.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="pp.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="qq.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="rr.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="ss.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="tt.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="uu.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="vv.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="ww.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="xx.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="yy.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="zz.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="ab.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="ac.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="ad.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="ae.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="af.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="ag.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="ai.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="ah.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="aj.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="ak.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="al.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="am.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="an.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="ao.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="ap.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="aq.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="ar.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>  <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame" height="400" src="as.jpg" width="400"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>
     </div>
-    
    </section>
    
    <!-- Works Page -->
@@ -1258,6 +731,14 @@
    </section>
   </main>
   
+  <!-- Fullscreen Photo Viewer -->
+  <div id="photo-viewer" role="dialog" aria-modal="true" aria-label="Fullscreen photo viewer">
+   <div class="close-btn" id="photo-viewer-close" aria-label="Close photo viewer">
+    <i class="fas fa-times"></i>
+   </div>
+   <img id="viewed-photo" alt="Fullscreen photo"/>
+  </div>
+  
   <!-- Bottom Navigation -->
   <nav class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 shadow-inner z-30" role="navigation" aria-label="Primary">
    <ul class="flex justify-around text-gray-600">
@@ -1303,12 +784,6 @@
     <button class="close-btn" id="sweet-alert-close" aria-label="Close love alert" type="button">Close</button>
    </div>
   </div>
-
-  <!-- Audio Element for Our Song -->
-  <audio id="our-song" preload="auto">
-   <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg"/>
-   Your browser does not support the audio element.
-  </audio>
 
   <script>
    // Navigation and page switching
@@ -1411,17 +886,6 @@ window.addEventListener('load', () => {
   
   // Calculate love duration
   calculateLoveDuration();
-  
-  // Auto-play our song with full volume
-  const ourSong = document.getElementById('our-song');
-  ourSong.volume = 1.0; // Full volume
-  ourSong.play().catch(e => {
-    console.log("Auto-play was prevented. Please click play button to start the song.");
-  });
-  
-  // Update play button state
-  const playSongBtn = document.getElementById('play-our-song');
-  playSongBtn.innerHTML = '<i class="fas fa-pause"></i>';
 });
 
 // Calculate love duration (days, months, years)
@@ -1509,7 +973,7 @@ refreshBtn.addEventListener('click', () => {
   reelsContainer.scrollTo({top: 0, behavior: 'smooth'});
 });
 
-// Optional: Pause videos when user scrolls to another reel
+// Auto-play videos when they come into view
 let scrollTimeout;
 reelsContainer.addEventListener('scroll', () => {
   clearTimeout(scrollTimeout);
@@ -1620,52 +1084,43 @@ window.addEventListener('keydown', e => {
   }
 });
 
-// Our song play button and volume control
-const playSongBtn = document.getElementById('play-our-song');
-const ourSong = document.getElementById('our-song');
-const volumeControl = document.getElementById('volume-control');
-let isSongPlaying = false;
+// Fullscreen photo viewer logic
+const photoViewer = document.getElementById('photo-viewer');
+const photoViewerClose = document.getElementById('photo-viewer-close');
+const viewedPhoto = document.getElementById('viewed-photo');
 
-// Initialize volume control
-volumeControl.addEventListener('input', (e) => {
-  ourSong.volume = e.target.value;
+function showPhotoViewer(photoSrc) {
+  viewedPhoto.src = photoSrc;
+  photoViewer.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function hidePhotoViewer() {
+  photoViewer.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Attach click events to all gallery photos
+document.querySelectorAll('#photos img[data-photo]').forEach(photo => {
+  photo.addEventListener('click', () => {
+    showPhotoViewer(photo.dataset.photo);
+  });
 });
 
-// Auto-play on load (handled in window load event)
-// But we still need to handle cases where auto-play is blocked
-ourSong.addEventListener('play', () => {
-  isSongPlaying = true;
-  playSongBtn.innerHTML = '<i class="fas fa-pause"></i>';
-});
+photoViewerClose.addEventListener('click', hidePhotoViewer);
 
-ourSong.addEventListener('pause', () => {
-  isSongPlaying = false;
-  playSongBtn.innerHTML = '<i class="fas fa-play"></i>';
-});
-
-playSongBtn.addEventListener('click', () => {
-  if (isSongPlaying) {
-    ourSong.pause();
-  } else {
-    ourSong.play().catch(e => {
-      console.log("Playback was prevented. Please interact with the page first.");
-    });
+// Close photo viewer on overlay click (outside photo)
+photoViewer.addEventListener('click', e => {
+  if (e.target === photoViewer) {
+    hidePhotoViewer();
   }
 });
 
-// Keyboard accessibility for playSongBtn
-playSongBtn.addEventListener('keydown', e => {
-  if (e.key === 'Enter' || e.key === ' ') {
-    e.preventDefault();
-    playSongBtn.click();
+// Close photo viewer on Escape key
+window.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && photoViewer.classList.contains('active')) {
+    hidePhotoViewer();
   }
-});
-
-// When song ends, reset button
-ourSong.addEventListener('ended', () => {
-  playSongBtn.innerHTML = '<i class="fas fa-play"></i>';
-  isSongPlaying = false;
-  ourSong.currentTime = 0;
 });
 
 // Add floating hearts when clicking anywhere on the page

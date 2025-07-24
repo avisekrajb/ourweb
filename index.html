@@ -525,53 +525,335 @@
     </div>
    </section>
    
-   <!-- Photos Page -->
-   <section class="page hidden relative z-10" id="photos">
+  <!-- Photos Page -->
+<section class="page hidden relative z-10" id="photos">
     <h2 class="text-2xl sm:text-3xl font-semibold mb-6 text-pink-600 flex items-center justify-center gap-2">
-     <i class="fas fa-images text-pink-500"></i>
-     Our Gallery
+        <i class="fas fa-images text-pink-500"></i>
+        Our Gallery
     </h2>
     
     <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-     <div class="relative group">
-      <img alt="A smiling couple sitting on a park bench surrounded by autumn leaves" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="a.jpg" width="400" data-photo="a.jpg"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Autumn Love</span>
-      </div>
-     </div>
-     <div class="relative group">
-      <img alt="Couple holding hands walking along a forest trail with sunlight filtering through trees" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="b.jpg" width="400" data-photo="b.jpg"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Forest Walk</span>
-      </div>
-     </div>
-     <div class="relative group">
-      <img alt="Couple laughing together while sharing a picnic on a sunny day in a meadow" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="c.jpg" width="400" data-photo="c.jpg"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Picnic Day</span>
-      </div>
-     </div>
-     <div class="relative group">
-      <img alt="Couple embracing on a city rooftop at sunset with skyline in the background" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="d.jpg" width="400" data-photo="d.jpg"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Sunset Embrace</span>
-      </div>
-     </div>
-     <div class="relative group">
-      <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="e.jpg" width="400" data-photo="e.jpg"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Starry Night</span>
-      </div>
-     </div>
-     <div class="relative group">
-      <img alt="Couple sharing a joyful moment while riding bicycles on a country road" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="f.jpg" width="400" data-photo="f.jpg"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold">Bike Adventure</span>
-      </div>
-     </div>
+        <!-- Original Photos a-f -->
+        <div class="relative group">
+            <img alt="A smiling couple sitting on a park bench surrounded by autumn leaves" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="a.jpg" width="400" data-photo="a.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Autumn Love</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple holding hands walking along a forest trail with sunlight filtering through trees" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="b.jpg" width="400" data-photo="b.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Forest Walk</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple laughing together while sharing a picnic on a sunny day in a meadow" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="c.jpg" width="400" data-photo="c.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Picnic Day</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple embracing on a city rooftop at sunset with skyline in the background" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="d.jpg" width="400" data-photo="d.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Sunset Embrace</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="e.jpg" width="400" data-photo="e.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Starry Night</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple sharing a joyful moment while riding bicycles on a country road" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="f.jpg" width="400" data-photo="f.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Bike Adventure</span>
+            </div>
+        </div>
+        
+        <!-- Additional Photos g-z -->
+        <div class="relative group">
+            <img alt="Couple enjoying a beach sunset with waves crashing nearby" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="g.jpg" width="400" data-photo="g.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Beach Sunset</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple hiking up a mountain trail with panoramic views" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="h.jpg" width="400" data-photo="h.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Mountain Hike</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple dancing in the rain under a shared umbrella" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="i.jpg" width="400" data-photo="i.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Rainy Dance</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple enjoying coffee at a cozy café" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="j.jpg" width="400" data-photo="j.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Coffee Date</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple kayaking on a calm lake at dusk" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="k.jpg" width="400" data-photo="k.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Lake Kayaking</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple reading books together in a library" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="l.jpg" width="400" data-photo="l.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Library Day</span>
+            </div>
+        </div>
+        
+        <!-- Photos m-z -->
+        <div class="relative group">
+            <img alt="Couple making pizza together in the kitchen" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="m.jpg" width="400" data-photo="m.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Cooking Together</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple at a music festival enjoying live performance" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="n.jpg" width="400" data-photo="n.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Music Festival</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple stargazing through a telescope" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="o.jpg" width="400" data-photo="o.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Stargazing</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple playing board games by the fireplace" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="p.jpg" width="400" data-photo="p.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Game Night</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple planting flowers in their garden" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="q.jpg" width="400" data-photo="q.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Gardening</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple riding horses through a field" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="r.jpg" width="400" data-photo="r.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Horseback Riding</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple enjoying a snowy day building a snowman" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="s.jpg" width="400" data-photo="s.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Snowy Day</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple at a farmers market selecting fresh produce" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="t.jpg" width="400" data-photo="t.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Farmers Market</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple visiting an art museum admiring paintings" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="u.jpg" width="400" data-photo="u.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Art Lovers</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple on a ferry boat with city skyline in background" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="v.jpg" width="400" data-photo="v.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Boat Ride</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple having a wine tasting at a vineyard" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="w.jpg" width="400" data-photo="w.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Wine Tasting</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple flying kites at the beach on a windy day" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="x.jpg" width="400" data-photo="x.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Kite Flying</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple doing yoga together at sunrise" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="y.jpg" width="400" data-photo="y.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Morning Yoga</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple at a zoo feeding giraffes" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="z.jpg" width="400" data-photo="z.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Zoo Visit</span>
+            </div>
+        </div>
+        
+        <!-- Double letter photos aa-az -->
+        <div class="relative group">
+            <img alt="Couple riding a tandem bicycle through the countryside" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="aa.jpg" width="400" data-photo="aa.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Tandem Ride</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple baking cookies together in matching aprons" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ab.jpg" width="400" data-photo="ab.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Baking Day</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple canoeing down a peaceful river" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ac.jpg" width="400" data-photo="ac.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">River Canoe</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple dressed up for a fancy gala event" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ad.jpg" width="400" data-photo="ad.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Gala Night</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple at an amusement park riding a rollercoaster" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ae.jpg" width="400" data-photo="ae.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Rollercoaster</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple fishing together on a quiet lake" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="af.jpg" width="400" data-photo="af.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Fishing Trip</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple geocaching together in the woods" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ag.jpg" width="400" data-photo="ag.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Geocaching</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple having a pillow fight in their pajamas" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ah.jpg" width="400" data-photo="ah.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Pillow Fight</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple ice skating hand in hand at a winter rink" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ai.jpg" width="400" data-photo="ai.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Ice Skating</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple jumping together on a trampoline" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="aj.jpg" width="400" data-photo="aj.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Trampoline Fun</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple kiteboarding at the beach on a windy day" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ak.jpg" width="400" data-photo="ak.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Kiteboarding</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple laughing while trying to assemble furniture together" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="al.jpg" width="400" data-photo="al.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">DIY Project</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple making snow angels in fresh powder" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="am.jpg" width="400" data-photo="am.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Snow Angels</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple napping together in a hammock between trees" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="an.jpg" width="400" data-photo="an.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Hammock Nap</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple on a hot air balloon ride at sunrise" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ao.jpg" width="400" data-photo="ao.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Balloon Ride</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple painting a mural together on a large wall" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ap.jpg" width="400" data-photo="ap.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Mural Painting</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple quarreling playfully over a board game" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="aq.jpg" width="400" data-photo="aq.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Playful Argument</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple riding a motorcycle on a scenic coastal road" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ar.jpg" width="400" data-photo="ar.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Motorcycle Ride</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple salsa dancing at a Latin club" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="as.jpg" width="400" data-photo="as.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Salsa Night</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple tandem skydiving with instructor" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="at.jpg" width="400" data-photo="at.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Skydiving</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple under an umbrella during a thunderstorm" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="au.jpg" width="400" data-photo="au.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Stormy Weather</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple volunteering at an animal shelter walking dogs" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="av.jpg" width="400" data-photo="av.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Dog Walking</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple washing their car together in the driveway" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="aw.jpg" width="400" data-photo="aw.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Car Wash</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple exchanging gifts on Christmas morning" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ax.jpg" width="400" data-photo="ax.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Christmas Morning</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple yawning together on the couch watching a movie" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ay.jpg" width="400" data-photo="ay.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Movie Night</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple ziplining through a jungle canopy" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="az.jpg" width="400" data-photo="az.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Zipline Adventure</span>
+            </div>
+        </div>
     </div>
-   </section>
-   
+</section>
    <!-- Works Page -->
    <section class="page hidden relative z-10" id="works">
     <h2 class="text-2xl sm:text-3xl font-semibold mb-6 text-pink-600 flex items-center justify-center gap-2">

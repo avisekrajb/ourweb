@@ -452,6 +452,38 @@
    #new-letter-content .cancel-btn:hover {
      background: #6b7280;
    }
+   /* Toast notification styles */
+   .toast {
+     position: fixed;
+     top: 20px;
+     right: 20px;
+     background: #4CAF50;
+     color: white;
+     padding: 16px;
+     border-radius: 4px;
+     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+     z-index: 1000;
+     display: flex;
+     align-items: center;
+     gap: 10px;
+     transform: translateX(150%);
+     transition: transform 0.3s ease;
+     font-family: 'Montserrat', sans-serif;
+     font-weight: 600;
+     font-size: 1rem;
+   }
+   .toast.show {
+     transform: translateX(0);
+   }
+   .toast.error {
+     background: #f44336;
+   }
+   .toast.warning {
+     background: #ff9800;
+   }
+   .toast i {
+     font-size: 20px;
+   }
   </style>
  </head>
  <body class="font-montserrat bg-white pb-16 flex flex-col min-h-screen relative overflow-x-hidden">
@@ -460,11 +492,11 @@
   
   <!-- Header -->
   <header class="bg-gradient-to-r from-pink-400 to-pink-300 text-white shadow-md py-4 sticky top-0 z-20 flex items-center justify-center gap-4 px-4">
-   <img alt="Photo of me smiling with a soft natural background, circular cropped" class="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-white cursor-pointer hover:ring-4 hover:ring-pink-300 transition transform hover:scale-110" height="100" id="photo-me" src="a.jpg" width="100" tabindex="0" role="button" aria-label="Click to show love alert"/>
+   <img alt="Photo of me smiling with a soft natural background, circular cropped" class="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-white cursor-pointer hover:ring-4 hover:ring-pink-300 transition transform hover:scale-110" height="100" id="photo-me" src="https://placehold.co/100x100/png?text=Me+Smiling" width="100" tabindex="0" role="button" aria-label="Click to show love alert"/>
    <h1 class="text-xl sm:text-2xl font-bold select-none text-center flex-1">
     For My <span class="couple-name">Khusbu</span> ❤️
    </h1>
-   <img alt="Photo of my girlfriend smiling with a warm outdoor background, circular cropped" class="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-white cursor-pointer hover:ring-4 hover:ring-pink-300 transition transform hover:scale-110" height="100" id="photo-gf" src="a.jpg" width="100" tabindex="0" role="button" aria-label="Click to show love alert"/>
+   <img alt="Photo of my girlfriend smiling with a warm outdoor background, circular cropped" class="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-white cursor-pointer hover:ring-4 hover:ring-pink-300 transition transform hover:scale-110" height="100" id="photo-gf" src="https://placehold.co/100x100/png?text=Khusbu+Smiling" width="100" tabindex="0" role="button" aria-label="Click to show love alert"/>
   </header>
 
   <!-- Content -->
@@ -534,14 +566,14 @@
      
      <div class="flex justify-center gap-6 mt-4">
       <div class="relative group">
-       <img alt="Photo of me smiling with a soft natural background, circular cropped" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-pink-300 shadow-lg photo-frame" height="112" src="a.jpg" width="112"/>
+       <img alt="Photo of me smiling with a soft natural background, circular cropped" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-pink-300 shadow-lg photo-frame" height="112" src="https://placehold.co/112x112/png?text=Me+Smiling" width="112"/>
        <div class="absolute inset-0 bg-pink-400 bg-opacity-30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
         <span class="text-white font-bold">My Love</span>
        </div>
       </div>
 
       <div class="relative group">
-       <img alt="Photo of my girlfriend smiling with a warm outdoor background, circular cropped" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-pink-300 shadow-lg photo-frame" height="112" src="a.jpg" width="112"/>
+       <img alt="Photo of my girlfriend smiling with a warm outdoor background, circular cropped" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-pink-300 shadow-lg photo-frame" height="112" src="https://placehold.co/112x112/png?text=Khusbu+Smiling" width="112"/>
        <div class="absolute inset-0 bg-pink-400 bg-opacity-30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
         <span class="text-white font-bold">My Heart</span>
        </div>
@@ -655,13 +687,13 @@
     
     <div class="mt-10 flex justify-center gap-6 flex-wrap">
      <div class="relative group">
-      <img alt="Illustration of two hands forming a heart shape with soft pastel colors" class="w-32 h-32 sm:w-40 sm:h-40 object-cover rounded-lg photo-frame" height="160" src="a.jpg" width="160"/>
+      <img alt="Illustration of two hands forming a heart shape with soft pastel colors" class="w-32 h-32 sm:w-40 sm:h-40 object-cover rounded-lg photo-frame" height="160" src="https://placehold.co/160x160/png?text=Hands+Heart+Shape" width="160"/>
       <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
        <span class="text-white font-bold text-center px-2">Our Connection</span>
       </div>
      </div>
      <div class="relative group">
-      <img alt="Illustration of a pink heart with sparkles and glowing effects" class="w-32 h-32 sm:w-40 sm:h-40 object-cover rounded-lg photo-frame" height="160" src="a.jpg" width="160"/>
+      <img alt="Illustration of a pink heart with sparkles and glowing effects" class="w-32 h-32 sm:w-40 sm:h-40 object-cover rounded-lg photo-frame" height="160" src="https://placehold.co/160x160/png?text=Pink+Heart+Sparkles" width="160"/>
       <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
        <span class="text-white font-bold text-center px-2">Our Love</span>
       </div>
@@ -721,44 +753,60 @@
     </h2>
     
     <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-        <!-- Original Photos a-f -->
         <div class="relative group">
-            <img alt="A smiling couple sitting on a park bench surrounded by autumn leaves" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="a.jpg" width="400" data-photo="a.jpg"/>
+            <img alt="A smiling couple sitting on a park bench surrounded by autumn leaves" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Autumn+Love" width="400" data-photo="https://placehold.co/400x400/png?text=Autumn+Love"/>
             <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                 <span class="text-white font-bold">Autumn Love</span>
             </div>
         </div>
         <div class="relative group">
-            <img alt="Couple holding hands walking along a forest trail with sunlight filtering through trees" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="b.jpg" width="400" data-photo="b.jpg"/>
+            <img alt="Couple holding hands walking along a forest trail with sunlight filtering through trees" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Forest+Walk" width="400" data-photo="https://placehold.co/400x400/png?text=Forest+Walk"/>
             <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                 <span class="text-white font-bold">Forest Walk</span>
             </div>
         </div>
         <div class="relative group">
-            <img alt="Couple laughing together while sharing a picnic on a sunny day in a meadow" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="c.jpg" width="400" data-photo="c.jpg"/>
+            <img alt="Couple laughing together while sharing a picnic on a sunny day in a meadow" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Picnic+Day" width="400" data-photo="https://placehold.co/400x400/png?text=Picnic+Day"/>
             <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                 <span class="text-white font-bold">Picnic Day</span>
             </div>
         </div>
         <div class="relative group">
-            <img alt="Couple embracing on a city rooftop at sunset with skyline in the background" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="d.jpg" width="400" data-photo="d.jpg"/>
+            <img alt="Couple embracing on a city rooftop at sunset with skyline in the background" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Sunset+Embrace" width="400" data-photo="https://placehold.co/400x400/png?text=Sunset+Embrace"/>
             <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                 <span class="text-white font-bold">Sunset Embrace</span>
             </div>
         </div>
         <div class="relative group">
-            <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="e.jpg" width="400" data-photo="e.jpg"/>
+            <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Starry+Night" width="400" data-photo="https://placehold.co/400x400/png?text=Starry+Night"/>
             <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                 <span class="text-white font-bold">Starry Night</span>
             </div>
         </div>
         <div class="relative group">
-            <img alt="Couple sharing a joyful moment while riding bicycles on a country road" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="f.jpg" width="400" data-photo="f.jpg"/>
+            <img alt="Couple sharing a joyful moment while riding bicycles on a country road" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Bike+Adventure" width="400" data-photo="https://placehold.co/400x400/png?text=Bike+Adventure"/>
             <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                 <span class="text-white font-bold">Bike Adventure</span>
             </div>
         </div>
-        <!-- Additional photos omitted for brevity but remain unchanged -->
+        <div class="relative group">
+            <img alt="Couple enjoying a cozy moment in a coffee shop with warm lighting" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Cozy+Coffee+Moment" width="400" data-photo="https://placehold.co/400x400/png?text=Cozy+Coffee+Moment"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Cozy Coffee Moment</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple walking hand in hand on a beach during golden hour" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Golden+Hour+Beach" width="400" data-photo="https://placehold.co/400x400/png?text=Golden+Hour+Beach"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Golden Hour Beach</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple dancing together under fairy lights in a garden" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Garden+Dance" width="400" data-photo="https://placehold.co/400x400/png?text=Garden+Dance"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Garden Dance</span>
+            </div>
+        </div>
     </div>
 </section>
    <!-- Works Page -->
@@ -892,7 +940,10 @@
   </div>
 
   <!-- Audio Elements -->
-  <audio id="home-audio" src="a.mp3" loop preload="auto"></audio>
+  <audio id="home-audio" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_3a7a7a7a7a.mp3?filename=romantic-piano-11243.mp3" loop preload="auto"></audio>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
 
   <script>
    // Navigation and page switching
@@ -1185,7 +1236,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Generate reel HTML string for a given index (1-based)
   function createReelHTML(i) {
     const videoId = `video${i}`;
-    const videoSrc = `v${i}.mp4`;
+    const videoSrc = `https://placehold.co/360x560/mp4?text=Video+${i}`;
     const posterText = `Video+${i}+Poster`;
     const description =
       i === 1
@@ -1474,13 +1525,166 @@ function closeNewLetterModal() {
   newLetterModal.classList.remove('active');
 }
 
+// Show toast notification
+function showToast(message, type = 'success') {
+  const toastContainer = document.getElementById('toast-container');
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  toast.innerHTML = `
+    <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-times-circle' : 'fa-exclamation-triangle'}"></i>
+    <span>${message}</span>
+  `;
+  toastContainer.appendChild(toast);
+  
+  // Show toast
+  setTimeout(() => toast.classList.add('show'), 10);
+  
+  // Hide after 5 seconds
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 300);
+  }, 5000);
+}
+
+// GitHub configuration
+const githubConfig = {
+  repoOwner: 'avisekrajb',
+  repoName: 'ourweb',
+  branch: 'main',
+  token: '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' // Note: In production, never expose tokens in client-side code
+};
+
+// GitHub commit function using GitHub REST API v3
+async function commitLetterToGitHub(letterContent) {
+  const { repoOwner, repoName, branch, token } = githubConfig;
+  const filePath = `love-letters/letter-${Date.now()}.txt`;
+  const commitMessage = `Add new love letter at ${new Date().toLocaleString()}`;
+
+  if(!token) {
+    showToast('GitHub token is missing', 'error');
+    throw new Error('GitHub token is missing');
+  }
+
+  try {
+    showToast('Saving your love letter to GitHub...', 'warning');
+
+    // Step 1: Get the SHA of the latest commit on the branch
+    const refRes = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/git/refs/heads/${branch}`, {
+      headers: {
+        'Authorization': `token ${token}`,
+        'Accept': 'application/vnd.github.v3+json'
+      }
+    });
+    
+    if(!refRes.ok) throw new Error(await refRes.text());
+    const refData = await refRes.json();
+    const latestCommitSha = refData.object.sha;
+
+    // Step 2: Get the tree SHA of the latest commit
+    const commitRes = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/git/commits/${latestCommitSha}`, {
+      headers: {
+        'Authorization': `token ${token}`,
+        'Accept': 'application/vnd.github.v3+json'
+      }
+    });
+    
+    if(!commitRes.ok) throw new Error(await commitRes.text());
+    const commitData = await commitRes.json();
+    const baseTreeSha = commitData.tree.sha;
+
+    // Step 3: Create a new blob with the file content
+    const blobRes = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/git/blobs`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `token ${token}`,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        content: btoa(unescape(encodeURIComponent(letterContent))),
+        encoding: 'base64'
+      })
+    });
+    
+    if(!blobRes.ok) throw new Error(await blobRes.text());
+    const blobData = await blobRes.json();
+    const blobSha = blobData.sha;
+
+    // Step 4: Create a new tree with the new file
+    const newTreeRes = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/git/trees`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `token ${token}`,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        base_tree: baseTreeSha,
+        tree: [
+          {
+            path: filePath,
+            mode: '100644',
+            type: 'blob',
+            sha: blobSha
+          }
+        ]
+      })
+    });
+    
+    if(!newTreeRes.ok) throw new Error(await newTreeRes.text());
+    const newTreeData = await newTreeRes.json();
+
+    // Step 5: Create a new commit
+    const newCommitRes = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/git/commits`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `token ${token}`,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: commitMessage,
+        tree: newTreeData.sha,
+        parents: [latestCommitSha]
+      })
+    });
+    
+    if(!newCommitRes.ok) throw new Error(await newCommitRes.text());
+    const newCommitData = await newCommitRes.json();
+
+    // Step 6: Update the branch reference to point to the new commit
+    const updateRefRes = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/git/refs/heads/${branch}`, {
+      method: 'PATCH',
+      headers: {
+        'Authorization': `token ${token}`,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        sha: newCommitData.sha,
+        force: false
+      })
+    });
+    
+    if(!updateRefRes.ok) throw new Error(await updateRefRes.text());
+
+    showToast('Love letter saved to GitHub successfully!', 'success');
+    return true;
+  } catch (error) {
+    console.error('GitHub commit error:', error);
+    showToast('Failed to save to GitHub. Saved locally only.', 'error');
+    throw error;
+  }
+}
+
 // Save new letter and commit to GitHub
 async function saveNewLetter() {
   const content = newLetterText.value.trim();
   if(content.length === 0){
-    alert('Please write something before saving.');
+    showToast('Please write something before saving.', 'error');
     return;
   }
+  
   letters.unshift(content);
   saveLetters();
   renderLetters();
@@ -1489,108 +1693,9 @@ async function saveNewLetter() {
   // Commit to GitHub
   try {
     await commitLetterToGitHub(content);
-    alert('Love letter saved and committed to GitHub successfully!');
   } catch (error) {
-    alert('Letter saved locally but failed to commit to GitHub. See console for details.');
-    console.error(error);
+    // Error is already handled by commitLetterToGitHub
   }
-}
-
-// GitHub commit function using GitHub REST API v3
-// Note: This requires a GitHub Personal Access Token with repo permissions.
-// For security, token should NOT be exposed in client-side code in production.
-// Here, for demonstration, user must enter token manually.
-async function commitLetterToGitHub(letterContent) {
-  const repoOwner = 'YOUR_GITHUB_USERNAME'; // Replace with your GitHub username
-  const repoName = 'YOUR_REPO_NAME'; // Replace with your repo name
-  const branch = 'main'; // or your default branch
-  const filePath = `love-letters/letter-${Date.now()}.txt`;
-  const commitMessage = `Add new love letter at ${new Date().toLocaleString()}`;
-
-  // Prompt user for GitHub token (for demo only)
-  const token = prompt('Please enter your GitHub Personal Access Token with repo permissions to save your letter permanently:');
-  if(!token){
-    throw new Error('GitHub token is required to commit the letter.');
-  }
-
-  // Get the SHA of the latest commit on the branch
-  const refRes = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/git/ref/heads/${branch}`, {
-    headers: {
-      Authorization: `token ${token}`,
-      Accept: 'application/vnd.github.v3+json'
-    }
-  });
-  if(!refRes.ok) throw new Error('Failed to get branch reference: ' + refRes.statusText);
-  const refData = await refRes.json();
-  const latestCommitSha = refData.object.sha;
-
-  // Get the tree SHA of the latest commit
-  const commitRes = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/git/commits/${latestCommitSha}`, {
-    headers: {
-      Authorization: `token ${token}`,
-      Accept: 'application/vnd.github.v3+json'
-    }
-  });
-  if(!commitRes.ok) throw new Error('Failed to get commit data: ' + commitRes.statusText);
-  const commitData = await commitRes.json();
-  const baseTreeSha = commitData.tree.sha;
-
-  // Create a new blob with the letter content (base64 encoded)
-  const contentBase64 = btoa(unescape(encodeURIComponent(letterContent)));
-
-  // Create a new tree with the new file
-  const newTreeRes = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/git/trees`, {
-    method: 'POST',
-    headers: {
-      Authorization: `token ${token}`,
-      Accept: 'application/vnd.github.v3+json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      base_tree: baseTreeSha,
-      tree: [
-        {
-          path: filePath,
-          mode: '100644',
-          type: 'blob',
-          content: letterContent
-        }
-      ]
-    })
-  });
-  if(!newTreeRes.ok) throw new Error('Failed to create new tree: ' + newTreeRes.statusText);
-  const newTreeData = await newTreeRes.json();
-
-  // Create a new commit
-  const newCommitRes = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/git/commits`, {
-    method: 'POST',
-    headers: {
-      Authorization: `token ${token}`,
-      Accept: 'application/vnd.github.v3+json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      message: commitMessage,
-      tree: newTreeData.sha,
-      parents: [latestCommitSha]
-    })
-  });
-  if(!newCommitRes.ok) throw new Error('Failed to create new commit: ' + newCommitRes.statusText);
-  const newCommitData = await newCommitRes.json();
-
-  // Update the branch reference to point to the new commit
-  const updateRefRes = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/git/refs/heads/${branch}`, {
-    method: 'PATCH',
-    headers: {
-      Authorization: `token ${token}`,
-      Accept: 'application/vnd.github.v3+json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      sha: newCommitData.sha
-    })
-  });
-  if(!updateRefRes.ok) throw new Error('Failed to update branch reference: ' + updateRefRes.statusText);
 }
 
 // Open new letter modal handlers

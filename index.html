@@ -270,6 +270,8 @@
      opacity: 0;
      pointer-events: none;
      transition: opacity 0.3s ease;
+     flex-direction: column;
+     padding: 1rem;
    }
    #photo-viewer.active {
      opacity: 1;
@@ -277,15 +279,14 @@
    }
    #photo-viewer img {
      max-width: 90%;
-     max-height: 90%;
+     max-height: 80vh;
      object-fit: contain;
+     border-radius: 0.75rem;
+     box-shadow: 0 10px 30px rgba(0,0,0,0.7);
    }
    #photo-viewer .close-btn {
-     position: absolute;
-     top: 20px;
-     right: 20px;
      color: white;
-     font-size: 2rem;
+     font-size: 2.5rem;
      cursor: pointer;
      background: rgba(0,0,0,0.5);
      width: 50px;
@@ -294,6 +295,90 @@
      display: flex;
      align-items: center;
      justify-content: center;
+     margin-top: 1rem;
+     transition: background-color 0.3s ease;
+   }
+   #photo-viewer .close-btn:hover {
+     background: rgba(236, 72, 153, 0.8);
+   }
+   /* Floating animation for hearts */
+   .heart {
+       position: absolute;
+       background-color: pink;
+       display: inline-block;
+       height: 20px;
+       width: 20px;
+       transform: rotate(-45deg);
+   }
+   
+   .heart:before, .heart:after {
+       content: "";
+       background-color: pink;
+       border-radius: 50%;
+       height: 20px;
+       position: absolute;
+       width: 20px;
+   }
+   
+   .heart:before {
+       top: -10px;
+       left: 0;
+   }
+   
+   .heart:after {
+       left: 10px;
+       top: 0;
+   }
+   
+   .floating-1 {
+       top: 10%;
+       left: 10%;
+       animation: float 8s ease-in-out infinite;
+   }
+   
+   .floating-2 {
+       top: 30%;
+       left: 80%;
+       animation: float 10s ease-in-out infinite 2s;
+   }
+   
+   .floating-3 {
+       top: 60%;
+       left: 15%;
+       animation: float 12s ease-in-out infinite 1s;
+   }
+   
+   .floating-4 {
+       top: 80%;
+       left: 70%;
+       animation: float 9s ease-in-out infinite 0.5s;
+   }
+   
+   .floating-5 {
+       top: 40%;
+       left: 50%;
+       animation: float 11s ease-in-out infinite 1.5s;
+   }
+   
+   @keyframes float {
+       0% { transform: rotate(-45deg) translateY(0) translateX(0); }
+       50% { transform: rotate(-45deg) translateY(-20px) translateX(10px); }
+       100% { transform: rotate(-45deg) translateY(0) translateX(0); }
+   }
+   
+   /* Header animation */
+   .animate-float {
+       animation: float-header 3s ease-in-out infinite alternate;
+   }
+   
+   @keyframes float-header {
+       0% { transform: translateY(0); }
+       100% { transform: translateY(-5px); }
+   }
+   
+   /* Hover effect for memory cards */
+   .memory-card:hover {
+       box-shadow: 0 10px 25px -5px rgba(244, 114, 182, 0.4);
    }
   </style>
  </head>
@@ -886,7 +971,6 @@
     </div>
 </section>
    <!-- Works Page -->
-<!-- Works Page -->
 <section class="page hidden relative z-10" id="works">
     <div class="max-w-4xl mx-auto px-4 py-8">
         <!-- Header with romantic animation -->
@@ -1030,38 +1114,6 @@
                     </button>
                 </div>
             </article>
-            
-            <!-- New Letter - Anniversary Special -->
-            <article class="bg-gradient-to-br from-pink-200 to-red-100 border-2 border-pink-300 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 memory-card transform hover:rotate-1" 
-                     tabindex="0" 
-                     aria-label="Anniversary love letter">
-                <div class="absolute -top-4 -right-4 bg-red-500 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg">
-                    <i class="fas fa-gift"></i>
-                </div>
-                <h3 class="text-2xl font-bold text-red-700 mb-4 flex items-center gap-3">
-                    <i class="fas fa-calendar-heart text-red-500"></i> Happy Anniversary, My Love
-                </h3>
-                <div class="relative">
-                    <div class="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-red-400 to-pink-400 rounded-full"></div>
-                    <div class="pl-6">
-                        <p class="text-gray-800 leading-relaxed font-serif italic">
-                            "Another year has passed, my love, and with each day my heart grows fonder of you. Remember our first date? How nervous we both were? Now look at us - stronger, happier, and more in love than ever before.
-                            
-                            Today, I promise you again what I promised you then: to love you unconditionally, to support you endlessly, and to cherish every moment we share."
-                        </p>
-                        <div class="mt-4 flex items-center justify-between">
-                            <div class="flex -space-x-2">
-                                <div class="w-8 h-8 rounded-full bg-red-300 border-2 border-white"></div>
-                                <div class="w-8 h-8 rounded-full bg-pink-300 border-2 border-white"></div>
-                                <div class="w-8 h-8 rounded-full bg-purple-300 border-2 border-white"></div>
-                            </div>
-                            <span class="text-red-600 font-medium">
-                                <i class="fas fa-heart mr-1"></i> 3 Years Together
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </article>
         </div>
         
         <!-- Call to Action -->
@@ -1098,95 +1150,14 @@
     </div>
 </section>
 
-<style>
-    /* Floating animation for hearts */
-    .heart {
-        position: absolute;
-        background-color: pink;
-        display: inline-block;
-        height: 20px;
-        width: 20px;
-        transform: rotate(-45deg);
-    }
-    
-    .heart:before, .heart:after {
-        content: "";
-        background-color: pink;
-        border-radius: 50%;
-        height: 20px;
-        position: absolute;
-        width: 20px;
-    }
-    
-    .heart:before {
-        top: -10px;
-        left: 0;
-    }
-    
-    .heart:after {
-        left: 10px;
-        top: 0;
-    }
-    
-    .floating-1 {
-        top: 10%;
-        left: 10%;
-        animation: float 8s ease-in-out infinite;
-    }
-    
-    .floating-2 {
-        top: 30%;
-        left: 80%;
-        animation: float 10s ease-in-out infinite 2s;
-    }
-    
-    .floating-3 {
-        top: 60%;
-        left: 15%;
-        animation: float 12s ease-in-out infinite 1s;
-    }
-    
-    .floating-4 {
-        top: 80%;
-        left: 70%;
-        animation: float 9s ease-in-out infinite 0.5s;
-    }
-    
-    .floating-5 {
-        top: 40%;
-        left: 50%;
-        animation: float 11s ease-in-out infinite 1.5s;
-    }
-    
-    @keyframes float {
-        0% { transform: rotate(-45deg) translateY(0) translateX(0); }
-        50% { transform: rotate(-45deg) translateY(-20px) translateX(10px); }
-        100% { transform: rotate(-45deg) translateY(0) translateX(0); }
-    }
-    
-    /* Header animation */
-    .animate-float {
-        animation: float-header 3s ease-in-out infinite alternate;
-    }
-    
-    @keyframes float-header {
-        0% { transform: translateY(0); }
-        100% { transform: translateY(-5px); }
-    }
-    
-    /* Hover effect for memory cards */
-    .memory-card:hover {
-        box-shadow: 0 10px 25px -5px rgba(244, 114, 182, 0.4);
-    }
-</style>
   </main>
   
   <!-- Fullscreen Photo Viewer -->
   <div id="photo-viewer" role="dialog" aria-modal="true" aria-label="Fullscreen photo viewer">
-   <div class="close-btn" id="photo-viewer-close" aria-label="Close photo viewer">
+   <img id="viewed-photo" alt="Fullscreen photo"/>
+   <div class="close-btn" id="photo-viewer-close" aria-label="Close photo viewer" role="button" tabindex="0">
     <i class="fas fa-times"></i>
    </div>
-   <img id="viewed-photo" alt="Fullscreen photo"/>
   </div>
   
   <!-- Bottom Navigation -->
@@ -1235,10 +1206,14 @@
    </div>
   </div>
 
+  <!-- Audio Elements -->
+  <audio id="home-audio" src="a.mp3" loop preload="auto"></audio>
+
   <script>
    // Navigation and page switching
 const navButtons = document.querySelectorAll('nav button.nav-item');
 const pages = document.querySelectorAll('main section.page');
+const homeAudio = document.getElementById('home-audio');
 
 function setActivePage(targetId) {
   pages.forEach(page => {
@@ -1260,6 +1235,14 @@ function setActivePage(targetId) {
       btn.classList.add('text-gray-600');
     }
   });
+
+  // Audio control based on page
+  if(targetId === 'home'){
+    homeAudio.play().catch(() => {});
+  } else {
+    homeAudio.pause();
+    homeAudio.currentTime = 0;
+  }
 }
 
 navButtons.forEach(button => {
@@ -1268,7 +1251,7 @@ navButtons.forEach(button => {
   });
 });
 
-// Initialize default active page
+// Initialize default active page and play home audio
 setActivePage('home');
 
 // Flying hearts logic with 10s duration on page load
@@ -1454,6 +1437,12 @@ document.querySelectorAll('#photos img[data-photo]').forEach(photo => {
 });
 
 photoViewerClose.addEventListener('click', hidePhotoViewer);
+photoViewerClose.addEventListener('keydown', e => {
+  if(e.key === 'Enter' || e.key === ' '){
+    e.preventDefault();
+    hidePhotoViewer();
+  }
+});
 
 // Close photo viewer on overlay click (outside photo)
 photoViewer.addEventListener('click', e => {
@@ -1685,6 +1674,48 @@ document.addEventListener("DOMContentLoaded", () => {
     // Scroll to top after refresh
     reelsContainer.scrollTo({ top: 0, behavior: "smooth" });
   });
+});
+
+// Home page song play/pause logic
+const playSongBtn = document.getElementById('play-our-song');
+let songPlaying = false;
+let homeAudioPlaying = false;
+
+playSongBtn.addEventListener('click', () => {
+  if (!songPlaying) {
+    // Pause reels videos if any playing
+    document.querySelectorAll('#reels video').forEach(video => {
+      video.pause();
+      video.muted = true;
+      const btn = document.querySelector(`button[data-video-id="${video.id}"]`);
+      if(btn){
+        btn.querySelector('i').classList.remove('fa-pause');
+        btn.querySelector('i').classList.add('fa-play');
+      }
+    });
+    // Play home audio
+    homeAudio.play().catch(() => {});
+    songPlaying = true;
+    playSongBtn.querySelector('i').classList.remove('fa-play');
+    playSongBtn.querySelector('i').classList.add('fa-pause');
+  } else {
+    homeAudio.pause();
+    songPlaying = false;
+    playSongBtn.querySelector('i').classList.remove('fa-pause');
+    playSongBtn.querySelector('i').classList.add('fa-play');
+  }
+});
+
+// Pause home audio when reels video plays
+document.addEventListener('play', (e) => {
+  if(e.target.tagName === 'VIDEO' && e.target.closest('#reels-container')){
+    if(songPlaying){
+      homeAudio.pause();
+      songPlaying = false;
+      playSongBtn.querySelector('i').classList.remove('fa-pause');
+      playSongBtn.querySelector('i').classList.add('fa-play');
+    }
+  }
 });
   </script>
  </body>

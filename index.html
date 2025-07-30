@@ -1,1691 +1,2343 @@
 <html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1" name="viewport"/>
-  <title>
-   For My Love ❤️
-  </title>
+<head>
+  
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>For My Love ❤️</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <!-- Add this near the top of your head section -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
   <style>
-   /* Flying hearts animation */
-   @keyframes floatUp {
-     0% {
-       transform: translateY(0) scale(1);
-       opacity: 1;
-     }
-     100% {
-       transform: translateY(-150vh) scale(1.5);
-       opacity: 0;
-     }
-   }
-   .heart-fly {
-     position: absolute;
-     width: 24px;
-     height: 24px;
-     animation-name: floatUp;
-     animation-timing-function: ease-in;
-     animation-fill-mode: forwards;
-     pointer-events: none;
-     will-change: transform, opacity;
-   }
-   /* Custom scrollbar for reels container */
-   #reels-container {
-     scroll-snap-type: y mandatory;
-     -webkit-overflow-scrolling: touch;
-   }
-   .reel-item {
-     scroll-snap-align: start;
-   }
-   /* Sweet alert styles */
-   #sweet-alert-overlay {
-     position: fixed;
-     inset: 0;
-     background: rgba(0,0,0,0.6);
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     z-index: 50;
-     opacity: 0;
-     pointer-events: none;
-     transition: opacity 0.3s ease;
-   }
-   #sweet-alert-overlay.active {
-     opacity: 1;
-     pointer-events: auto;
-   }
-   #sweet-alert {
-     background: white;
-     border-radius: 1rem;
-     max-width: 90vw;
-     width: 360px;
-     padding: 2rem 1.5rem 2.5rem;
-     box-shadow: 0 10px 25px rgba(255, 105, 180, 0.4);
-     text-align: center;
-     position: relative;
-     overflow: hidden;
-     font-family: 'Montserrat', sans-serif;
-     animation: popIn 0.5s ease forwards;
-   }
-   @keyframes popIn {
-     0% {
-       transform: scale(0.7);
-       opacity: 0;
-     }
-     100% {
-       transform: scale(1);
-       opacity: 1;
-     }
-   }
-   #sweet-alert h2 {
-     color: #ec4899;
-     font-weight: 700;
-     font-size: 1.75rem;
-     margin-bottom: 0.5rem;
-   }
-   #sweet-alert p {
-     color: #9d174d;
-     font-size: 1rem;
-     margin-bottom: 1.5rem;
-   }
-   #sweet-alert .close-btn {
-     background: #ec4899;
-     color: white;
-     border: none;
-     padding: 0.5rem 1.5rem;
-     border-radius: 9999px;
-     font-weight: 600;
-     cursor: pointer;
-     box-shadow: 0 4px 15px rgba(236, 72, 153, 0.5);
-     transition: background-color 0.3s ease;
-   }
-   #sweet-alert .close-btn:hover {
-     background: #be185d;
-   }
-   /* Animated hearts inside alert */
-   #sweet-alert .hearts-container {
-     position: absolute;
-     inset: 0;
-     pointer-events: none;
-     overflow: visible;
-     z-index: 10;
-   }
-   #sweet-alert .hearts-container .heart {
-     position: absolute;
-     font-size: 1.5rem;
-     color: #ec4899;
-     animation: floatUpSweet 3s ease forwards;
-     opacity: 0;
-   }
-   @keyframes floatUpSweet {
-     0% {
-       transform: translateY(0) scale(1);
-       opacity: 1;
-     }
-     100% {
-       transform: translateY(-120px) scale(1.5);
-       opacity: 0;
-     }
-   }
-   /* New additions */
-   .couple-name {
-     font-family: 'Dancing Script', cursive;
-     font-size: 2.5rem;
-     background: linear-gradient(to right, #ec4899, #f97316);
-     -webkit-background-clip: text;
-     background-clip: text;
-     color: transparent;
-     text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-   }
-   .love-quote {
-     position: relative;
-     padding: 1.5rem;
-     background: linear-gradient(135deg, #fff9f9 0%, #fff0f5 100%);
-     border-radius: 0.5rem;
-     box-shadow: 0 4px 15px rgba(251, 113, 133, 0.1);
-   }
-   .love-quote::before, .love-quote::after {
-     content: '"';
-     font-size: 3rem;
-     color: #fda4af;
-     position: absolute;
-     opacity: 0.3;
-   }
-   .love-quote::before {
-     top: 0;
-     left: 0.5rem;
-   }
-   .love-quote::after {
-     bottom: -1.5rem;
-     right: 0.5rem;
-   }
-   .memory-card {
-     transition: all 0.3s ease;
-     border: 1px solid #fecdd3;
-   }
-   .memory-card:hover {
-     transform: translateY(-5px);
-     box-shadow: 0 10px 25px rgba(251, 113, 133, 0.2);
-   }
-   .photo-frame {
-     border: 8px solid white;
-     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-     transition: all 0.3s ease;
-   }
-   .photo-frame:hover {
-     transform: scale(1.03);
-     box-shadow: 0 8px 25px rgba(251, 113, 133, 0.3);
-   }
-   .anniversary-countdown {
-     background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
-     border-radius: 1rem;
-     padding: 1.5rem;
-     text-align: center;
-     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-   }
-   .countdown-number {
-     font-size: 2rem;
-     font-weight: 700;
-     color: #ec4899;
-   }
-   .countdown-label {
-     font-size: 0.9rem;
-     color: #9d174d;
-     text-transform: uppercase;
-     letter-spacing: 1px;
-   }
-   .love-meter {
-     height: 8px;
-     background: #fecdd3;
-     border-radius: 4px;
-     overflow: hidden;
-   }
-   .love-meter-fill {
-     height: 100%;
-     width: 100%;
-     background: linear-gradient(to right, #ec4899, #f97316);
-     border-radius: 4px;
-     animation: fillLove 2s ease-out forwards;
-   }
-   @keyframes fillLove {
-     from { width: 0; }
-     to { width: 100%; }
-   }
-   .song-card {
-     background: linear-gradient(135deg, #fff9f9 0%, #fff0f5 100%);
-     border-radius: 0.5rem;
-     padding: 1rem;
-     display: flex;
-     align-items: center;
-     gap: 1rem;
-     transition: all 0.3s ease;
-   }
-   .song-card:hover {
-     transform: translateY(-3px);
-     box-shadow: 0 5px 15px rgba(251, 113, 133, 0.2);
-   }
-   .song-play-btn {
-     width: 40px;
-     height: 40px;
-     border-radius: 50%;
-     background: #ec4899;
-     color: white;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     cursor: pointer;
-   }
-   .floating-hearts {
-     position: fixed;
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: 100%;
-     pointer-events: none;
-     z-index: -1;
-   }
-   .nav-item.active {
-     color: #ec4899;
-     transform: translateY(-5px);
-   }
-   .nav-item i {
-     transition: all 0.3s ease;
-   }
-   .nav-item.active i {
-     transform: scale(1.2);
-   }
-   /* Fullscreen photo viewer */
-   #photo-viewer {
-     position: fixed;
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: 100%;
-     background: rgba(0,0,0,0.9);
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     z-index: 100;
-     opacity: 0;
-     pointer-events: none;
-     transition: opacity 0.3s ease;
-   }
-   #photo-viewer.active {
-     opacity: 1;
-     pointer-events: auto;
-   }
-   #photo-viewer img {
-     max-width: 90%;
-     max-height: 90%;
-     object-fit: contain;
-   }
-   #photo-viewer .close-btn {
-     position: absolute;
-     top: 20px;
-     right: 20px;
-     color: white;
-     font-size: 2rem;
-     cursor: pointer;
-     background: rgba(0,0,0,0.5);
-     width: 50px;
-     height: 50px;
-     border-radius: 50%;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-   }
+    /* Flying hearts animation */
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-150vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+    .heart-fly {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      animation-name: floatUp;
+      animation-timing-function: ease-in;
+      animation-fill-mode: forwards;
+      pointer-events: none;
+      will-change: transform, opacity;
+    }
+    /* Custom scrollbar for reels container */
+    #reels-container {
+      scroll-snap-type: y mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .reel-item {
+      scroll-snap-align: start;
+    }
+    /* Sweet alert styles */
+    #sweet-alert-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 50;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    #sweet-alert-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    #sweet-alert {
+      background: white;
+      border-radius: 1rem;
+      max-width: 90vw;
+      width: 360px;
+      padding: 2rem 1.5rem 2.5rem;
+      box-shadow: 0 10px 25px rgba(255, 105, 180, 0.4);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Montserrat', sans-serif;
+      animation: popIn 0.5s ease forwards;
+    }
+    @keyframes popIn {
+      0% {
+        transform: scale(0.7);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    #sweet-alert h2 {
+      color: #ec4899;
+      font-weight: 700;
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+    #sweet-alert p {
+      color: #9d174d;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    #sweet-alert .close-btn {
+      background: #ec4899;
+      color: white;
+      border: none;
+      padding: 0.5rem 1.5rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(236, 72, 153, 0.5);
+      transition: background-color 0.3s ease;
+    }
+    #sweet-alert .close-btn:hover {
+      background: #be185d;
+    }
+    /* Animated hearts inside alert */
+    #sweet-alert .hearts-container {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: visible;
+      z-index: 10;
+    }
+    #sweet-alert .hearts-container .heart {
+      position: absolute;
+      font-size: 1.5rem;
+      color: #ec4899;
+      animation: floatUpSweet 3s ease forwards;
+      opacity: 0;
+    }
+    @keyframes floatUpSweet {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120px) scale(1.5);
+        opacity: 0;
+      }
+    }
+    /* New additions */
+    .couple-name {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.5rem;
+      background: linear-gradient(to right, #ec4899, #f97316);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .love-quote {
+      position: relative;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, #fff9f9 0%, #fff0f5 100%);
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 15px rgba(251, 113, 133, 0.1);
+    }
+    .love-quote::before, .love-quote::after {
+      content: '"';
+      font-size: 3rem;
+      color: #fda4af;
+      position: absolute;
+      opacity: 0.3;
+    }
+    .love-quote::before {
+      top: 0;
+      left: 0.5rem;
+    }
+    .love-quote::after {
+      bottom: -1.5rem;
+      right: 0.5rem;
+    }
+    .memory-card {
+      transition: all 0.3s ease;
+      border: 1px solid #fecdd3;
+    }
+    .memory-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(251, 113, 133, 0.2);
+    }
+    .photo-frame {
+      border: 8px solid white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    .photo-frame:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 25px rgba(251, 113, 133, 0.3);
+    }
+    .anniversary-countdown {
+      background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+    .countdown-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #ec4899;
+    }
+    .countdown-label {
+      font-size: 0.9rem;
+      color: #9d174d;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .love-meter {
+      height: 8px;
+      background: #fecdd3;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .love-meter-fill {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(to right, #ec4899, #f97316);
+      border-radius: 4px;
+      animation: fillLove 2s ease-out forwards;
+    }
+    @keyframes fillLove {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    .song-card {
+      background: linear-gradient(135deg, #fff9f9 0%, #fff0f5 100%);
+      border-radius: 0.5rem;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: all 0.3s ease;
+    }
+    .song-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(251, 113, 133, 0.2);
+    }
+    .song-play-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #ec4899;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .floating-hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .nav-item.active {
+      color: #ec4899;
+      transform: translateY(-5px);
+    }
+    .nav-item i {
+      transition: all 0.3s ease;
+    }
+    .nav-item.active i {
+      transform: scale(1.2);
+    }
+    /* Fullscreen photo viewer */
+    #photo-viewer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    #photo-viewer.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    #photo-viewer img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+    }
+    #photo-viewer .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      background: rgba(0,0,0,0.5);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* Modal for love letters */
+    #love-letter-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 110;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      padding: 1rem;
+    }
+    #love-letter-modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    #love-letter-content {
+      background: white;
+      border-radius: 1rem;
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2rem 2rem 2.5rem;
+      box-shadow: 0 10px 25px rgba(236, 72, 153, 0.4);
+      font-family: 'Montserrat', sans-serif;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    #love-letter-content h2 {
+      color: #ec4899;
+      font-weight: 700;
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    #love-letter-content label {
+      font-weight: 600;
+      color: #9d174d;
+      margin-bottom: 0.25rem;
+      display: block;
+    }
+    #love-letter-content textarea {
+      width: 100%;
+      min-height: 100px;
+      border: 2px solid #fecdd3;
+      border-radius: 0.5rem;
+      padding: 0.5rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      resize: vertical;
+      margin-bottom: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    #love-letter-content textarea:focus {
+      outline: none;
+      border-color: #ec4899;
+      box-shadow: 0 0 5px #f97316;
+    }
+    #love-letter-content .photos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(80px,1fr));
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    #love-letter-content .photos-grid img {
+      width: 100%;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+    #love-letter-content .photos-grid img.selected {
+      border-color: #ec4899;
+      box-shadow: 0 0 8px #f97316;
+    }
+    #love-letter-content .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    #love-letter-content button {
+      background: #ec4899;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(236, 72, 153, 0.5);
+      transition: background-color 0.3s ease;
+      flex: 1 1 120px;
+      max-width: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    #love-letter-content button:hover {
+      background: #be185d;
+    }
+    #love-letter-content .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: transparent;
+      color: #ec4899;
+      font-size: 1.5rem;
+      border: none;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    #love-letter-content .close-modal:hover {
+      color: #be185d;
+    }
+    /* Letters list */
+    #letters-list {
+      margin-top: 2rem;
+      max-height: 300px;
+      overflow-y: auto;
+      border-top: 1px solid #fecdd3;
+      padding-top: 1rem;
+    }
+    #letters-list h3 {
+      color: #ec4899;
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .letter-item {
+      background: #fff0f5;
+      border: 1px solid #fecdd3;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(251, 113, 133, 0.2);
+    }
+    .letter-item p {
+      white-space: pre-wrap;
+      color: #9d174d;
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+    .letter-item img {
+      max-width: 100px;
+      max-height: 100px;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      margin-top: 0.5rem;
+      box-shadow: 0 2px 8px rgba(251, 113, 133, 0.3);
+    }
+    .letter-item .delete-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: transparent;
+      border: none;
+      color: #ec4899;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    .letter-item .delete-btn:hover {
+      color: #be185d;
+    }
+    /* Floating animation for hearts */
+    .heart {
+      position: absolute;
+      background-color: pink;
+      display: inline-block;
+      height: 20px;
+      width: 20px;
+      transform: rotate(-45deg);
+    }
+    .heart:before, .heart:after {
+      content: "";
+      background-color: pink;
+      border-radius: 50%;
+      height: 20px;
+      position: absolute;
+      width: 20px;
+    }
+    .heart:before {
+      top: -10px;
+      left: 0;
+    }
+    .heart:after {
+      left: 10px;
+      top: 0;
+    }
+    .floating-1 {
+      top: 10%;
+      left: 10%;
+      animation: float 8s ease-in-out infinite;
+    }
+    .floating-2 {
+      top: 30%;
+      left: 80%;
+      animation: float 10s ease-in-out infinite 2s;
+    }
+    .floating-3 {
+      top: 60%;
+      left: 15%;
+      animation: float 12s ease-in-out infinite 1s;
+    }
+    .floating-4 {
+      top: 80%;
+      left: 70%;
+      animation: float 9s ease-in-out infinite 0.5s;
+    }
+    .floating-5 {
+      top: 40%;
+      left: 50%;
+      animation: float 11s ease-in-out infinite 1.5s;
+    }
+    @keyframes float {
+      0% { transform: rotate(-45deg) translateY(0) translateX(0); }
+      50% { transform: rotate(-45deg) translateY(-20px) translateX(10px); }
+      100% { transform: rotate(-45deg) translateY(0) translateX(0); }
+    }
+    /* Header animation */
+    .animate-float {
+      animation: float-header 3s ease-in-out infinite alternate;
+    }
+    @keyframes float-header {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-5px); }
+    }
+    /* Hover effect for memory cards */
+    .memory-card:hover {
+      box-shadow: 0 10px 25px -5px rgba(244, 114, 182, 0.4);
+    }
+    /* Delete modal styles */
+    #delete-confirm-modal {
+      transition: opacity 0.3s ease;
+    }
+    #toast {
+      transition: all 0.3s ease;
+      z-index: 9999;
+    }
+    .toast-success {
+      background-color: #48bb78;
+    }
+    .toast-error {
+      background-color: #f56565;
+    }
+    .toast-info {
+      background-color: #4299e1;
+    }
+    /* Animation for toast */
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+    #toast.show {
+      animation: slideIn 0.3s forwards;
+    }
+    #toast.hide {
+      animation: fadeOut 0.5s forwards;
+    }
+
+    /* GitHub Auth Modal Styles */
+#github-auth-modal {
+  transition: opacity 0.3s ease;
+}
+
+#github-auth-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.github-btn {
+  background-color: #24292e;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.github-btn:hover {
+  background-color: #2d3338;
+}
+
+.github-btn i {
+  font-size: 1.2rem;
+}
+
+/* Upload Button Styles */
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.upload-btn {
+  border: 2px dashed #f9a8d4;
+  color: #9d174d;
+  background-color: #fce7f3;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.upload-btn:hover {
+  background-color: #fbcfe8;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.upload-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.upload-preview-item {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.upload-preview-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.upload-preview-item .remove-btn {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  cursor: pointer;
+}
   </style>
- </head>
- <body class="font-montserrat bg-white pb-16 flex flex-col min-h-screen relative overflow-x-hidden">
+</head>
+<body class="font-montserrat bg-white pb-16 flex flex-col min-h-screen relative overflow-x-hidden">
   <!-- Floating hearts background -->
   <div class="floating-hearts" id="hearts-container"></div>
-  
+
   <!-- Header -->
   <header class="bg-gradient-to-r from-pink-400 to-pink-300 text-white shadow-md py-4 sticky top-0 z-20 flex items-center justify-center gap-4 px-4">
-   <img alt="Photo of me smiling with a soft natural background, circular cropped" class="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-white cursor-pointer hover:ring-4 hover:ring-pink-300 transition transform hover:scale-110" height="100" id="photo-me" src="a.jpg" width="100" tabindex="0" role="button" aria-label="Click to show love alert"/>
-   <h1 class="text-xl sm:text-2xl font-bold select-none text-center flex-1">
-    For My <span class="couple-name">Khusbu</span> ❤️
-   </h1>
-   <img alt="Photo of my girlfriend smiling with a warm outdoor background, circular cropped" class="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-white cursor-pointer hover:ring-4 hover:ring-pink-300 transition transform hover:scale-110" height="100" id="photo-gf" src="a.jpg" width="100" tabindex="0" role="button" aria-label="Click to show love alert"/>
+    <img alt="Photo of me smiling with a soft natural background, circular cropped" class="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-white cursor-pointer hover:ring-4 hover:ring-pink-300 transition transform hover:scale-110" height="100" id="photo-me" src="https://placehold.co/100x100/png?text=Me" width="100" tabindex="0" role="button" aria-label="Click to show love alert" />
+    <h1 class="text-xl sm:text-2xl font-bold select-none text-center flex-1">
+      For My <span class="couple-name">Khusbu</span> ❤️
+    </h1>
+    <img alt="Photo of my girlfriend smiling with a warm outdoor background, circular cropped" class="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-white cursor-pointer hover:ring-4 hover:ring-pink-300 transition transform hover:scale-110" height="100" id="photo-gf" src="https://placehold.co/100x100/png?text=Khusbu" width="100" tabindex="0" role="button" aria-label="Click to show love alert" />
   </header>
 
   <!-- Content -->
   <main class="flex-grow px-5 pt-6 pb-10 max-w-4xl mx-auto w-full relative overflow-visible" id="main-content">
-   <!-- Home Page -->
-   <section class="page hidden relative z-10" id="home">
-   <div class="max-w-2xl mx-auto p-6 bg-gradient-to-br from-pink-50 to-purple-50 rounded-xl shadow-lg overflow-hidden">
-    <h2 class="text-2xl sm:text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600 animate-slideInRight">
-        Welcome My Love ❤️
-    </h2>
-    <p class="text-gray-700 text-base sm:text-lg mb-6 transform transition-all duration-500 ease-in-out hover:scale-105 hover:text-pink-600 animate-slideInLeft">
-        This special place is dedicated just for you! ✨
-    </p>
-    
-    <style>
-        @keyframes slideInRight {
+    <!-- Home Page -->
+    <section class="page hidden relative z-10" id="home">
+      <div class="max-w-2xl mx-auto p-6 bg-gradient-to-br from-pink-50 to-purple-50 rounded-xl shadow-lg overflow-hidden">
+        <h2 class="text-2xl sm:text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600 animate-slideInRight">
+          Welcome My Love ❤️
+        </h2>
+        <p class="text-gray-700 text-base sm:text-lg mb-6 transform transition-all duration-500 ease-in-out hover:scale-105 hover:text-pink-600 animate-slideInLeft">
+          This special place is dedicated just for you! ✨
+        </p>
+
+        <style>
+          @keyframes slideInRight {
             from {
-                transform: translateX(50px);
-                opacity: 0;
+              transform: translateX(50px);
+              opacity: 0;
             }
             to {
-                transform: translateX(0);
-                opacity: 1;
+              transform: translateX(0);
+              opacity: 1;
             }
-        }
-        
-        @keyframes slideInLeft {
+          }
+          @keyframes slideInLeft {
             from {
-                transform: translateX(-50px);
-                opacity: 0;
+              transform: translateX(-50px);
+              opacity: 0;
             }
             to {
-                transform: translateX(0);
-                opacity: 1;
+              transform: translateX(0);
+              opacity: 1;
             }
-        }
-        
-        .animate-slideInRight {
+          }
+          .animate-slideInRight {
             animation: slideInRight 0.8s ease-out forwards;
-        }
-        
-        .animate-slideInLeft {
+          }
+          .animate-slideInLeft {
             animation: slideInLeft 0.8s ease-out forwards;
             animation-delay: 0.3s;
-        }
-    </style>
-</div>
-    
-    <div class="mt-6 flex justify-center mb-8">
-     <div class="relative">
-      <i class="fas fa-heart text-pink-400 text-7xl sm:text-9xl select-none animate-pulse"></i>
-      <i class="fas fa-heart text-pink-500 text-5xl sm:text-7xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-70"></i>
-     </div>
-    </div>
-    
-    <div class="space-y-6 text-center max-w-xl mx-auto">
-     <div class="love-quote">
-      <p class="text-gray-700 text-lg sm:text-xl leading-relaxed">
-       Every moment with you is a treasure I hold close to my heart. Your smile brightens my darkest days, and your love fills my life with endless joy.
-      </p>
-     </div>
-     
-     <div class="flex items-center justify-center gap-2">
-      <span class="couple-name">Khusbu & Abhishek</span>
-      <i class="fas fa-heart text-pink-400"></i>
-     </div>
-     
-     <div class="flex justify-center gap-6 mt-4">
-      <div class="relative group">
-       <img alt="Photo of me smiling with a soft natural background, circular cropped" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-pink-300 shadow-lg photo-frame" height="112" src="a.jpg" width="112"/>
-       <div class="absolute inset-0 bg-pink-400 bg-opacity-30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-        <span class="text-white font-bold">My Love</span>
-       </div>
+          }
+        </style>
       </div>
 
-      <div class="relative group">
-       <img alt="Photo of my girlfriend smiling with a warm outdoor background, circular cropped" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-pink-300 shadow-lg photo-frame" height="112" src="a.jpg" width="112"/>
-       <div class="absolute inset-0 bg-pink-400 bg-opacity-30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-        <span class="text-white font-bold">My Heart</span>
-       </div>
+      <div class="mt-6 flex justify-center mb-8">
+        <div class="relative">
+          <i class="fas fa-heart text-pink-400 text-7xl sm:text-9xl select-none animate-pulse"></i>
+          <i class="fas fa-heart text-pink-500 text-5xl sm:text-7xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-70"></i>
+        </div>
       </div>
-     </div>
-     
-     <div class="anniversary-countdown mt-6">
-      <h3 class="text-pink-600 font-semibold mb-2">Our Love Journey</h3>
-      <div class="grid grid-cols-3 gap-4 mt-4">
-       <div>
-        <div class="countdown-number" id="love-days">0</div>
-        <div class="countdown-label">Days</div>
-       </div>
-       <div>
-        <div class="countdown-number" id="love-months">0</div>
-        <div class="countdown-label">Months</div>
-       </div>
-       <div>
-        <div class="countdown-number" id="love-years">0</div>
-        <div class="countdown-label">Years</div>
-       </div>
-      </div>
-      <div class="love-meter mt-4">
-       <div class="love-meter-fill"></div>
-      </div>
-     </div>
-     
-     <div class="mt-8 grid grid-cols-2 gap-4">
-      <div class="memory-card bg-pink-50 rounded-lg p-4 shadow-md hover:shadow-lg">
-       <h3 class="text-pink-600 font-semibold text-lg mb-2 flex items-center gap-2">
-        <i class="fas fa-calendar-day text-pink-400"></i> Our First Date
-       </h3>
-       <p class="text-gray-700 text-sm sm:text-base leading-relaxed">
-        We met at a cozy little café, where time seemed to stand still as we talked for hours, discovering the beautiful connection between us.
-       </p>
-      </div>
-      <div class="memory-card bg-pink-50 rounded-lg p-4 shadow-md hover:shadow-lg">
-       <h3 class="text-pink-600 font-semibold text-lg mb-2 flex items-center gap-2">
-        <i class="fas fa-heart text-pink-400"></i> Favorite Memory
-       </h3>
-       <p class="text-gray-700 text-sm sm:text-base leading-relaxed">
-        Watching the sunset together on the beach, wrapped in each other's arms, feeling like the world was ours alone.
-       </p>
-      </div>
-     </div>
-     
-     <div class="mt-8">
-      <h3 class="text-pink-600 font-semibold text-lg mb-3">Our Song</h3>
-      <div class="song-card">
-       <div class="song-play-btn" id="play-our-song" role="button" tabindex="0" aria-label="Play or pause our song Perfect by Ed Sheeran">
-        <i class="fas fa-play"></i>
-       </div>
-       <div>
-        <h4 class="font-semibold text-pink-700">Perfect</h4>
-        <p class="text-sm text-gray-600">Ed Sheeran</p>
-       </div>
-      </div>
-     </div>
-     
-     <div class="mt-10">
-      <button class="bg-gradient-to-r from-pink-400 to-pink-500 hover:from-pink-500 hover:to-pink-600 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition duration-300 transform hover:scale-105 flex items-center gap-2 mx-auto" type="button" aria-label="Send me a love note">
-       <i class="fas fa-paper-plane"></i> Send Me a Love Note
-      </button>
-     </div>
-    </div>
-   </section>
-   
-   <!-- About Page -->
-   <section class="page hidden relative z-10" id="about">
-    <h2 class="text-2xl sm:text-3xl font-semibold mb-3 text-pink-600 flex items-center justify-center gap-2">
-     <i class="fas fa-heart text-pink-500 animate-pulse"></i>
-     Our Love Story
-    </h2>
-    <p class="text-gray-700 text-base sm:text-lg mb-6 max-w-xl mx-auto text-center">
-     Love is the most beautiful journey two hearts can embark on. It grows stronger with every shared smile, every gentle touch, and every moment together.
-    </p>
-    
-    <div class="max-w-xl mx-auto space-y-6 text-gray-700 text-justify leading-relaxed">
-     <div class="love-timeline relative pl-8 pb-6 border-l-2 border-pink-200">
-      <div class="absolute w-4 h-4 rounded-full bg-pink-400 border-2 border-white -left-2 top-0"></div>
-      <h3 class="text-pink-600 font-semibold">How We Met</h3>
-      <p class="text-sm sm:text-base">
-       It was a rainy afternoon in March when our eyes first met across that crowded room. I knew instantly there was something special about you. Our first conversation flowed effortlessly, as if we had known each other for years.
-      </p>
-     </div>
-     
-     <div class="love-timeline relative pl-8 pb-6 border-l-2 border-pink-200">
-      <div class="absolute w-4 h-4 rounded-full bg-pink-400 border-2 border-white -left-2 top-0"></div>
-      <h3 class="text-pink-600 font-semibold">First Date</h3>
-      <p class="text-sm sm:text-base">
-       We shared coffee and stories for hours, completely losing track of time. Your laugh was the most beautiful sound I'd ever heard, and I found myself trying to memorize every detail of your face.
-      </p>
-     </div>
-     
-     <div class="love-timeline relative pl-8 pb-6 border-l-2 border-pink-200">
-      <div class="absolute w-4 h-4 rounded-full bg-pink-400 border-2 border-white -left-2 top-0"></div>
-      <h3 class="text-pink-600 font-semibold">Falling in Love</h3>
-      <p class="text-sm sm:text-base">
-       With each passing day, I fell more deeply in love with your kindness, your intelligence, and the way you see the world. You became my safe place, my inspiration, and my greatest joy.
-      </p>
-     </div>
-     
-     <div class="love-timeline relative pl-8 border-l-2 border-pink-200">
-      <div class="absolute w-4 h-4 rounded-full bg-pink-400 border-2 border-white -left-2 top-0"></div>
-      <h3 class="text-pink-600 font-semibold">Today & Forever</h3>
-      <p class="text-sm sm:text-base">
-       Now, every morning I wake up grateful to have you in my life. No matter what challenges come our way, I know our love will only grow stronger. You are my today and all of my tomorrows.
-      </p>
-     </div>
-    </div>
-    
-    <div class="mt-10 flex justify-center gap-6 flex-wrap">
-     <div class="relative group">
-      <img alt="Illustration of two hands forming a heart shape with soft pastel colors" class="w-32 h-32 sm:w-40 sm:h-40 object-cover rounded-lg photo-frame" height="160" src="a.jpg" width="160"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold text-center px-2">Our Connection</span>
-      </div>
-     </div>
-     <div class="relative group">
-      <img alt="Illustration of a pink heart with sparkles and glowing effects" class="w-32 h-32 sm:w-40 sm:h-40 object-cover rounded-lg photo-frame" height="160" src="a.jpg" width="160"/>
-      <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-       <span class="text-white font-bold text-center px-2">Our Love</span>
-      </div>
-     </div>
-    </div>
-    
-    <div class="mt-10 bg-pink-50 rounded-xl p-6 text-center">
-     <h3 class="text-pink-600 font-semibold text-xl mb-3">Why I Love You</h3>
-     <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-      <div class="bg-white rounded-lg p-3 shadow-sm">
-       <i class="fas fa-smile text-pink-400 text-xl mb-1"></i>
-       <p class="text-sm">Your Smile</p>
-      </div>
-      <div class="bg-white rounded-lg p-3 shadow-sm">
-       <i class="fas fa-brain text-pink-400 text-xl mb-1"></i>
-       <p class="text-sm">Your Mind</p>
-      </div>
-      <div class="bg-white rounded-lg p-3 shadow-sm">
-       <i class="fas fa-heart text-pink-400 text-xl mb-1"></i>
-       <p class="text-sm">Your Heart</p>
-      </div>
-      <div class="bg-white rounded-lg p-3 shadow-sm">
-       <i class="fas fa-hand-holding-heart text-pink-400 text-xl mb-1"></i>
-       <p class="text-sm">Your Kindness</p>
-      </div>
-      <div class="bg-white rounded-lg p-3 shadow-sm">
-       <i class="fas fa-laugh text-pink-400 text-xl mb-1"></i>
-       <p class="text-sm">Your Laugh</p>
-      </div>
-      <div class="bg-white rounded-lg p-3 shadow-sm">
-       <i class="fas fa-magic text-pink-400 text-xl mb-1"></i>
-       <p class="text-sm">Your Magic</p>
-      </div>
-     </div>
-    </div>
-   </section>
-   
-   <!-- Reels Page -->
-   <section class="page hidden relative z-10" id="reels">
- 
-    <div class="h-[calc(100vh-180px)] overflow-y-auto snap-y snap-mandatory space-y-6 pr-2" id="reels-container" tabindex="0" aria-label="Scrollable list of video reels">
-      <!-- Reels will be injected here -->
-    </div>
 
-    <div class="mt-6 flex justify-center mb-8 hidden" id="refresh-wrapper">
-      <button class="bg-gradient-to-r from-pink-400 to-pink-500 hover:from-pink-500 hover:to-pink-600 text-white font-semibold py-2 px-6 rounded-full shadow-lg transition duration-300 flex items-center gap-2 transform hover:scale-105" id="refresh-reels" type="button" aria-label="Refresh reels">
-        <i class="fas fa-redo"></i> Refresh Reels
-      </button>
-    </div>
-   </section>
-   
-  <!-- Photos Page -->
-<section class="page hidden relative z-10" id="photos">
-    <h2 class="text-2xl sm:text-3xl font-semibold mb-6 text-pink-600 flex items-center justify-center gap-2">
+      <div class="space-y-6 text-center max-w-xl mx-auto">
+        <div class="love-quote">
+          <p class="text-gray-700 text-lg sm:text-xl leading-relaxed">
+            Every moment with you is a treasure I hold close to my heart. Your smile brightens my darkest days, and your love fills my life with endless joy.
+          </p>
+        </div>
+
+        <div class="flex items-center justify-center gap-2">
+          <span class="couple-name">Khusbu & Abhishek</span>
+          <i class="fas fa-heart text-pink-400"></i>
+        </div>
+
+        <div class="flex justify-center gap-6 mt-4">
+          <div class="relative group">
+            <img alt="Photo of me smiling with a soft natural background, circular cropped" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-pink-300 shadow-lg photo-frame" height="112" src="https://placehold.co/112x112/png?text=Me" width="112" />
+            <div class="absolute inset-0 bg-pink-400 bg-opacity-30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <span class="text-white font-bold">My Love</span>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <img alt="Photo of my girlfriend smiling with a warm outdoor background, circular cropped" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-pink-300 shadow-lg photo-frame" height="112" src="https://placehold.co/112x112/png?text=Khusbu" width="112" />
+            <div class="absolute inset-0 bg-pink-400 bg-opacity-30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <span class="text-white font-bold">My Heart</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="anniversary-countdown mt-6">
+          <h3 class="text-pink-600 font-semibold mb-2">Our Love Journey</h3>
+          <div class="grid grid-cols-3 gap-4 mt-4">
+            <div>
+              <div class="countdown-number" id="love-days">0</div>
+              <div class="countdown-label">Days</div>
+            </div>
+            <div>
+              <div class="countdown-number" id="love-months">0</div>
+              <div class="countdown-label">Months</div>
+            </div>
+            <div>
+              <div class="countdown-number" id="love-years">0</div>
+              <div class="countdown-label">Years</div>
+            </div>
+          </div>
+          <div class="love-meter mt-4">
+            <div class="love-meter-fill"></div>
+          </div>
+        </div>
+
+        <div class="mt-8 grid grid-cols-2 gap-4">
+          <div class="memory-card bg-pink-50 rounded-lg p-4 shadow-md hover:shadow-lg">
+            <h3 class="text-pink-600 font-semibold text-lg mb-2 flex items-center gap-2">
+              <i class="fas fa-calendar-day text-pink-400"></i> Our First Date
+            </h3>
+            <p class="text-gray-700 text-sm sm:text-base leading-relaxed">
+              We met at a cozy little café, where time seemed to stand still as we talked for hours, discovering the beautiful connection between us.
+            </p>
+          </div>
+          <div class="memory-card bg-pink-50 rounded-lg p-4 shadow-md hover:shadow-lg">
+            <h3 class="text-pink-600 font-semibold text-lg mb-2 flex items-center gap-2">
+              <i class="fas fa-heart text-pink-400"></i> Favorite Memory
+            </h3>
+            <p class="text-gray-700 text-sm sm:text-base leading-relaxed">
+              Watching the sunset together on the beach, wrapped in each other's arms, feeling like the world was ours alone.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-8">
+          <h3 class="text-pink-600 font-semibold text-lg mb-3">Our Song</h3>
+          <div class="song-card">
+            <div class="song-play-btn" id="play-our-song" role="button" tabindex="0" aria-label="Play or pause our song Perfect by Ed Sheeran">
+              <i class="fas fa-play"></i>
+            </div>
+            <div>
+              <h4 class="font-semibold text-pink-700">Perfect</h4>
+              <p class="text-sm text-gray-600">Ed Sheeran</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-10">
+          <button id="open-love-note" class="bg-gradient-to-r from-pink-400 to-pink-500 hover:from-pink-500 hover:to-pink-600 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition duration-300 transform hover:scale-105 flex items-center gap-2 mx-auto" type="button" aria-label="Send me a love note">
+            <i class="fas fa-paper-plane"></i> Send Me a Love Note
+          </button>
+        </div>
+
+        <div id="letters-list" aria-live="polite" aria-relevant="additions removals" aria-label="List of love letters">
+          <h3>Love Letters</h3>
+          <!-- Letters will appear here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- About Page -->
+    <section class="page hidden relative z-10" id="about">
+      <h2 class="text-2xl sm:text-3xl font-semibold mb-3 text-pink-600 flex items-center justify-center gap-2">
+        <i class="fas fa-heart text-pink-500 animate-pulse"></i>
+        Our Love Story
+      </h2>
+      <p class="text-gray-700 text-base sm:text-lg mb-6 max-w-xl mx-auto text-center">
+        Love is the most beautiful journey two hearts can embark on. It grows stronger with every shared smile, every gentle touch, and every moment together.
+      </p>
+
+      <div class="max-w-xl mx-auto space-y-6 text-gray-700 text-justify leading-relaxed">
+        <div class="love-timeline relative pl-8 pb-6 border-l-2 border-pink-200">
+          <div class="absolute w-4 h-4 rounded-full bg-pink-400 border-2 border-white -left-2 top-0"></div>
+          <h3 class="text-pink-600 font-semibold">How We Met</h3>
+          <p class="text-sm sm:text-base">
+            It was a rainy afternoon in March when our eyes first met across that crowded room. I knew instantly there was something special about you. Our first conversation flowed effortlessly, as if we had known each other for years.
+          </p>
+        </div>
+
+        <div class="love-timeline relative pl-8 pb-6 border-l-2 border-pink-200">
+          <div class="absolute w-4 h-4 rounded-full bg-pink-400 border-2 border-white -left-2 top-0"></div>
+          <h3 class="text-pink-600 font-semibold">First Date</h3>
+          <p class="text-sm sm:text-base">
+            We shared coffee and stories for hours, completely losing track of time. Your laugh was the most beautiful sound I'd ever heard, and I found myself trying to memorize every detail of your face.
+          </p>
+        </div>
+
+        <div class="love-timeline relative pl-8 pb-6 border-l-2 border-pink-200">
+          <div class="absolute w-4 h-4 rounded-full bg-pink-400 border-2 border-white -left-2 top-0"></div>
+          <h3 class="text-pink-600 font-semibold">Falling in Love</h3>
+          <p class="text-sm sm:text-base">
+            With each passing day, I fell more deeply in love with your kindness, your intelligence, and the way you see the world. You became my safe place, my inspiration, and my greatest joy.
+          </p>
+        </div>
+
+        <div class="love-timeline relative pl-8 border-l-2 border-pink-200">
+          <div class="absolute w-4 h-4 rounded-full bg-pink-400 border-2 border-white -left-2 top-0"></div>
+          <h3 class="text-pink-600 font-semibold">Today & Forever</h3>
+          <p class="text-sm sm:text-base">
+            Now, every morning I wake up grateful to have you in my life. No matter what challenges come our way, I know our love will only grow stronger. You are my today and all of my tomorrows.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-10 flex justify-center gap-6 flex-wrap">
+        <div class="relative group">
+          <img alt="Illustration of two hands forming a heart shape with soft pastel colors" class="w-32 h-32 sm:w-40 sm:h-40 object-cover rounded-lg photo-frame" height="160" src="https://placehold.co/160x160/png?text=Hands+Heart" width="160" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold text-center px-2">Our Connection</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Illustration of a pink heart with sparkles and glowing effects" class="w-32 h-32 sm:w-40 sm:h-40 object-cover rounded-lg photo-frame" height="160" src="https://placehold.co/160x160/png?text=Pink+Heart" width="160" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold text-center px-2">Our Love</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-10 bg-pink-50 rounded-xl p-6 text-center">
+        <h3 class="text-pink-600 font-semibold text-xl mb-3">Why I Love You</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          <div class="bg-white rounded-lg p-3 shadow-sm">
+            <i class="fas fa-smile text-pink-400 text-xl mb-1"></i>
+            <p class="text-sm">Your Smile</p>
+          </div>
+          <div class="bg-white rounded-lg p-3 shadow-sm">
+            <i class="fas fa-brain text-pink-400 text-xl mb-1"></i>
+            <p class="text-sm">Your Mind</p>
+          </div>
+          <div class="bg-white rounded-lg p-3 shadow-sm">
+            <i class="fas fa-heart text-pink-400 text-xl mb-1"></i>
+            <p class="text-sm">Your Heart</p>
+          </div>
+          <div class="bg-white rounded-lg p-3 shadow-sm">
+            <i class="fas fa-hand-holding-heart text-pink-400 text-xl mb-1"></i>
+            <p class="text-sm">Your Kindness</p>
+          </div>
+          <div class="bg-white rounded-lg p-3 shadow-sm">
+            <i class="fas fa-laugh text-pink-400 text-xl mb-1"></i>
+            <p class="text-sm">Your Laugh</p>
+          </div>
+          <div class="bg-white rounded-lg p-3 shadow-sm">
+            <i class="fas fa-magic text-pink-400 text-xl mb-1"></i>
+            <p class="text-sm">Your Magic</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reels Page -->
+    <section class="page hidden relative z-10" id="reels">
+      <div class="h-[calc(100vh-180px)] overflow-y-auto snap-y snap-mandatory space-y-6 pr-2" id="reels-container" tabindex="0" aria-label="Scrollable list of video reels">
+        <!-- Reels will be injected here -->
+      </div>
+
+      <div class="mt-6 flex justify-center mb-8 hidden" id="refresh-wrapper">
+        <button class="bg-gradient-to-r from-pink-400 to-pink-500 hover:from-pink-500 hover:to-pink-600 text-white font-semibold py-2 px-6 rounded-full shadow-lg transition duration-300 flex items-center gap-2 transform hover:scale-105" id="refresh-reels" type="button" aria-label="Refresh reels">
+          <i class="fas fa-redo"></i> Refresh Reels
+        </button>
+      </div>
+    </section>
+
+    <!-- Photos Page -->
+    <section class="page hidden relative z-10" id="photos">
+      <h2 class="text-2xl sm:text-3xl font-semibold mb-6 text-pink-600 flex items-center justify-center gap-2">
         <i class="fas fa-images text-pink-500"></i>
         Our Gallery
-    </h2>
-    
-    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+      </h2>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
         <!-- Original Photos a-f -->
         <div class="relative group">
-            <img alt="A smiling couple sitting on a park bench surrounded by autumn leaves" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="a.jpg" width="400" data-photo="a.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Autumn Love</span>
-            </div>
+          <img alt="A smiling couple sitting on a park bench surrounded by autumn leaves" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Autumn+Love" width="400" data-photo="https://placehold.co/800x800/png?text=Autumn+Love" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Autumn Love</span>
+          </div>
         </div>
         <div class="relative group">
-            <img alt="Couple holding hands walking along a forest trail with sunlight filtering through trees" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="b.jpg" width="400" data-photo="b.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Forest Walk</span>
-            </div>
+          <img alt="Couple holding hands walking along a forest trail with sunlight filtering through trees" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Forest+Walk" width="400" data-photo="https://placehold.co/800x800/png?text=Forest+Walk" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Forest Walk</span>
+          </div>
         </div>
         <div class="relative group">
-            <img alt="Couple laughing together while sharing a picnic on a sunny day in a meadow" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="c.jpg" width="400" data-photo="c.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Picnic Day</span>
-            </div>
+          <img alt="Couple laughing together while sharing a picnic on a sunny day in a meadow" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Picnic+Day" width="400" data-photo="https://placehold.co/800x800/png?text=Picnic+Day" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Picnic Day</span>
+          </div>
         </div>
         <div class="relative group">
-            <img alt="Couple embracing on a city rooftop at sunset with skyline in the background" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="d.jpg" width="400" data-photo="d.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Sunset Embrace</span>
-            </div>
+          <img alt="Couple embracing on a city rooftop at sunset with skyline in the background" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Sunset+Embrace" width="400" data-photo="https://placehold.co/800x800/png?text=Sunset+Embrace" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Sunset Embrace</span>
+          </div>
         </div>
         <div class="relative group">
-            <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="e.jpg" width="400" data-photo="e.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Starry Night</span>
-            </div>
+          <img alt="Couple sitting by a campfire under a starry night sky" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Starry+Night" width="400" data-photo="https://placehold.co/800x800/png?text=Starry+Night" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Starry Night</span>
+          </div>
         </div>
         <div class="relative group">
-            <img alt="Couple sharing a joyful moment while riding bicycles on a country road" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="f.jpg" width="400" data-photo="f.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Bike Adventure</span>
-            </div>
-        </div>
-        
-        <!-- Additional Photos g-z -->
-        <div class="relative group">
-            <img alt="Couple enjoying a beach sunset with waves crashing nearby" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="g.jpg" width="400" data-photo="g.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Beach Sunset</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple hiking up a mountain trail with panoramic views" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="h.jpg" width="400" data-photo="h.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Mountain Hike</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple dancing in the rain under a shared umbrella" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="i.jpg" width="400" data-photo="i.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Rainy Dance</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple enjoying coffee at a cozy café" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="j.jpg" width="400" data-photo="j.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Coffee Date</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple kayaking on a calm lake at dusk" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="k.jpg" width="400" data-photo="k.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Lake Kayaking</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple reading books together in a library" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="l.jpg" width="400" data-photo="l.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Library Day</span>
-            </div>
-        </div>
-        
-        <!-- Photos m-z -->
-        <div class="relative group">
-            <img alt="Couple making pizza together in the kitchen" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="m.jpg" width="400" data-photo="m.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Cooking Together</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple at a music festival enjoying live performance" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="n.jpg" width="400" data-photo="n.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Music Festival</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple stargazing through a telescope" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="o.jpg" width="400" data-photo="o.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Stargazing</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple playing board games by the fireplace" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="p.jpg" width="400" data-photo="p.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Game Night</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple planting flowers in their garden" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="q.jpg" width="400" data-photo="q.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Gardening</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple riding horses through a field" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="r.jpg" width="400" data-photo="r.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Horseback Riding</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple enjoying a snowy day building a snowman" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="s.jpg" width="400" data-photo="s.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Snowy Day</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple at a farmers market selecting fresh produce" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="t.jpg" width="400" data-photo="t.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Farmers Market</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple visiting an art museum admiring paintings" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="u.jpg" width="400" data-photo="u.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Art Lovers</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple on a ferry boat with city skyline in background" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="v.jpg" width="400" data-photo="v.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Boat Ride</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple having a wine tasting at a vineyard" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="w.jpg" width="400" data-photo="w.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Wine Tasting</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple flying kites at the beach on a windy day" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="x.jpg" width="400" data-photo="x.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Kite Flying</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple doing yoga together at sunrise" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="y.jpg" width="400" data-photo="y.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Morning Yoga</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple at a zoo feeding giraffes" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="z.jpg" width="400" data-photo="z.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Zoo Visit</span>
-            </div>
-        </div>
-        
-        <!-- Double letter photos aa-az -->
-        <div class="relative group">
-            <img alt="Couple riding a tandem bicycle through the countryside" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="aa.jpg" width="400" data-photo="aa.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Tandem Ride</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple baking cookies together in matching aprons" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ab.jpg" width="400" data-photo="ab.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Baking Day</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple canoeing down a peaceful river" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ac.jpg" width="400" data-photo="ac.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">River Canoe</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple dressed up for a fancy gala event" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ad.jpg" width="400" data-photo="ad.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Gala Night</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple at an amusement park riding a rollercoaster" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ae.jpg" width="400" data-photo="ae.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Rollercoaster</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple fishing together on a quiet lake" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="af.jpg" width="400" data-photo="af.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Fishing Trip</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple geocaching together in the woods" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ag.jpg" width="400" data-photo="ag.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Geocaching</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple having a pillow fight in their pajamas" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ah.jpg" width="400" data-photo="ah.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Pillow Fight</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple ice skating hand in hand at a winter rink" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ai.jpg" width="400" data-photo="ai.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Ice Skating</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple jumping together on a trampoline" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="aj.jpg" width="400" data-photo="aj.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Trampoline Fun</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple kiteboarding at the beach on a windy day" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ak.jpg" width="400" data-photo="ak.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Kiteboarding</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple laughing while trying to assemble furniture together" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="al.jpg" width="400" data-photo="al.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">DIY Project</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple making snow angels in fresh powder" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="am.jpg" width="400" data-photo="am.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Snow Angels</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple napping together in a hammock between trees" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="an.jpg" width="400" data-photo="an.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Hammock Nap</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple on a hot air balloon ride at sunrise" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ao.jpg" width="400" data-photo="ao.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Balloon Ride</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple painting a mural together on a large wall" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ap.jpg" width="400" data-photo="ap.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Mural Painting</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple quarreling playfully over a board game" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="aq.jpg" width="400" data-photo="aq.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Playful Argument</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple riding a motorcycle on a scenic coastal road" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ar.jpg" width="400" data-photo="ar.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Motorcycle Ride</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple salsa dancing at a Latin club" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="as.jpg" width="400" data-photo="as.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Salsa Night</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple tandem skydiving with instructor" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="at.jpg" width="400" data-photo="at.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Skydiving</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple under an umbrella during a thunderstorm" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="au.jpg" width="400" data-photo="au.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Stormy Weather</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple volunteering at an animal shelter walking dogs" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="av.jpg" width="400" data-photo="av.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Dog Walking</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple washing their car together in the driveway" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="aw.jpg" width="400" data-photo="aw.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Car Wash</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple exchanging gifts on Christmas morning" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ax.jpg" width="400" data-photo="ax.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Christmas Morning</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple yawning together on the couch watching a movie" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ay.jpg" width="400" data-photo="ay.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Movie Night</span>
-            </div>
-        </div>
-        <div class="relative group">
-            <img alt="Couple ziplining through a jungle canopy" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="az.jpg" width="400" data-photo="az.jpg"/>
-            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="text-white font-bold">Zipline Adventure</span>
-            </div>
-        </div>
-    </div>
-</section>
-   <!-- Works Page -->
-<!-- Works Page -->
-<section class="page hidden relative z-10" id="works">
-    <div class="max-w-4xl mx-auto px-4 py-8">
-        <!-- Header with romantic animation -->
-        <div class="text-center mb-10 animate-float">
-            <h2 class="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
-                <i class="fas fa-heartbeat mr-3"></i>My Love Letters to You
-            </h2>
-            <p class="text-pink-600 font-medium">Every word written with love, every memory cherished forever</p>
-            
-            <!-- Animated divider -->
-            <div class="relative my-6">
-                <div class="absolute inset-0 flex items-center">
-                    <div class="w-full border-t border-pink-200"></div>
-                </div>
-                <div class="relative flex justify-center">
-                    <span class="bg-pink-50 px-4 text-pink-500">
-                        <i class="fas fa-heart"></i>
-                    </span>
-                </div>
-            </div>
+          <img alt="Couple sharing a joyful moment while riding bicycles on a country road" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Bike+Adventure" width="400" data-photo="https://placehold.co/800x800/png?text=Bike+Adventure" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Bike Adventure</span>
+          </div>
         </div>
 
-        <!-- Letters Container -->
-        <div class="space-y-8">
-            <!-- Letter 1 - Enhanced with more romantic elements -->
-            <article class="bg-gradient-to-br from-pink-50 to-pink-100 border-2 border-pink-300 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 memory-card transform hover:-translate-y-1" 
-                     tabindex="0" 
-                     aria-label="Love letter titled My Heart's Whisper">
-                <div class="absolute -top-3 -left-3 bg-pink-500 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-md">
-                    <i class="fas fa-heart"></i>
-                </div>
-                <h3 class="text-2xl font-bold text-pink-700 mb-4 flex items-center gap-3">
-                    <i class="fas fa-feather-alt text-pink-500"></i> My Heart's Whisper
-                </h3>
-                <div class="pl-2 border-l-4 border-pink-400">
-                    <p class="text-gray-800 leading-relaxed whitespace-pre-line italic font-serif text-lg">
-                        "In your eyes, I find my home,<br>
-                        A place where love forever roams.<br>
-                        Your smile lights my darkest night,<br>
-                        With you, my world feels so right.
-                        
-                        Like stars that dance across the sky,<br>
-                        Our love will never fade or die.<br>
-                        Hand in hand, through joy and pain,<br>
-                        Together forever, our hearts remain."
-                    </p>
-                </div>
-                <div class="flex justify-between items-center mt-6">
-                    <div class="flex space-x-2">
-                        <span class="bg-pink-200 text-pink-800 text-xs px-2 py-1 rounded-full">Poetry</span>
-                        <span class="bg-pink-200 text-pink-800 text-xs px-2 py-1 rounded-full">Romantic</span>
-                    </div>
-                    <span class="text-pink-600 font-medium flex items-center">
-                        <i class="fas fa-pen-fancy mr-2"></i>Abhishek
-                    </span>
-                </div>
-            </article>
-            
-            <!-- Letter 2 - With photo placeholder and more personal touch -->
-            <article class="bg-white border-2 border-purple-200 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 memory-card" 
-                     tabindex="0" 
-                     aria-label="Love letter titled To My Dearest">
-                <div class="md:flex">
-                    <div class="md:w-1/3 bg-gradient-to-b from-purple-100 to-pink-100 flex items-center justify-center p-6">
-                        <div class="relative w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-md">
-                            <div class="absolute inset-0 bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center text-white text-5xl">
-                                K
-                            </div>
-                        </div>
-                    </div>
-                    <div class="md:w-2/3 p-6">
-                        <h3 class="text-2xl font-bold text-purple-700 mb-4 flex items-center gap-3">
-                            <i class="fas fa-envelope-open-text text-purple-500"></i> To My Dearest Khusbu
-                        </h3>
-                        <p class="text-gray-700 leading-relaxed font-serif">
-                            My Dearest Khusbu,<br><br>
-                            
-                            Every day with you is a blessing I cherish deeply. Your kindness, your laughter, and your unwavering support make my life complete. I promise to stand by your side through every joy and challenge that life brings our way.<br><br>
-                            
-                            You are my sunshine on cloudy days, my comfort in difficult times, and my greatest happiness. No words can truly express how much you mean to me, but I will spend my lifetime showing you.
-                        </p>
-                        <div class="flex items-center justify-between mt-6 pt-4 border-t border-purple-100">
-                            <div class="text-purple-600 text-sm flex items-center">
-                                <i class="far fa-calendar-alt mr-2"></i> March 15, 2023
-                            </div>
-                            <div class="flex space-x-3">
-                                <button class="text-purple-500 hover:text-purple-700 transition-colors" 
-                                        aria-label="Share this letter" 
-                                        type="button">
-                                    <i class="fas fa-share-alt"></i>
-                                </button>
-                                <button class="text-pink-500 hover:text-pink-700 transition-colors" 
-                                        aria-label="Save this letter" 
-                                        type="button">
-                                    <i class="fas fa-bookmark"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-purple-50 px-6 py-3 text-right">
-                    <span class="text-purple-700 font-medium italic">
-                        Forever yours,<br>
-                        Abhishek
-                    </span>
-                </div>
-            </article>
-            
-            <!-- Letter 3 - Interactive list with animations -->
-            <article class="bg-gradient-to-br from-rose-50 to-pink-50 border-2 border-rose-200 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 memory-card" 
-                     tabindex="0" 
-                     aria-label="Love letter titled 100 Reasons I Love You">
-                <h3 class="text-2xl font-bold text-rose-700 mb-6 flex items-center gap-3">
-                    <i class="fas fa-list-ul text-rose-500"></i> 100 Reasons I Love You
-                </h3>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-white bg-opacity-70 p-4 rounded-lg hover:bg-opacity-90 transition-all duration-200">
-                        <ol class="list-decimal list-inside text-gray-800 space-y-3 marker:text-rose-500 marker:font-bold">
-                            <li class="hover:text-rose-700 transition-colors">The way your eyes light up when you smile</li>
-                            <li class="hover:text-rose-700 transition-colors">Your kindness that touches everyone around you</li>
-                            <li class="hover:text-rose-700 transition-colors">How you make even ordinary moments feel special</li>
-                            <li class="hover:text-rose-700 transition-colors">Your strength and resilience in facing challenges</li>
-                            <li class="hover:text-rose-700 transition-colors">The sound of your laughter that fills my heart with joy</li>
-                        </ol>
-                    </div>
-                    <div class="bg-white bg-opacity-70 p-4 rounded-lg hover:bg-opacity-90 transition-all duration-200">
-                        <ol class="list-decimal list-inside text-gray-800 space-y-3 marker:text-rose-500 marker:font-bold" start="6">
-                            <li class="hover:text-rose-700 transition-colors">Your intelligence and the way you see the world</li>
-                            <li class="hover:text-rose-700 transition-colors">How you always know what to say to make me feel better</li>
-                            <li class="hover:text-rose-700 transition-colors">Your beautiful heart that loves so deeply</li>
-                            <li class="hover:text-rose-700 transition-colors">The way you fit perfectly in my arms</li>
-                            <li class="hover:text-rose-700 transition-colors">Simply because you're you - my one and only</li>
-                        </ol>
-                    </div>
-                </div>
-                
-                <div class="mt-6 text-center">
-                    <button class="bg-gradient-to-r from-rose-400 to-pink-400 hover:from-rose-500 hover:to-pink-500 text-white font-semibold py-2 px-4 rounded-full text-sm shadow-md transition-all duration-300 inline-flex items-center gap-2 transform hover:scale-105">
-                        <i class="fas fa-plus"></i> Load More Reasons
-                    </button>
-                </div>
-            </article>
-            
-            <!-- New Letter - Anniversary Special -->
-            <article class="bg-gradient-to-br from-pink-200 to-red-100 border-2 border-pink-300 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 memory-card transform hover:rotate-1" 
-                     tabindex="0" 
-                     aria-label="Anniversary love letter">
-                <div class="absolute -top-4 -right-4 bg-red-500 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg">
-                    <i class="fas fa-gift"></i>
-                </div>
-                <h3 class="text-2xl font-bold text-red-700 mb-4 flex items-center gap-3">
-                    <i class="fas fa-calendar-heart text-red-500"></i> Happy Anniversary, My Love
-                </h3>
-                <div class="relative">
-                    <div class="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-red-400 to-pink-400 rounded-full"></div>
-                    <div class="pl-6">
-                        <p class="text-gray-800 leading-relaxed font-serif italic">
-                            "Another year has passed, my love, and with each day my heart grows fonder of you. Remember our first date? How nervous we both were? Now look at us - stronger, happier, and more in love than ever before.
-                            
-                            Today, I promise you again what I promised you then: to love you unconditionally, to support you endlessly, and to cherish every moment we share."
-                        </p>
-                        <div class="mt-4 flex items-center justify-between">
-                            <div class="flex -space-x-2">
-                                <div class="w-8 h-8 rounded-full bg-red-300 border-2 border-white"></div>
-                                <div class="w-8 h-8 rounded-full bg-pink-300 border-2 border-white"></div>
-                                <div class="w-8 h-8 rounded-full bg-purple-300 border-2 border-white"></div>
-                            </div>
-                            <span class="text-red-600 font-medium">
-                                <i class="fas fa-heart mr-1"></i> 3 Years Together
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </article>
+        <!-- Additional Photos g-z -->
+        <div class="relative group">
+          <img alt="Couple enjoying a beach sunset with waves crashing nearby" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Beach+Sunset" width="400" data-photo="https://placehold.co/800x800/png?text=Beach+Sunset" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Beach Sunset</span>
+          </div>
         </div>
-        
-        <!-- Call to Action -->
-        <div class="mt-12 text-center">
-            <button class="bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white font-bold py-4 px-8 rounded-full shadow-xl transition-all duration-300 inline-flex items-center gap-3 transform hover:scale-105 hover:shadow-2xl" 
+        <div class="relative group">
+          <img alt="Couple hiking up a mountain trail with panoramic views" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Mountain+Hike" width="400" data-photo="https://placehold.co/800x800/png?text=Mountain+Hike" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Mountain Hike</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple dancing in the rain under a shared umbrella" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Rainy+Dance" width="400" data-photo="https://placehold.co/800x800/png?text=Rainy+Dance" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Rainy Dance</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple enjoying coffee at a cozy café" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Coffee+Date" width="400" data-photo="https://placehold.co/800x800/png?text=Coffee+Date" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Coffee Date</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple kayaking on a calm lake at dusk" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Lake+Kayaking" width="400" data-photo="https://placehold.co/800x800/png?text=Lake+Kayaking" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Lake Kayaking</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple reading books together in a library" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Library+Day" width="400" data-photo="https://placehold.co/800x800/png?text=Library+Day" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Library Day</span>
+          </div>
+        </div>
+
+        <!-- Photos m-z -->
+        <div class="relative group">
+          <img alt="Couple making pizza together in the kitchen" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Cooking+Together" width="400" data-photo="https://placehold.co/800x800/png?text=Cooking+Together" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Cooking Together</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple at a music festival enjoying live performance" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Music+Festival" width="400" data-photo="https://placehold.co/800x800/png?text=Music+Festival" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Music Festival</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple stargazing through a telescope" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Stargazing" width="400" data-photo="https://placehold.co/800x800/png?text=Stargazing" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Stargazing</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple playing board games by the fireplace" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Game+Night" width="400" data-photo="https://placehold.co/800x800/png?text=Game+Night" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Game Night</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple planting flowers in their garden" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Gardening" width="400" data-photo="https://placehold.co/800x800/png?text=Gardening" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Gardening</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple riding horses through a field" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Horseback+Riding" width="400" data-photo="https://placehold.co/800x800/png?text=Horseback+Riding" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Horseback Riding</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple enjoying a snowy day building a snowman" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Snowy+Day" width="400" data-photo="https://placehold.co/800x800/png?text=Snowy+Day" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Snowy Day</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple at a farmers market selecting fresh produce" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Farmers+Market" width="400" data-photo="https://placehold.co/800x800/png?text=Farmers+Market" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Farmers Market</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple visiting an art museum admiring paintings" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Art+Lovers" width="400" data-photo="https://placehold.co/800x800/png?text=Art+Lovers" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Art Lovers</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple on a ferry boat with city skyline in background" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Boat+Ride" width="400" data-photo="https://placehold.co/800x800/png?text=Boat+Ride" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Boat Ride</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple having a wine tasting at a vineyard" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Wine+Tasting" width="400" data-photo="https://placehold.co/800x800/png?text=Wine+Tasting" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Wine Tasting</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple flying kites at the beach on a windy day" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Kite+Flying" width="400" data-photo="https://placehold.co/800x800/png?text=Kite+Flying" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Kite Flying</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple doing yoga together at sunrise" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Morning+Yoga" width="400" data-photo="https://placehold.co/800x800/png?text=Morning+Yoga" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Morning Yoga</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple at a zoo feeding giraffes" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Zoo+Visit" width="400" data-photo="https://placehold.co/800x800/png?text=Zoo+Visit" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Zoo Visit</span>
+          </div>
+        </div>
+
+        <!-- Double letter photos aa-az -->
+        <div class="relative group">
+          <img alt="Couple riding a tandem bicycle through the countryside" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Tandem+Ride" width="400" data-photo="https://placehold.co/800x800/png?text=Tandem+Ride" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Tandem Ride</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple baking cookies together in matching aprons" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Baking+Day" width="400" data-photo="https://placehold.co/800x800/png?text=Baking+Day" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Baking Day</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple canoeing down a peaceful river" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=River+Canoe" width="400" data-photo="https://placehold.co/800x800/png?text=River+Canoe" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">River Canoe</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple dressed up for a fancy gala event" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Gala+Night" width="400" data-photo="https://placehold.co/800x800/png?text=Gala+Night" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Gala Night</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple at an amusement park riding a rollercoaster" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Rollercoaster" width="400" data-photo="https://placehold.co/800x800/png?text=Rollercoaster" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Rollercoaster</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple fishing together on a quiet lake" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Fishing+Trip" width="400" data-photo="https://placehold.co/800x800/png?text=Fishing+Trip" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Fishing Trip</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple geocaching together in the woods" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Geocaching" width="400" data-photo="https://placehold.co/800x800/png?text=Geocaching" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Geocaching</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple having a pillow fight in their pajamas" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Pillow+Fight" width="400" data-photo="https://placehold.co/800x800/png?text=Pillow+Fight" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Pillow Fight</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple ice skating hand in hand at a winter rink" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Ice+Skating" width="400" data-photo="https://placehold.co/800x800/png?text=Ice+Skating" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Ice Skating</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple jumping together on a trampoline" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Trampoline+Fun" width="400" data-photo="https://placehold.co/800x800/png?text=Trampoline+Fun" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Trampoline Fun</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple kiteboarding at the beach on a windy day" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Kiteboarding" width="400" data-photo="https://placehold.co/800x800/png?text=Kiteboarding" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Kiteboarding</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple laughing while trying to assemble furniture together" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=DIY+Project" width="400" data-photo="https://placehold.co/800x800/png?text=DIY+Project" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">DIY Project</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple making snow angels in fresh powder" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Snow+Angels" width="400" data-photo="https://placehold.co/800x800/png?text=Snow+Angels" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Snow Angels</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple napping together in a hammock between trees" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Hammock+Nap" width="400" data-photo="https://placehold.co/800x800/png?text=Hammock+Nap" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Hammock Nap</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple on a hot air balloon ride at sunrise" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Balloon+Ride" width="400" data-photo="https://placehold.co/800x800/png?text=Balloon+Ride" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Balloon Ride</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple painting a mural together on a large wall" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Mural+Painting" width="400" data-photo="https://placehold.co/800x800/png?text=Mural+Painting" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Mural Painting</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple quarreling playfully over a board game" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Playful+Argument" width="400" data-photo="https://placehold.co/800x800/png?text=Playful+Argument" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Playful Argument</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple riding a motorcycle on a scenic coastal road" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Motorcycle+Ride" width="400" data-photo="https://placehold.co/800x800/png?text=Motorcycle+Ride" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Motorcycle Ride</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple salsa dancing at a Latin club" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Salsa+Night" width="400" data-photo="https://placehold.co/800x800/png?text=Salsa+Night" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Salsa Night</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple tandem skydiving with instructor" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Skydiving" width="400" data-photo="https://placehold.co/800x800/png?text=Skydiving" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Skydiving</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple under an umbrella during a thunderstorm" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Stormy+Weather" width="400" data-photo="https://placehold.co/800x800/png?text=Stormy+Weather" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Stormy Weather</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple volunteering at an animal shelter walking dogs" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Dog+Walking" width="400" data-photo="https://placehold.co/800x800/png?text=Dog+Walking" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Dog Walking</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple washing their car together in the driveway" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Car+Wash" width="400" data-photo="https://placehold.co/800x800/png?text=Car+Wash" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Car Wash</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple exchanging gifts on Christmas morning" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Christmas+Morning" width="400" data-photo="https://placehold.co/800x800/png?text=Christmas+Morning" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Christmas Morning</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple yawning together on the couch watching a movie" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Movie+Night" width="400" data-photo="https://placehold.co/800x800/png?text=Movie+Night" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Movie Night</span>
+          </div>
+        </div>
+        <div class="relative group">
+          <img alt="Couple ziplining through a jungle canopy" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="https://placehold.co/400x400/png?text=Zipline+Adventure" width="400" data-photo="https://placehold.co/800x800/png?text=Zipline+Adventure" />
+          <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <span class="text-white font-bold">Zipline Adventure</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Works Page -->
+    <section class="page hidden relative z-10" id="works">
+      <div class="max-w-4xl mx-auto px-4 py-8">
+        <!-- Header with romantic animation -->
+        <div class="text-center mb-10 animate-float">
+          <!-- Call to Action -->
+          <div class="mt-12 text-center">
+            <button id="open-write-letter" class="bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white font-bold py-4 px-8 rounded-full shadow-xl transition-all duration-300 inline-flex items-center gap-3 transform hover:scale-105 hover:shadow-2xl" 
                     type="button" 
                     aria-label="Write new letter">
-                <i class="fas fa-feather-alt"></i> Write New Love Letter
+              <i class="fas fa-feather-alt"></i> Write New Love Letter
             </button>
-            
             <div class="mt-6 text-pink-600 flex items-center justify-center gap-4">
-                <button class="flex items-center gap-2 hover:text-pink-800 transition-colors">
-                    <i class="fas fa-book-open"></i> View All Letters
-                </button>
-                <span class="text-pink-300">•</span>
-                <button class="flex items-center gap-2 hover:text-pink-800 transition-colors">
-                    <i class="fas fa-print"></i> Print Collection
-                </button>
-                <span class="text-pink-300">•</span>
-                <button class="flex items-center gap-2 hover:text-pink-800 transition-colors">
-                    <i class="fas fa-heart"></i> Favorite Letters
-                </button>
+              <button id="view-letters-btn" class="flex items-center gap-2 hover:text-pink-800 transition-colors" type="button" aria-expanded="false" aria-controls="letters-list-works">
+                <i class="fas fa-book-open"></i> View All Letters
+              </button>
+              <span class="text-pink-300">•</span>
+              <button class="flex items-center gap-2 hover:text-pink-800 transition-colors" type="button" aria-label="Print collection">
+                <i class="fas fa-print"></i> Print Collection
+              </button>
+              <span class="text-pink-300">•</span>
+              <button class="flex items-center gap-2 hover:text-pink-800 transition-colors" type="button" aria-label="Favorite letters">
+                <i class="fas fa-heart"></i> Favorite Letters
+              </button>
             </div>
-        </div>
-        
-        <!-- Floating Hearts Decoration -->
-        <div class="absolute -z-10 top-0 left-0 w-full h-full overflow-hidden opacity-20">
+          </div>
+          <!-- Floating Hearts Decoration -->
+          <div class="absolute -z-10 top-0 left-0 w-full h-full overflow-hidden opacity-20">
             <div class="heart floating-1"></div>
             <div class="heart floating-2"></div>
             <div class="heart floating-3"></div>
             <div class="heart floating-4"></div>
             <div class="heart floating-5"></div>
+          </div>
         </div>
-    </div>
-</section>
-
-<style>
-    /* Floating animation for hearts */
-    .heart {
-        position: absolute;
-        background-color: pink;
-        display: inline-block;
-        height: 20px;
-        width: 20px;
-        transform: rotate(-45deg);
-    }
-    
-    .heart:before, .heart:after {
-        content: "";
-        background-color: pink;
-        border-radius: 50%;
-        height: 20px;
-        position: absolute;
-        width: 20px;
-    }
-    
-    .heart:before {
-        top: -10px;
-        left: 0;
-    }
-    
-    .heart:after {
-        left: 10px;
-        top: 0;
-    }
-    
-    .floating-1 {
-        top: 10%;
-        left: 10%;
-        animation: float 8s ease-in-out infinite;
-    }
-    
-    .floating-2 {
-        top: 30%;
-        left: 80%;
-        animation: float 10s ease-in-out infinite 2s;
-    }
-    
-    .floating-3 {
-        top: 60%;
-        left: 15%;
-        animation: float 12s ease-in-out infinite 1s;
-    }
-    
-    .floating-4 {
-        top: 80%;
-        left: 70%;
-        animation: float 9s ease-in-out infinite 0.5s;
-    }
-    
-    .floating-5 {
-        top: 40%;
-        left: 50%;
-        animation: float 11s ease-in-out infinite 1.5s;
-    }
-    
-    @keyframes float {
-        0% { transform: rotate(-45deg) translateY(0) translateX(0); }
-        50% { transform: rotate(-45deg) translateY(-20px) translateX(10px); }
-        100% { transform: rotate(-45deg) translateY(0) translateX(0); }
-    }
-    
-    /* Header animation */
-    .animate-float {
-        animation: float-header 3s ease-in-out infinite alternate;
-    }
-    
-    @keyframes float-header {
-        0% { transform: translateY(0); }
-        100% { transform: translateY(-5px); }
-    }
-    
-    /* Hover effect for memory cards */
-    .memory-card:hover {
-        box-shadow: 0 10px 25px -5px rgba(244, 114, 182, 0.4);
-    }
-</style>
+        <div id="letters-list-works" class="mt-8 max-h-96 overflow-y-auto hidden" aria-live="polite" aria-relevant="additions removals" aria-label="List of love letters">
+          <!-- Letters will appear here -->
+        </div>
+      </div>
+    </section>
   </main>
-  
+
   <!-- Fullscreen Photo Viewer -->
   <div id="photo-viewer" role="dialog" aria-modal="true" aria-label="Fullscreen photo viewer">
-   <div class="close-btn" id="photo-viewer-close" aria-label="Close photo viewer">
-    <i class="fas fa-times"></i>
-   </div>
-   <img id="viewed-photo" alt="Fullscreen photo"/>
+    <div class="close-btn" id="photo-viewer-close" aria-label="Close photo viewer">
+      <i class="fas fa-times"></i>
+    </div>
+    <img id="viewed-photo" alt="Fullscreen photo" />
   </div>
-  
+
   <!-- Bottom Navigation -->
   <nav class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 shadow-inner z-30" role="navigation" aria-label="Primary">
-   <ul class="flex justify-around text-gray-600">
-    <li>
-     <button aria-label="Home" class="nav-item flex flex-col items-center justify-center py-3 w-full text-gray-600 hover:text-pink-500 transition-all" data-target="home" type="button">
-      <i class="fas fa-home text-xl sm:text-2xl"></i>
-      <span class="text-xs sm:text-sm mt-1 font-semibold">Home</span>
-     </button>
-    </li>
-    <li>
-     <button aria-label="About" class="nav-item active flex flex-col items-center justify-center py-3 w-full text-pink-500 transition-all" data-target="about" type="button">
-      <i class="fas fa-heart text-xl sm:text-2xl"></i>
-      <span class="text-xs sm:text-sm mt-1 font-semibold">About</span>
-     </button>
-    </li>
-    <li>
-     <button aria-label="Reels" class="nav-item flex flex-col items-center justify-center py-3 w-full text-gray-600 hover:text-pink-500 transition-all" data-target="reels" type="button">
-      <i class="fas fa-video text-xl sm:text-2xl"></i>
-      <span class="text-xs sm:text-sm mt-1 font-semibold">Reels</span>
-     </button>
-    </li>
-    <li>
-     <button aria-label="Photos" class="nav-item flex flex-col items-center justify-center py-3 w-full text-gray-600 hover:text-pink-500 transition-all" data-target="photos" type="button">
-      <i class="fas fa-images text-xl sm:text-2xl"></i>
-      <span class="text-xs sm:text-sm mt-1 font-semibold">Photos</span>
-     </button>
-    </li>
-    <li>
-     <button aria-label="Works" class="nav-item flex flex-col items-center justify-center py-3 w-full text-gray-600 hover:text-pink-500 transition-all" data-target="works" type="button">
-      <i class="fas fa-star text-xl sm:text-2xl"></i>
-      <span class="text-xs sm:text-sm mt-1 font-semibold">Letters</span>
-     </button>
-    </li>
-   </ul>
+    <ul class="flex justify-around text-gray-600">
+      <li>
+        <button aria-label="Home" class="nav-item flex flex-col items-center justify-center py-3 w-full text-gray-600 hover:text-pink-500 transition-all" data-target="home" type="button">
+          <i class="fas fa-home text-xl sm:text-2xl"></i>
+          <span class="text-xs sm:text-sm mt-1 font-semibold">Home</span>
+        </button>
+      </li>
+      <li>
+        <button aria-label="About" class="nav-item flex flex-col items-center justify-center py-3 w-full text-gray-600 hover:text-pink-500 transition-all" data-target="about" type="button">
+          <i class="fas fa-heart text-xl sm:text-2xl"></i>
+          <span class="text-xs sm:text-sm mt-1 font-semibold">About</span>
+        </button>
+      </li>
+      <li>
+        <button aria-label="Reels" class="nav-item flex flex-col items-center justify-center py-3 w-full text-gray-600 hover:text-pink-500 transition-all" data-target="reels" type="button">
+          <i class="fas fa-video text-xl sm:text-2xl"></i>
+          <span class="text-xs sm:text-sm mt-1 font-semibold">Reels</span>
+        </button>
+      </li>
+      <li>
+        <button aria-label="Photos" class="nav-item flex flex-col items-center justify-center py-3 w-full text-gray-600 hover:text-pink-500 transition-all" data-target="photos" type="button">
+          <i class="fas fa-images text-xl sm:text-2xl"></i>
+          <span class="text-xs sm:text-sm mt-1 font-semibold">Photos</span>
+        </button>
+      </li>
+      <li>
+        <button aria-label="Works" class="nav-item flex flex-col items-center justify-center py-3 w-full text-gray-600 hover:text-pink-500 transition-all" data-target="works" type="button">
+          <i class="fas fa-star text-xl sm:text-2xl"></i>
+          <span class="text-xs sm:text-sm mt-1 font-semibold">Letters</span>
+        </button>
+      </li>
+    </ul>
   </nav>
 
   <!-- Sweet Alert -->
   <div id="sweet-alert-overlay" role="dialog" aria-modal="true" aria-labelledby="sweet-alert-title" aria-describedby="sweet-alert-desc">
-   <div id="sweet-alert" class="relative">
-    <div class="hearts-container" aria-hidden="true"></div>
-    <h2 id="sweet-alert-title">Love is in the Air! ❤️</h2>
-    <p id="sweet-alert-desc">You clicked a photo! Sending you all my love and sweet wishes. 💖</p>
-    <button class="close-btn" id="sweet-alert-close" aria-label="Close love alert" type="button">Close</button>
-   </div>
+    <div id="sweet-alert" class="relative">
+      <div class="hearts-container" aria-hidden="true"></div>
+      <h2 id="sweet-alert-title">Love is in the Air! ❤️</h2>
+      <p id="sweet-alert-desc">You clicked a photo! Sending you all my love and sweet wishes. 💖</p>
+      <button class="close-btn" id="sweet-alert-close" aria-label="Close love alert" type="button">Close</button>
+    </div>
   </div>
 
+  <!-- Love Letter Modal -->
+  <div id="love-letter-modal" role="dialog" aria-modal="true" aria-labelledby="love-letter-title" aria-describedby="love-letter-desc">
+    <div id="love-letter-content">
+      <button class="close-modal" id="close-love-letter" aria-label="Close love letter modal" type="button"><i class="fas fa-times"></i></button>
+      <h2 id="love-letter-title">Write a Love Letter</h2>
+      <form id="love-letter-form">
+        <label for="letter-text">Your Message</label>
+        <textarea id="letter-text" name="letter-text" placeholder="Write your love note here..." required aria-required="true"></textarea>
+        <label>Choose Photos to Attach (optional)</label>
+        <div class="photos-grid" id="photos-select">
+          <!-- Photos for selection -->
+        </div>
+        <div class="buttons">
+          <button type="submit" aria-label="Send love letter"><i class="fas fa-paper-plane"></i> Send Letter</button>
+          <button type="button" id="cancel-love-letter" aria-label="Cancel writing love letter" class="bg-gray-300 text-pink-600 hover:bg-gray-400 hover:text-pink-800 shadow-none"><i class="fas fa-times-circle"></i> Cancel</button>
+        </div>
+      </form>
+      <div id="letters-list-modal" aria-live="polite" aria-relevant="additions removals" aria-label="List of love letters">
+        <h3>Love Letters</h3>
+        <!-- Letters will appear here -->
+      </div>
+    </div>
+  </div>
+  
+<!-- Add this modal for GitHub auth (after other modals) -->
+<div id="github-auth-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white rounded-lg p-6 max-w-md w-full">
+    <h3 class="text-xl font-bold text-pink-600 mb-4">GitHub Authentication</h3>
+    <div id="auth-status" class="mb-4">
+      <p class="text-gray-700">You need to authenticate with GitHub to save letters.</p>
+    </div>
+    <div class="mb-4">
+      <label for="github-token" class="block text-gray-700 mb-2">GitHub Token:</label>
+      <input type="password" id="github-token" class="w-full p-2 border border-gray-300 rounded" 
+             placeholder="Enter your GitHub personal access token" />
+      <p class="text-xs text-gray-500 mt-1">
+        Create a token with "repo" permissions at 
+        <a href="https://github.com/settings/tokens" target="_blank" class="text-pink-500 hover:underline">
+          github.com/settings/tokens
+        </a>
+      </p>
+    </div>
+    <div class="flex justify-end gap-3">
+      <button id="cancel-github-auth" class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400">Cancel</button>
+      <button id="save-github-auth" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Save</button>
+    </div>
+  </div>
+</div>
+
+  <!-- Delete Confirmation Modal -->
+  <div id="delete-confirm-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white rounded-lg p-6 max-w-md w-full">
+      <h3 class="text-xl font-bold text-pink-600 mb-4">Confirm Deletion</h3>
+      <p class="text-gray-700 mb-4">Enter password to delete this love letter:</p>
+      <input type="password" id="delete-password" class="w-full p-2 border border-gray-300 rounded mb-4" placeholder="Enter password" />
+      <div class="flex justify-end gap-3">
+        <button id="cancel-delete" class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400">Cancel</button>
+        <button id="confirm-delete" class="px-4 py-2 bg-pink-600 text-white rounded hover:bg-pink-700">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-4 right-4 hidden">
+    <div class="bg-pink-600 text-white px-4 py-3 rounded-lg shadow-lg flex items-center">
+      <span id="toast-message"></span>
+    </div>
+  </div>
+
+  
   <script>
-   // Navigation and page switching
-const navButtons = document.querySelectorAll('nav button.nav-item');
-const pages = document.querySelectorAll('main section.page');
+   
+    // Navigation and page switching
+    const navButtons = document.querySelectorAll('nav button.nav-item');
+    const pages = document.querySelectorAll('main section.page');
 
-function setActivePage(targetId) {
-  pages.forEach(page => {
-    if (page.id === targetId) {
-      page.classList.remove('hidden');
-      page.classList.add('block');
-    } else {
-      page.classList.add('hidden');
-      page.classList.remove('block');
+    function setActivePage(targetId) {
+      pages.forEach(page => {
+        if (page.id === targetId) {
+          page.classList.remove('hidden');
+          page.classList.add('block');
+        } else {
+          page.classList.add('hidden');
+          page.classList.remove('block');
+        }
+      });
+
+      navButtons.forEach(btn => {
+        if (btn.dataset.target === targetId) {
+          btn.classList.add('text-pink-500', 'active');
+          btn.classList.remove('text-gray-600');
+        } else {
+          btn.classList.remove('text-pink-500', 'active');
+          btn.classList.add('text-gray-600');
+        }
+      });
     }
-  });
 
-  navButtons.forEach(btn => {
-    if (btn.dataset.target === targetId) {
-      btn.classList.add('text-pink-500', 'active');
-      btn.classList.remove('text-gray-600');
-    } else {
-      btn.classList.remove('text-pink-500', 'active');
-      btn.classList.add('text-gray-600');
+    navButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        setActivePage(button.dataset.target);
+      });
+    });
+
+    // Initialize default active page
+    setActivePage('home');
+
+    // Flying hearts logic with 10s duration on page load
+    const heartsContainer = document.getElementById('hearts-container');
+    const names = ['Khusbu', 'Love', 'Abhishek', 'Forever', 'Together'];
+    const heartUnicode = '❤️';
+    const emojis = ['😍', '🥰', '💖', '💕', '💘', '💓', '💗', '💞'];
+
+    function randomRange(min, max) {
+      return Math.random() * (max - min) + min;
     }
-  });
-}
 
-navButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    setActivePage(button.dataset.target);
-  });
-});
-
-// Initialize default active page
-setActivePage('home');
-
-// Flying hearts logic with 10s duration on page load
-const heartsContainer = document.getElementById('hearts-container');
-const names = ['Khusbu', 'Love', 'Abhishek', 'Forever', 'Together'];
-const heartUnicode = '❤️';
-const emojis = ['😍', '🥰', '💖', '💕', '💘', '💓', '💗', '💞'];
-
-function randomRange(min, max) {
-  return Math.random() * (max - min) + min;
-}
-
-function createHeart() {
-  const heart = document.createElement('div');
-  heart.classList.add('heart-fly');
-  heart.style.left = `${randomRange(0, 100)}vw`;
-  heart.style.fontSize = `${randomRange(16, 32)}px`;
-  heart.style.animationDuration = `${randomRange(4000, 8000)}ms`;
-  heart.style.animationDelay = `${randomRange(0, 5000)}ms`;
-  heart.style.color = `hsl(${randomRange(330, 360)}, 80%, 70%)`;
-  heart.style.userSelect = 'none';
-  heart.style.position = 'absolute';
-  heart.style.bottom = '-30px';
-  heart.style.whiteSpace = 'nowrap';
-  heart.style.fontWeight = '700';
-  heart.style.fontFamily = "'Montserrat', sans-serif";
-  
-  // Randomly pick content
-  const textChoice = Math.random();
-  if (textChoice < 0.4) {
-    heart.textContent = heartUnicode;
-  } else if (textChoice < 0.7) {
-    heart.textContent = names[Math.floor(randomRange(0, names.length))];
-  } else {
-    heart.textContent = emojis[Math.floor(randomRange(0, emojis.length))];
-  }
-  
-  heartsContainer.appendChild(heart);
-
-  // Remove heart after animation ends
-  heart.addEventListener('animationend', () => {
-    heartsContainer.removeChild(heart);
-  });
-}
-
-// Start creating hearts on load
-let heartInterval = null;
-function startHearts() {
-  heartInterval = setInterval(() => {
-    createHeart();
-  }, 300);
-}
-
-// Stop creating hearts after 10 seconds
-function stopHearts() {
-  clearInterval(heartInterval);
-}
-
-// Run on page load
-window.addEventListener('load', () => {
-  startHearts();
-  setTimeout(() => {
-    stopHearts();
-  }, 10000);
-  
-  // Calculate love duration
-  calculateLoveDuration();
-});
-
-// Calculate love duration (days, months, years)
-function calculateLoveDuration() {
-  // Set your anniversary date (year, month-1, day)
-  const anniversaryDate = new Date(2022, 2, 15); // March 15, 2022 (month is 0-indexed)
-  const today = new Date();
-  
-  // Calculate difference in milliseconds
-  const diffTime = Math.abs(today - anniversaryDate);
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  const diffMonths = (today.getFullYear() - anniversaryDate.getFullYear()) * 12 + 
-                    (today.getMonth() - anniversaryDate.getMonth());
-  const diffYears = today.getFullYear() - anniversaryDate.getFullYear();
-  
-  // Update the DOM
-  document.getElementById('love-days').textContent = diffDays;
-  document.getElementById('love-months').textContent = diffMonths;
-  document.getElementById('love-years').textContent = diffYears;
-}
-
-// Sweet alert logic
-const sweetAlertOverlay = document.getElementById('sweet-alert-overlay');
-const sweetAlertClose = document.getElementById('sweet-alert-close');
-const heartsInAlert = sweetAlertOverlay.querySelector('.hearts-container');
-
-function createSweetHeart() {
-  const heart = document.createElement('div');
-  heart.classList.add('heart');
-  heart.style.left = `${Math.random() * 80 + 10}%`;
-  heart.style.bottom = '0';
-  heart.style.animationDelay = `${Math.random() * 2}s`;
-  heart.innerHTML = Math.random() > 0.5 ? '❤️' : '💖';
-  heartsInAlert.appendChild(heart);
-  heart.addEventListener('animationend', () => {
-    heartsInAlert.removeChild(heart);
-  });
-}
-
-let sweetHeartInterval;
-
-function startSweetHearts() {
-  sweetHeartInterval = setInterval(() => {
-    createSweetHeart();
-  }, 300);
-}
-
-function stopSweetHearts() {
-  clearInterval(sweetHeartInterval);
-  heartsInAlert.innerHTML = '';
-}
-
-function showSweetAlert() {
-  sweetAlertOverlay.classList.add('active');
-  startSweetHearts();
-}
-
-function hideSweetAlert() {
-  sweetAlertOverlay.classList.remove('active');
-  stopSweetHearts();
-}
-
-// Attach click and keyboard events to header photos
-const photoMe = document.getElementById('photo-me');
-const photoGf = document.getElementById('photo-gf');
-
-[photoMe, photoGf].forEach(photo => {
-  photo.addEventListener('click', () => {
-    showSweetAlert();
-  });
-  photo.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      showSweetAlert();
-    }
-  });
-});
-
-sweetAlertClose.addEventListener('click', hideSweetAlert);
-
-// Close alert on overlay click (outside alert box)
-sweetAlertOverlay.addEventListener('click', e => {
-  if (e.target === sweetAlertOverlay) {
-    hideSweetAlert();
-  }
-});
-
-// Close alert on Escape key
-window.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && sweetAlertOverlay.classList.contains('active')) {
-    hideSweetAlert();
-  }
-});
-
-// Fullscreen photo viewer logic
-const photoViewer = document.getElementById('photo-viewer');
-const photoViewerClose = document.getElementById('photo-viewer-close');
-const viewedPhoto = document.getElementById('viewed-photo');
-
-function showPhotoViewer(photoSrc) {
-  viewedPhoto.src = photoSrc;
-  photoViewer.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function hidePhotoViewer() {
-  photoViewer.classList.remove('active');
-  document.body.style.overflow = '';
-}
-
-// Attach click events to all gallery photos
-document.querySelectorAll('#photos img[data-photo]').forEach(photo => {
-  photo.addEventListener('click', () => {
-    showPhotoViewer(photo.dataset.photo);
-  });
-});
-
-photoViewerClose.addEventListener('click', hidePhotoViewer);
-
-// Close photo viewer on overlay click (outside photo)
-photoViewer.addEventListener('click', e => {
-  if (e.target === photoViewer) {
-    hidePhotoViewer();
-  }
-});
-
-// Close photo viewer on Escape key
-window.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && photoViewer.classList.contains('active')) {
-    hidePhotoViewer();
-  }
-});
-
-// Add floating hearts when clicking anywhere on the page
-document.addEventListener('click', (e) => {
-  // Don't create hearts if clicking on interactive elements
-  if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A' || e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
-    return;
-  }
-  
-  // Create 3 hearts at click position
-  for (let i = 0; i < 3; i++) {
-    setTimeout(() => {
+    function createHeart() {
       const heart = document.createElement('div');
       heart.classList.add('heart-fly');
-      heart.style.left = `${e.clientX - 15}px`;
-      heart.style.bottom = `${window.innerHeight - e.clientY}px`;
-      heart.style.fontSize = `${randomRange(20, 40)}px`;
-      heart.style.animationDuration = `${randomRange(3000, 6000)}ms`;
+      heart.style.left = `${randomRange(0, 100)}vw`;
+      heart.style.fontSize = `${randomRange(16, 32)}px`;
+      heart.style.animationDuration = `${randomRange(4000, 8000)}ms`;
+      heart.style.animationDelay = `${randomRange(0, 5000)}ms`;
       heart.style.color = `hsl(${randomRange(330, 360)}, 80%, 70%)`;
-      heart.style.position = 'fixed';
-      heart.style.zIndex = '100';
-      heart.innerHTML = '❤️';
-      
+      heart.style.userSelect = 'none';
+      heart.style.position = 'absolute';
+      heart.style.bottom = '-30px';
+      heart.style.whiteSpace = 'nowrap';
+      heart.style.fontWeight = '700';
+      heart.style.fontFamily = "'Montserrat', sans-serif";
+
+      // Randomly pick content
+      const textChoice = Math.random();
+      if (textChoice < 0.4) {
+        heart.textContent = heartUnicode;
+      } else if (textChoice < 0.7) {
+        heart.textContent = names[Math.floor(randomRange(0, names.length))];
+      } else {
+        heart.textContent = emojis[Math.floor(randomRange(0, emojis.length))];
+      }
+
       heartsContainer.appendChild(heart);
-      
+
+      // Remove heart after animation ends
       heart.addEventListener('animationend', () => {
         heartsContainer.removeChild(heart);
       });
-    }, i * 200);
-  }
-});
-
-// Reels page dynamic rendering and controls
-document.addEventListener("DOMContentLoaded", () => {
-  const reelsContainer = document.getElementById("reels-container");
-  const refreshWrapper = document.getElementById("refresh-wrapper");
-  const refreshButton = document.getElementById("refresh-reels");
-
-  const totalReels = 30;
-  const initialReelsCount = 10;
-
-  // Generate reel HTML string for a given index (1-based)
-  function createReelHTML(i) {
-    const videoId = `video${i}`;
-    const videoSrc = `v${i}.mp4`;
-    const posterText = `Video+${i}+Poster`;
-    const description =
-      i === 1
-        ? "Our first trip together"
-        : i === totalReels
-        ? `Our special moment number ${totalReels}`
-        : `Celebrating moment number ${i}`;
-
-    return `
-      <div class="reel-item snap-start rounded-lg overflow-hidden shadow-lg bg-black relative" style="aspect-ratio:9 / 14;">
-        <video
-          class="w-full h-full object-cover"
-          controls
-          muted
-          playsinline
-          preload="metadata"
-          poster="https://placehold.co/360x560/png?text=${posterText}"
-          aria-label="Video of ${description}"
-          id="${videoId}"
-          autoplay
-          playsinline
-        >
-          <source src="${videoSrc}" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end p-4">
-          <p class="text-white font-medium">${description}</p>
-        </div>
-        <a
-          aria-label="Download video ${videoSrc}"
-          class="absolute top-3 left-3 bg-pink-500 bg-opacity-80 hover:bg-opacity-100 text-white rounded-full p-2 shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-400 transition-transform transform hover:scale-110"
-          download="${videoSrc}"
-          href="${videoSrc}"
-          title="Download video"
-        >
-          <i class="fas fa-download"></i>
-        </a>
-        <button
-          aria-label="Play or pause video of ${description}"
-          class="absolute bottom-3 right-3 bg-pink-500 bg-opacity-80 hover:bg-opacity-100 text-white rounded-full p-2 shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-400 transition-transform transform hover:scale-110"
-          type="button"
-          data-video-id="${videoId}"
-        >
-          <i class="fas fa-play"></i>
-        </button>
-      </div>
-    `;
-  }
-
-  // Render reels from startIndex (inclusive) to endIndex (inclusive)
-  function renderReels(startIndex, endIndex) {
-    let html = "";
-    for (let i = startIndex; i <= endIndex; i++) {
-      html += createReelHTML(i);
-    }
-    reelsContainer.innerHTML = html;
-  }
-
-  // Initialize with first 10 reels
-  renderReels(1, initialReelsCount);
-  refreshWrapper.classList.add("hidden");
-
-  // Setup video controls and behavior
-  function setupVideoControls() {
-    const videos = reelsContainer.querySelectorAll("video");
-    const buttons = reelsContainer.querySelectorAll("button[data-video-id]");
-
-    function pauseOthers(currentVideo) {
-      videos.forEach((video) => {
-        if (video !== currentVideo) {
-          video.pause();
-          video.muted = true;
-        }
-      });
     }
 
-    videos.forEach((video) => {
-      // Loop manually: when ended, restart from 0 and play
-      video.addEventListener("ended", () => {
-        video.currentTime = 0;
-        video.play();
-      });
+    // Start creating hearts on load
+    let heartInterval = null;
+    function startHearts() {
+      heartInterval = setInterval(() => {
+        createHeart();
+      }, 300);
+    }
 
-      video.addEventListener("play", () => {
-        pauseOthers(video);
-        video.muted = false;
-      });
-      video.addEventListener("pause", () => {
-        video.muted = true;
-      });
+    // Stop creating hearts after 10 seconds
+    function stopHearts() {
+      clearInterval(heartInterval);
+    }
+
+    // Run on page load
+    window.addEventListener('load', () => {
+      startHearts();
+      setTimeout(() => {
+        stopHearts();
+      }, 10000);
+
+      // Calculate love duration
+      calculateLoveDuration();
     });
 
-    buttons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const videoId = btn.getAttribute("data-video-id");
-        const video = document.getElementById(videoId);
-        if (!video) return;
+    // Calculate love duration (days, months, years)
+    function calculateLoveDuration() {
+      // Set your anniversary date (year, month-1, day)
+      const anniversaryDate = new Date(2022, 2, 15); // March 15, 2022 (month is 0-indexed)
+      const today = new Date();
 
-        if (video.paused) {
-          video.muted = false;
-          video.play();
-          pauseOthers(video);
-          btn.querySelector("i").classList.remove("fa-play");
-          btn.querySelector("i").classList.add("fa-pause");
-        } else {
-          video.pause();
-          video.muted = true;
-          btn.querySelector("i").classList.remove("fa-pause");
-          btn.querySelector("i").classList.add("fa-play");
+      // Calculate difference in milliseconds
+      const diffTime = Math.abs(today - anniversaryDate);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      const diffMonths = (today.getFullYear() - anniversaryDate.getFullYear()) * 12 +
+        (today.getMonth() - anniversaryDate.getMonth());
+      const diffYears = today.getFullYear() - anniversaryDate.getFullYear();
+
+      // Update the DOM
+      document.getElementById('love-days').textContent = diffDays;
+      document.getElementById('love-months').textContent = diffMonths;
+      document.getElementById('love-years').textContent = diffYears;
+    }
+
+    // Sweet alert logic
+    const sweetAlertOverlay = document.getElementById('sweet-alert-overlay');
+    const sweetAlertClose = document.getElementById('sweet-alert-close');
+    const heartsInAlert = sweetAlertOverlay.querySelector('.hearts-container');
+
+    function createSweetHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = `${Math.random() * 80 + 10}%`;
+      heart.style.bottom = '0';
+      heart.style.animationDelay = `${Math.random() * 2}s`;
+      heart.innerHTML = Math.random() > 0.5 ? '❤️' : '💖';
+      heartsInAlert.appendChild(heart);
+      heart.addEventListener('animationend', () => {
+        heartsInAlert.removeChild(heart);
+      });
+    }
+
+    let sweetHeartInterval;
+
+    function startSweetHearts() {
+      sweetHeartInterval = setInterval(() => {
+        createSweetHeart();
+      }, 300);
+    }
+
+    function stopSweetHearts() {
+      clearInterval(sweetHeartInterval);
+      heartsInAlert.innerHTML = '';
+    }
+
+    function showSweetAlert() {
+      sweetAlertOverlay.classList.add('active');
+      startSweetHearts();
+    }
+
+    function hideSweetAlert() {
+      sweetAlertOverlay.classList.remove('active');
+      stopSweetHearts();
+    }
+
+    // Attach click and keyboard events to header photos
+    const photoMe = document.getElementById('photo-me');
+    const photoGf = document.getElementById('photo-gf');
+
+    [photoMe, photoGf].forEach(photo => {
+      photo.addEventListener('click', () => {
+        showSweetAlert();
+      });
+      photo.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          showSweetAlert();
         }
       });
     });
 
-    // Update play/pause icons on video play/pause events
-    videos.forEach((video) => {
-      video.addEventListener("play", () => {
-        buttons.forEach((btn) => {
-          const videoId = btn.getAttribute("data-video-id");
-          if (video.id === videoId) {
-            btn.querySelector("i").classList.remove("fa-play");
-            btn.querySelector("i").classList.add("fa-pause");
-          } else {
-            btn.querySelector("i").classList.remove("fa-pause");
-            btn.querySelector("i").classList.add("fa-play");
-          }
-        });
-      });
-      video.addEventListener("pause", () => {
-        buttons.forEach((btn) => {
-          const videoId = btn.getAttribute("data-video-id");
-          if (video.id === videoId) {
-            btn.querySelector("i").classList.remove("fa-pause");
-            btn.querySelector("i").classList.add("fa-play");
-          }
-        });
+    sweetAlertClose.addEventListener('click', hideSweetAlert);
+
+    // Close alert on overlay click (outside alert box)
+    sweetAlertOverlay.addEventListener('click', e => {
+      if (e.target === sweetAlertOverlay) {
+        hideSweetAlert();
+      }
+    });
+
+    // Close alert on Escape key
+    window.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && sweetAlertOverlay.classList.contains('active')) {
+        hideSweetAlert();
+      }
+    });
+
+    // Fullscreen photo viewer logic
+    const photoViewer = document.getElementById('photo-viewer');
+    const photoViewerClose = document.getElementById('photo-viewer-close');
+    const viewedPhoto = document.getElementById('viewed-photo');
+
+    function showPhotoViewer(photoSrc) {
+      viewedPhoto.src = photoSrc;
+      photoViewer.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function hidePhotoViewer() {
+      photoViewer.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Attach click events to all gallery photos
+    document.querySelectorAll('#photos img[data-photo]').forEach(photo => {
+      photo.addEventListener('click', () => {
+        showPhotoViewer(photo.dataset.photo);
       });
     });
-  }
 
-  // Show refresh button after last video is visible
-  function checkLastVideoVisibility() {
-    const lastReel = reelsContainer.querySelector(
-      ".reel-item:last-child"
-    );
-    if (!lastReel) return;
+    photoViewerClose.addEventListener('click', hidePhotoViewer);
 
-    const rect = lastReel.getBoundingClientRect();
-    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    // Close photo viewer on overlay click (outside photo)
+    photoViewer.addEventListener('click', e => {
+      if (e.target === photoViewer) {
+        hidePhotoViewer();
+      }
+    });
 
-    // Show refresh button if last reel is fully visible in viewport
-    if (rect.top >= 0 && rect.bottom <= viewportHeight) {
-      refreshWrapper.classList.remove("hidden");
-    } else {
+    // Close photo viewer on Escape key
+    window.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && photoViewer.classList.contains('active')) {
+        hidePhotoViewer();
+      }
+    });
+
+    // Add floating hearts when clicking anywhere on the page
+    document.addEventListener('click', (e) => {
+      // Don't create hearts if clicking on interactive elements
+      if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A' || e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+        return;
+      }
+
+      // Create 3 hearts at click position
+      for (let i = 0; i < 3; i++) {
+        setTimeout(() => {
+          const heart = document.createElement('div');
+          heart.classList.add('heart-fly');
+          heart.style.left = `${e.clientX - 15}px`;
+          heart.style.bottom = `${window.innerHeight - e.clientY}px`;
+          heart.style.fontSize = `${randomRange(20, 40)}px`;
+          heart.style.animationDuration = `${randomRange(3000, 6000)}ms`;
+          heart.style.color = `hsl(${randomRange(330, 360)}, 80%, 70%)`;
+          heart.style.position = 'fixed';
+          heart.style.zIndex = '100';
+          heart.innerHTML = '❤️';
+
+          heartsContainer.appendChild(heart);
+
+          heart.addEventListener('animationend', () => {
+            heartsContainer.removeChild(heart);
+          });
+        }, i * 200);
+      }
+    });
+
+    // Reels page dynamic rendering and controls
+    document.addEventListener("DOMContentLoaded", () => {
+      const reelsContainer = document.getElementById("reels-container");
+      const refreshWrapper = document.getElementById("refresh-wrapper");
+      const refreshButton = document.getElementById("refresh-reels");
+
+      const totalReels = 30;
+      const initialReelsCount = 10;
+
+      // Generate reel HTML string for a given index (1-based)
+      function createReelHTML(i) {
+        const videoId = `video${i}`;
+        const videoSrc = `v${i}.mp4`;
+        const posterText = `Video+${i}+Poster`;
+        const description =
+          i === 1
+            ? "Our first trip together"
+            : i === totalReels
+            ? `Our special moment number ${totalReels}`
+            : `Celebrating moment number ${i}`;
+
+        return `
+          <div class="reel-item snap-start rounded-lg overflow-hidden shadow-lg bg-black relative" style="aspect-ratio:9 / 14;">
+            <video
+              class="w-full h-full object-cover"
+              controls
+              muted
+              playsinline
+              preload="metadata"
+              poster="https://placehold.co/360x560/png?text=${posterText}"
+              aria-label="Video of ${description}"
+              id="${videoId}"
+              autoplay
+              playsinline
+            >
+              <source src="${videoSrc}" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end p-4">
+              <p class="text-white font-medium">${description}</p>
+            </div>
+            <a
+              aria-label="Download video ${videoSrc}"
+              class="absolute top-3 left-3 bg-pink-500 bg-opacity-80 hover:bg-opacity-100 text-white rounded-full p-2 shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-400 transition-transform transform hover:scale-110"
+              download="${videoSrc}"
+              href="${videoSrc}"
+              title="Download video"
+            >
+              <i class="fas fa-download"></i>
+            </a>
+            <button
+              aria-label="Play or pause video of ${description}"
+              class="absolute bottom-3 right-3 bg-pink-500 bg-opacity-80 hover:bg-opacity-100 text-white rounded-full p-2 shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-400 transition-transform transform hover:scale-110"
+              type="button"
+              data-video-id="${videoId}"
+            >
+              <i class="fas fa-play"></i>
+            </button>
+          </div>
+        `;
+      }
+
+      // Render reels from startIndex (inclusive) to endIndex (inclusive)
+      function renderReels(startIndex, endIndex) {
+        let html = "";
+        for (let i = startIndex; i <= endIndex; i++) {
+          html += createReelHTML(i);
+        }
+        reelsContainer.innerHTML = html;
+      }
+
+      // Initialize with first 10 reels
+      renderReels(1, initialReelsCount);
       refreshWrapper.classList.add("hidden");
+
+      // Setup video controls and behavior
+      function setupVideoControls() {
+        const videos = reelsContainer.querySelectorAll("video");
+        const buttons = reelsContainer.querySelectorAll("button[data-video-id]");
+
+        function pauseOthers(currentVideo) {
+          videos.forEach((video) => {
+            if (video !== currentVideo) {
+              video.pause();
+              video.muted = true;
+            }
+          });
+        }
+
+        videos.forEach((video) => {
+          // Loop manually: when ended, restart from 0 and play
+          video.addEventListener("ended", () => {
+            video.currentTime = 0;
+            video.play();
+          });
+
+          video.addEventListener("play", () => {
+            pauseOthers(video);
+            video.muted = false;
+          });
+          video.addEventListener("pause", () => {
+            video.muted = true;
+          });
+        });
+
+        buttons.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const videoId = btn.getAttribute("data-video-id");
+            const video = document.getElementById(videoId);
+            if (!video) return;
+
+            if (video.paused) {
+              video.muted = false;
+              video.play();
+              pauseOthers(video);
+              btn.querySelector("i").classList.remove("fa-play");
+              btn.querySelector("i").classList.add("fa-pause");
+            } else {
+              video.pause();
+              video.muted = true;
+              btn.querySelector("i").classList.remove("fa-pause");
+              btn.querySelector("i").classList.add("fa-play");
+            }
+          });
+        });
+
+        // Update play/pause icons on video play/pause events
+        videos.forEach((video) => {
+          video.addEventListener("play", () => {
+            buttons.forEach((btn) => {
+              const videoId = btn.getAttribute("data-video-id");
+              if (video.id === videoId) {
+                btn.querySelector("i").classList.remove("fa-play");
+                btn.querySelector("i").classList.add("fa-pause");
+              } else {
+                btn.querySelector("i").classList.remove("fa-pause");
+                btn.querySelector("i").classList.add("fa-play");
+              }
+            });
+          });
+          video.addEventListener("pause", () => {
+            buttons.forEach((btn) => {
+              const videoId = btn.getAttribute("data-video-id");
+              if (video.id === videoId) {
+                btn.querySelector("i").classList.remove("fa-pause");
+                btn.querySelector("i").classList.add("fa-play");
+              }
+            });
+          });
+        });
+      }
+
+      // Show refresh button after last video is visible
+      function checkLastVideoVisibility() {
+        const lastReel = reelsContainer.querySelector(
+          ".reel-item:last-child"
+        );
+        if (!lastReel) return;
+
+        const rect = lastReel.getBoundingClientRect();
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+        // Show refresh button if last reel is fully visible in viewport
+        if (rect.top >= 0 && rect.bottom <= viewportHeight) {
+          refreshWrapper.classList.remove("hidden");
+        } else {
+          refreshWrapper.classList.add("hidden");
+        }
+      }
+
+      // Initial setup
+      setupVideoControls();
+
+      // Listen to scroll to check last video visibility
+      reelsContainer.addEventListener("scroll", checkLastVideoVisibility);
+      window.addEventListener("resize", checkLastVideoVisibility);
+      window.addEventListener("load", checkLastVideoVisibility);
+
+      // Refresh button click handler: show all reels
+      refreshButton.addEventListener("click", () => {
+        renderReels(1, totalReels);
+        refreshWrapper.classList.add("hidden");
+        setupVideoControls();
+        // Scroll to top after refresh
+        reelsContainer.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    });
+
+    // GitHub Integration
+    const GITHUB_USERNAME = 'avisekrajb';
+    const GITHUB_REPO = 'ourweb';
+    const GITHUB_FILE = 'love-letters.json';
+    const GITHUB_TOKEN_KEY = 'github_token';
+
+    const githubAuthModal = document.getElementById('github-auth-modal');
+    const githubTokenInput = document.getElementById('github-token');
+    const saveGithubAuthBtn = document.getElementById('save-github-auth');
+    const cancelGithubAuthBtn = document.getElementById('cancel-github-auth');
+    const authStatus = document.getElementById('auth-status');
+
+    let githubToken = localStorage.getItem(GITHUB_TOKEN_KEY);
+
+    // Initialize GitHub integration
+    function initGitHub() {
+      if (!githubToken) {
+        showGithubAuthModal();
+      } else {
+        loadLettersFromGitHub();
+      }
     }
-  }
 
-  // Initial setup
-  setupVideoControls();
+    function showGithubAuthModal() {
+      githubAuthModal.classList.remove('hidden');
+      githubTokenInput.value = githubToken || '';
+    }
 
-  // Listen to scroll to check last video visibility
-  reelsContainer.addEventListener("scroll", checkLastVideoVisibility);
-  window.addEventListener("resize", checkLastVideoVisibility);
-  window.addEventListener("load", checkLastVideoVisibility);
+    function hideGithubAuthModal() {
+      githubAuthModal.classList.add('hidden');
+    }
 
-  // Refresh button click handler: show all reels
-  refreshButton.addEventListener("click", () => {
-    renderReels(1, totalReels);
-    refreshWrapper.classList.add("hidden");
-    setupVideoControls();
-    // Scroll to top after refresh
-    reelsContainer.scrollTo({ top: 0, behavior: "smooth" });
-  });
-});
+    // Save GitHub token
+    saveGithubAuthBtn.addEventListener('click', () => {
+      const token = githubTokenInput.value.trim();
+      if (!token) {
+        showToast('Please enter a GitHub token', 'error');
+        return;
+      }
+      
+      githubToken = token;
+      localStorage.setItem(GITHUB_TOKEN_KEY, token);
+      hideGithubAuthModal();
+      showToast('GitHub token saved successfully!', 'success');
+      loadLettersFromGitHub();
+    });
+
+    cancelGithubAuthBtn.addEventListener('click', hideGithubAuthModal);
+
+    // GitHub API functions
+    async function loadLettersFromGitHub() {
+      try {
+        const response = await axios.get(
+          `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/contents/${GITHUB_FILE}`,
+          {
+            headers: {
+              'Authorization': `token ${githubToken}`,
+              'Accept': 'application/vnd.github.v3+json'
+            }
+          }
+        );
+        
+        const content = atob(response.data.content);
+        letters = JSON.parse(content);
+        renderAllLetters();
+        showToast('Love letters loaded from GitHub!', 'success');
+      } catch (error) {
+        if (error.response && error.response.status === 404) {
+          // File doesn't exist yet, we'll create it on first save
+          letters = [];
+        } else {
+          console.error('Error loading letters:', error);
+          showToast('Failed to load letters from GitHub', 'error');
+        }
+      }
+    }
+
+    async function saveLettersToGitHub() {
+      try {
+        // First try to get the file to get its SHA if it exists
+        let sha = null;
+        try {
+          const getResponse = await axios.get(
+            `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/contents/${GITHUB_FILE}`,
+            {
+              headers: {
+                'Authorization': `token ${githubToken}`,
+                'Accept': 'application/vnd.github.v3+json'
+              }
+            }
+          );
+          sha = getResponse.data.sha;
+        } catch (error) {
+          if (error.response && error.response.status !== 404) {
+            throw error;
+          }
+        }
+        
+        const content = btoa(JSON.stringify(letters, null, 2));
+        const message = `Update love letters (${new Date().toLocaleString()})`;
+        
+        const response = await axios.put(
+          `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/contents/${GITHUB_FILE}`,
+          {
+            message,
+            content,
+            sha
+          },
+          {
+            headers: {
+              'Authorization': `token ${githubToken}`,
+              'Accept': 'application/vnd.github.v3+json'
+            }
+          }
+        );
+        
+        showToast('Love letters saved to GitHub!', 'success');
+        return true;
+      } catch (error) {
+        console.error('Error saving letters:', error);
+        showToast('Failed to save letters to GitHub', 'error');
+        return false;
+      }
+    }
+
+    // Love Letter Modal Logic
+    const openLoveNoteBtn = document.getElementById('open-love-note');
+    const openWriteLetterBtn = document.getElementById('open-write-letter');
+    const loveLetterModal = document.getElementById('love-letter-modal');
+    const closeLoveLetterBtn = document.getElementById('close-love-letter');
+    const cancelLoveLetterBtn = document.getElementById('cancel-love-letter');
+    const loveLetterForm = document.getElementById('love-letter-form');
+    const photosSelectContainer = document.getElementById('photos-select');
+    const lettersListModal = document.getElementById('letters-list-modal');
+    const lettersListHome = document.getElementById('letters-list');
+    const lettersListWorks = document.getElementById('letters-list-works');
+    const deleteModal = document.getElementById('delete-confirm-modal');
+    const deletePasswordInput = document.getElementById('delete-password');
+    const cancelDeleteBtn = document.getElementById('cancel-delete');
+    const confirmDeleteBtn = document.getElementById('confirm-delete');
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toast-message');
+
+    const DELETE_PASSWORD = 'LOVE';
+
+    let letters = [];
+    let currentDeleteIndex = null;
+
+    // Photos available for attachment (use some from gallery)
+    const availablePhotos = [
+      { src: "https://placehold.co/100x100/png?text=Autumn+Love", alt: "Autumn Love photo of a smiling couple sitting on a park bench surrounded by autumn leaves" },
+      { src: "https://placehold.co/100x100/png?text=Forest+Walk", alt: "Forest Walk photo of couple holding hands walking along a forest trail with sunlight filtering through trees" },
+      { src: "https://placehold.co/100x100/png?text=Picnic+Day", alt: "Picnic Day photo of couple laughing together while sharing a picnic on a sunny day in a meadow" },
+      { src: "https://placehold.co/100x100/png?text=Sunset+Embrace", alt: "Sunset Embrace photo of couple embracing on a city rooftop at sunset with skyline in the background" },
+      { src: "https://placehold.co/100x100/png?text=Starry+Night", alt: "Starry Night photo of couple sitting by a campfire under a starry night sky" },
+      { src: "https://placehold.co/100x100/png?text=Bike+Adventure", alt: "Bike Adventure photo of couple sharing a joyful moment while riding bicycles on a country road" }
+    ];
+
+    // File Upload Handling
+    const uploadBtn = document.createElement('div');
+    uploadBtn.className = 'upload-btn-wrapper mt-4';
+    uploadBtn.innerHTML = `
+      <label class="upload-btn">
+        <i class="fas fa-cloud-upload-alt mr-2"></i>
+        Upload Photos
+        <input type="file" id="file-upload" multiple accept="image/*" style="display: none;">
+      </label>
+      <div class="upload-preview" id="upload-preview"></div>
+    `;
+    loveLetterForm.insertBefore(uploadBtn, loveLetterForm.querySelector('.buttons'));
+
+    const fileUpload = uploadBtn.querySelector('#file-upload');
+    const uploadPreview = uploadBtn.querySelector('#upload-preview');
+    let uploadedFiles = [];
+
+    fileUpload.addEventListener('change', (e) => {
+      uploadedFiles = Array.from(e.target.files);
+      renderUploadPreview();
+    });
+
+    function renderUploadPreview() {
+      uploadPreview.innerHTML = '';
+      uploadedFiles.forEach((file, index) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const previewItem = document.createElement('div');
+          previewItem.className = 'upload-preview-item';
+          previewItem.innerHTML = `
+            <img src="${e.target.result}" alt="${file.name}">
+            <button class="remove-btn" data-index="${index}">
+              <i class="fas fa-times"></i>
+            </button>
+          `;
+          uploadPreview.appendChild(previewItem);
+          
+          // Add remove button handler
+          previewItem.querySelector('.remove-btn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            const idx = parseInt(e.currentTarget.dataset.index);
+            uploadedFiles.splice(idx, 1);
+            renderUploadPreview();
+          });
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    // Show toast notification
+    function showToast(message, type = 'info', duration = 3000) {
+      toastMessage.textContent = message;
+      toast.className = 'fixed bottom-4 right-4 flex items-center';
+      toast.classList.add(`toast-${type}`);
+
+      // Remove existing classes
+      toast.classList.remove('show', 'hide');
+
+      // Show with animation
+      setTimeout(() => {
+        toast.classList.add('show');
+        toast.classList.remove('hidden');
+      }, 10);
+
+      // Hide after duration
+      setTimeout(() => {
+        toast.classList.add('hide');
+        setTimeout(() => {
+          toast.classList.add('hidden');
+        }, 500);
+      }, duration);
+    }
+
+    // Populate photos selection grid
+    function populatePhotosSelection() {
+      photosSelectContainer.innerHTML = '';
+      availablePhotos.forEach((photo, index) => {
+        const img = document.createElement('img');
+        img.src = photo.src;
+        img.alt = photo.alt;
+        img.tabIndex = 0;
+        img.setAttribute('role', 'checkbox');
+        img.setAttribute('aria-checked', 'false');
+        img.dataset.index = index;
+        img.classList.add('photo-frame', 'cursor-pointer');
+        photosSelectContainer.appendChild(img);
+      });
+    }
+
+    // Toggle photo selection
+    function togglePhotoSelection(img) {
+      const selected = img.classList.toggle('selected');
+      img.setAttribute('aria-checked', selected ? 'true' : 'false');
+    }
+
+    photosSelectContainer.addEventListener('click', (e) => {
+      if (e.target.tagName === 'IMG') {
+        togglePhotoSelection(e.target);
+      }
+    });
+    photosSelectContainer.addEventListener('keydown', (e) => {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.tagName === 'IMG') {
+        e.preventDefault();
+        togglePhotoSelection(e.target);
+      }
+    });
+
+    // Render letters list in given container
+    function renderLetters(container) {
+      container.innerHTML = '<h3 class="text-pink-600 font-semibold mb-4">Love Letters</h3>';
+      if (letters.length === 0) {
+        const p = document.createElement('p');
+        p.textContent = 'No love letters yet. Write one to start!';
+        p.className = 'text-center text-pink-400 mt-2';
+        container.appendChild(p);
+        return;
+      }
+      letters.forEach((letter, idx) => {
+        const div = document.createElement('div');
+        div.className = 'letter-item bg-pink-50 p-4 rounded-lg mb-4 shadow-md relative';
+        div.setAttribute('tabindex', '0');
+        const p = document.createElement('p');
+        p.textContent = letter.text;
+        p.className = 'text-gray-700 mb-2';
+        div.appendChild(p);
+        if (letter.photos && letter.photos.length > 0) {
+          const photosContainer = document.createElement('div');
+          photosContainer.className = 'flex flex-wrap gap-2 mt-2';
+          letter.photos.forEach(photo => {
+            const imgContainer = document.createElement('div');
+            imgContainer.className = 'relative';
+            const img = document.createElement('img');
+            img.src = photo.src;
+            img.alt = photo.alt;
+            img.className = 'w-16 h-16 object-cover rounded';
+            imgContainer.appendChild(img);
+            photosContainer.appendChild(imgContainer);
+          });
+          div.appendChild(photosContainer);
+        }
+        const delBtn = document.createElement('button');
+        delBtn.className = 'absolute top-2 right-2 text-pink-600 hover:text-pink-800';
+        delBtn.setAttribute('aria-label', 'Delete this love letter');
+        delBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
+        delBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          showDeleteModal(idx);
+        });
+        div.appendChild(delBtn);
+        container.appendChild(div);
+      });
+    }
+
+    // Render letters in all containers
+    function renderAllLetters() {
+      renderLetters(lettersListModal);
+      renderLetters(lettersListHome);
+      renderLetters(lettersListWorks);
+    }
+
+    // Show delete confirmation modal
+    function showDeleteModal(index) {
+      currentDeleteIndex = index;
+      deleteModal.classList.remove('hidden');
+      deletePasswordInput.value = '';
+      deletePasswordInput.focus();
+    }
+
+    // Hide delete confirmation modal
+    function hideDeleteModal() {
+      deleteModal.classList.add('hidden');
+      currentDeleteIndex = null;
+    }
+
+    // Delete letter
+    async function deleteLetter() {
+      if (currentDeleteIndex === null) return;
+
+      const password = deletePasswordInput.value.trim();
+      if (password !== DELETE_PASSWORD) {
+        showToast('Wrong password! Try again.', 'error');
+        return;
+      }
+
+      letters.splice(currentDeleteIndex, 1);
+      
+      // Save to GitHub
+      const success = await saveLettersToGitHub();
+      if (success) {
+        showToast('Love letter deleted successfully!', 'success');
+        renderAllLetters();
+        hideDeleteModal();
+      }
+    }
+
+    // Show modal
+    function showLoveLetterModal() {
+      populatePhotosSelection();
+      loveLetterForm.reset();
+      // Clear previous selections
+      photosSelectContainer.querySelectorAll('img.selected').forEach(img => {
+        img.classList.remove('selected');
+        img.setAttribute('aria-checked', 'false');
+      });
+      loveLetterModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      // Focus textarea
+      setTimeout(() => {
+        document.getElementById('letter-text').focus();
+      }, 300);
+    }
+
+    // Hide modal
+    function hideLoveLetterModal() {
+      loveLetterModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Handle form submission
+    loveLetterForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const text = loveLetterForm['letter-text'].value.trim();
+      if (!text) {
+        showToast('Please write your love letter first!', 'error');
+        return;
+      }
+
+      const selectedPhotos = [];
+      photosSelectContainer.querySelectorAll('img.selected').forEach(img => {
+        const index = parseInt(img.dataset.index, 10);
+        if (!isNaN(index)) {
+          selectedPhotos.push(availablePhotos[index]);
+        }
+      });
+
+      // Add uploaded photos
+      const uploadedPhotos = Array.from(uploadedFiles).map(file => {
+        return {
+          src: URL.createObjectURL(file),
+          alt: file.name,
+          file: file
+        };
+      });
+
+      letters.push({ 
+        text, 
+        photos: [...selectedPhotos, ...uploadedPhotos],
+        date: new Date().toISOString() 
+      });
+
+      // Save to GitHub
+      const success = await saveLettersToGitHub();
+      if (success) {
+        showToast('Love letter saved successfully!', 'success');
+        renderAllLetters();
+        hideLoveLetterModal();
+      }
+    });
+
+    // Open modal buttons
+    openLoveNoteBtn.addEventListener('click', showLoveLetterModal);
+    openWriteLetterBtn.addEventListener('click', showLoveLetterModal);
+
+    // Close modal buttons
+    closeLoveLetterBtn.addEventListener('click', hideLoveLetterModal);
+    cancelLoveLetterBtn.addEventListener('click', hideLoveLetterModal);
+
+    // Delete modal handlers
+    cancelDeleteBtn.addEventListener('click', hideDeleteModal);
+    confirmDeleteBtn.addEventListener('click', deleteLetter);
+
+    // Close modals on Escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (loveLetterModal.classList.contains('active')) {
+          hideLoveLetterModal();
+        }
+        if (!deleteModal.classList.contains('hidden')) {
+          hideDeleteModal();
+        }
+        if (githubAuthModal && !githubAuthModal.classList.contains('hidden')) {
+          hideGithubAuthModal();
+        }
+      }
+    });
+
+    // Close delete modal when clicking outside
+    deleteModal.addEventListener('click', (e) => {
+      if (e.target === deleteModal) {
+        hideDeleteModal();
+      }
+    });
+
+    // Initialize letters list and GitHub integration
+    window.addEventListener('load', () => {
+      initGitHub();
+      renderAllLetters();
+    });
+ 
   </script>
- </body>
+</body>
 </html>

@@ -270,8 +270,6 @@
      opacity: 0;
      pointer-events: none;
      transition: opacity 0.3s ease;
-     flex-direction: column;
-     padding: 1rem;
    }
    #photo-viewer.active {
      opacity: 1;
@@ -279,14 +277,15 @@
    }
    #photo-viewer img {
      max-width: 90%;
-     max-height: 80vh;
+     max-height: 90%;
      object-fit: contain;
-     border-radius: 0.75rem;
-     box-shadow: 0 10px 30px rgba(0,0,0,0.7);
    }
    #photo-viewer .close-btn {
+     position: absolute;
+     top: 20px;
+     right: 20px;
      color: white;
-     font-size: 2.5rem;
+     font-size: 2rem;
      cursor: pointer;
      background: rgba(0,0,0,0.5);
      width: 50px;
@@ -295,162 +294,6 @@
      display: flex;
      align-items: center;
      justify-content: center;
-     margin-top: 1rem;
-     transition: background-color 0.3s ease;
-   }
-   #photo-viewer .close-btn:hover {
-     background: rgba(236, 72, 153, 0.8);
-   }
-   /* Floating animation for hearts */
-   .heart {
-       position: absolute;
-       background-color: pink;
-       display: inline-block;
-       height: 20px;
-       width: 20px;
-       transform: rotate(-45deg);
-   }
-   
-   .heart:before, .heart:after {
-       content: "";
-       background-color: pink;
-       border-radius: 50%;
-       height: 20px;
-       position: absolute;
-       width: 20px;
-   }
-   
-   .heart:before {
-       top: -10px;
-       left: 0;
-   }
-   
-   .heart:after {
-       left: 10px;
-       top: 0;
-   }
-   
-   .floating-1 {
-       top: 10%;
-       left: 10%;
-       animation: float 8s ease-in-out infinite;
-   }
-   
-   .floating-2 {
-       top: 30%;
-       left: 80%;
-       animation: float 10s ease-in-out infinite 2s;
-   }
-   
-   .floating-3 {
-       top: 60%;
-       left: 15%;
-       animation: float 12s ease-in-out infinite 1s;
-   }
-   
-   .floating-4 {
-       top: 80%;
-       left: 70%;
-       animation: float 9s ease-in-out infinite 0.5s;
-   }
-   
-   .floating-5 {
-       top: 40%;
-       left: 50%;
-       animation: float 11s ease-in-out infinite 1.5s;
-   }
-   
-   @keyframes float {
-       0% { transform: rotate(-45deg) translateY(0) translateX(0); }
-       50% { transform: rotate(-45deg) translateY(-20px) translateX(10px); }
-       100% { transform: rotate(-45deg) translateY(0) translateX(0); }
-   }
-   
-   /* Header animation */
-   .animate-float {
-       animation: float-header 3s ease-in-out infinite alternate;
-   }
-   
-   @keyframes float-header {
-       0% { transform: translateY(0); }
-       100% { transform: translateY(-5px); }
-   }
-   
-   /* Hover effect for memory cards */
-   .memory-card:hover {
-       box-shadow: 0 10px 25px -5px rgba(244, 114, 182, 0.4);
-   }
-   /* New letter modal styles */
-   #new-letter-modal {
-     position: fixed;
-     inset: 0;
-     background: rgba(0,0,0,0.7);
-     display: none;
-     justify-content: center;
-     align-items: center;
-     z-index: 150;
-     padding: 1rem;
-   }
-   #new-letter-modal.active {
-     display: flex;
-   }
-   #new-letter-content {
-     background: white;
-     border-radius: 1rem;
-     max-width: 600px;
-     width: 100%;
-     max-height: 90vh;
-     overflow-y: auto;
-     padding: 2rem 1.5rem 2.5rem;
-     box-shadow: 0 10px 25px rgba(255, 105, 180, 0.4);
-     font-family: 'Montserrat', sans-serif;
-     display: flex;
-     flex-direction: column;
-   }
-   #new-letter-content h2 {
-     color: #ec4899;
-     font-weight: 700;
-     font-size: 1.75rem;
-     margin-bottom: 1rem;
-     text-align: center;
-   }
-   #new-letter-content textarea {
-     width: 100%;
-     min-height: 200px;
-     border: 2px solid #ec4899;
-     border-radius: 0.75rem;
-     padding: 1rem;
-     font-size: 1rem;
-     font-family: 'Montserrat', sans-serif;
-     resize: vertical;
-     margin-bottom: 1rem;
-     outline-offset: 2px;
-   }
-   #new-letter-content .buttons {
-     display: flex;
-     justify-content: flex-end;
-     gap: 1rem;
-   }
-   #new-letter-content button {
-     background: #ec4899;
-     color: white;
-     border: none;
-     padding: 0.5rem 1.5rem;
-     border-radius: 9999px;
-     font-weight: 600;
-     cursor: pointer;
-     box-shadow: 0 4px 15px rgba(236, 72, 153, 0.5);
-     transition: background-color 0.3s ease;
-   }
-   #new-letter-content button:hover {
-     background: #be185d;
-   }
-   #new-letter-content .cancel-btn {
-     background: #9ca3af;
-     box-shadow: none;
-   }
-   #new-letter-content .cancel-btn:hover {
-     background: #6b7280;
    }
   </style>
  </head>
@@ -602,7 +445,7 @@
      </div>
      
      <div class="mt-10">
-      <button id="open-new-letter" class="bg-gradient-to-r from-pink-400 to-pink-500 hover:from-pink-500 hover:to-pink-600 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition duration-300 transform hover:scale-105 flex items-center gap-2 mx-auto" type="button" aria-label="Send me a love note">
+      <button class="bg-gradient-to-r from-pink-400 to-pink-500 hover:from-pink-500 hover:to-pink-600 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition duration-300 transform hover:scale-105 flex items-center gap-2 mx-auto" type="button" aria-label="Send me a love note">
        <i class="fas fa-paper-plane"></i> Send Me a Love Note
       </button>
      </div>
@@ -758,10 +601,292 @@
                 <span class="text-white font-bold">Bike Adventure</span>
             </div>
         </div>
-        <!-- Additional photos omitted for brevity but remain unchanged -->
+        
+        <!-- Additional Photos g-z -->
+        <div class="relative group">
+            <img alt="Couple enjoying a beach sunset with waves crashing nearby" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="g.jpg" width="400" data-photo="g.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Beach Sunset</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple hiking up a mountain trail with panoramic views" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="h.jpg" width="400" data-photo="h.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Mountain Hike</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple dancing in the rain under a shared umbrella" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="i.jpg" width="400" data-photo="i.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Rainy Dance</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple enjoying coffee at a cozy café" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="j.jpg" width="400" data-photo="j.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Coffee Date</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple kayaking on a calm lake at dusk" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="k.jpg" width="400" data-photo="k.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Lake Kayaking</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple reading books together in a library" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="l.jpg" width="400" data-photo="l.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Library Day</span>
+            </div>
+        </div>
+        
+        <!-- Photos m-z -->
+        <div class="relative group">
+            <img alt="Couple making pizza together in the kitchen" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="m.jpg" width="400" data-photo="m.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Cooking Together</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple at a music festival enjoying live performance" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="n.jpg" width="400" data-photo="n.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Music Festival</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple stargazing through a telescope" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="o.jpg" width="400" data-photo="o.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Stargazing</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple playing board games by the fireplace" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="p.jpg" width="400" data-photo="p.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Game Night</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple planting flowers in their garden" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="q.jpg" width="400" data-photo="q.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Gardening</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple riding horses through a field" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="r.jpg" width="400" data-photo="r.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Horseback Riding</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple enjoying a snowy day building a snowman" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="s.jpg" width="400" data-photo="s.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Snowy Day</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple at a farmers market selecting fresh produce" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="t.jpg" width="400" data-photo="t.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Farmers Market</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple visiting an art museum admiring paintings" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="u.jpg" width="400" data-photo="u.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Art Lovers</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple on a ferry boat with city skyline in background" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="v.jpg" width="400" data-photo="v.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Boat Ride</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple having a wine tasting at a vineyard" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="w.jpg" width="400" data-photo="w.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Wine Tasting</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple flying kites at the beach on a windy day" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="x.jpg" width="400" data-photo="x.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Kite Flying</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple doing yoga together at sunrise" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="y.jpg" width="400" data-photo="y.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Morning Yoga</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple at a zoo feeding giraffes" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="z.jpg" width="400" data-photo="z.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Zoo Visit</span>
+            </div>
+        </div>
+        
+        <!-- Double letter photos aa-az -->
+        <div class="relative group">
+            <img alt="Couple riding a tandem bicycle through the countryside" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="aa.jpg" width="400" data-photo="aa.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Tandem Ride</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple baking cookies together in matching aprons" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ab.jpg" width="400" data-photo="ab.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Baking Day</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple canoeing down a peaceful river" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ac.jpg" width="400" data-photo="ac.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">River Canoe</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple dressed up for a fancy gala event" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ad.jpg" width="400" data-photo="ad.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Gala Night</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple at an amusement park riding a rollercoaster" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ae.jpg" width="400" data-photo="ae.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Rollercoaster</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple fishing together on a quiet lake" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="af.jpg" width="400" data-photo="af.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Fishing Trip</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple geocaching together in the woods" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ag.jpg" width="400" data-photo="ag.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Geocaching</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple having a pillow fight in their pajamas" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ah.jpg" width="400" data-photo="ah.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Pillow Fight</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple ice skating hand in hand at a winter rink" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ai.jpg" width="400" data-photo="ai.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Ice Skating</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple jumping together on a trampoline" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="aj.jpg" width="400" data-photo="aj.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Trampoline Fun</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple kiteboarding at the beach on a windy day" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ak.jpg" width="400" data-photo="ak.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Kiteboarding</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple laughing while trying to assemble furniture together" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="al.jpg" width="400" data-photo="al.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">DIY Project</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple making snow angels in fresh powder" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="am.jpg" width="400" data-photo="am.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Snow Angels</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple napping together in a hammock between trees" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="an.jpg" width="400" data-photo="an.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Hammock Nap</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple on a hot air balloon ride at sunrise" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ao.jpg" width="400" data-photo="ao.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Balloon Ride</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple painting a mural together on a large wall" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ap.jpg" width="400" data-photo="ap.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Mural Painting</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple quarreling playfully over a board game" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="aq.jpg" width="400" data-photo="aq.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Playful Argument</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple riding a motorcycle on a scenic coastal road" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ar.jpg" width="400" data-photo="ar.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Motorcycle Ride</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple salsa dancing at a Latin club" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="as.jpg" width="400" data-photo="as.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Salsa Night</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple tandem skydiving with instructor" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="at.jpg" width="400" data-photo="at.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Skydiving</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple under an umbrella during a thunderstorm" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="au.jpg" width="400" data-photo="au.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Stormy Weather</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple volunteering at an animal shelter walking dogs" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="av.jpg" width="400" data-photo="av.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Dog Walking</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple washing their car together in the driveway" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="aw.jpg" width="400" data-photo="aw.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Car Wash</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple exchanging gifts on Christmas morning" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ax.jpg" width="400" data-photo="ax.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Christmas Morning</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple yawning together on the couch watching a movie" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="ay.jpg" width="400" data-photo="ay.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Movie Night</span>
+            </div>
+        </div>
+        <div class="relative group">
+            <img alt="Couple ziplining through a jungle canopy" class="rounded-lg object-cover w-full h-48 sm:h-56 photo-frame cursor-pointer" height="400" src="az.jpg" width="400" data-photo="az.jpg"/>
+            <div class="absolute inset-0 bg-black bg-opacity-30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="text-white font-bold">Zipline Adventure</span>
+            </div>
+        </div>
     </div>
 </section>
    <!-- Works Page -->
+<!-- Works Page -->
 <section class="page hidden relative z-10" id="works">
     <div class="max-w-4xl mx-auto px-4 py-8">
         <!-- Header with romantic animation -->
@@ -785,28 +910,178 @@
         </div>
 
         <!-- Letters Container -->
-        <div class="space-y-8" id="letters-container">
-            <!-- Letters will be dynamically loaded here -->
+        <div class="space-y-8">
+            <!-- Letter 1 - Enhanced with more romantic elements -->
+            <article class="bg-gradient-to-br from-pink-50 to-pink-100 border-2 border-pink-300 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 memory-card transform hover:-translate-y-1" 
+                     tabindex="0" 
+                     aria-label="Love letter titled My Heart's Whisper">
+                <div class="absolute -top-3 -left-3 bg-pink-500 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-md">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-pink-700 mb-4 flex items-center gap-3">
+                    <i class="fas fa-feather-alt text-pink-500"></i> My Heart's Whisper
+                </h3>
+                <div class="pl-2 border-l-4 border-pink-400">
+                    <p class="text-gray-800 leading-relaxed whitespace-pre-line italic font-serif text-lg">
+                        "In your eyes, I find my home,<br>
+                        A place where love forever roams.<br>
+                        Your smile lights my darkest night,<br>
+                        With you, my world feels so right.
+                        
+                        Like stars that dance across the sky,<br>
+                        Our love will never fade or die.<br>
+                        Hand in hand, through joy and pain,<br>
+                        Together forever, our hearts remain."
+                    </p>
+                </div>
+                <div class="flex justify-between items-center mt-6">
+                    <div class="flex space-x-2">
+                        <span class="bg-pink-200 text-pink-800 text-xs px-2 py-1 rounded-full">Poetry</span>
+                        <span class="bg-pink-200 text-pink-800 text-xs px-2 py-1 rounded-full">Romantic</span>
+                    </div>
+                    <span class="text-pink-600 font-medium flex items-center">
+                        <i class="fas fa-pen-fancy mr-2"></i>Abhishek
+                    </span>
+                </div>
+            </article>
+            
+            <!-- Letter 2 - With photo placeholder and more personal touch -->
+            <article class="bg-white border-2 border-purple-200 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 memory-card" 
+                     tabindex="0" 
+                     aria-label="Love letter titled To My Dearest">
+                <div class="md:flex">
+                    <div class="md:w-1/3 bg-gradient-to-b from-purple-100 to-pink-100 flex items-center justify-center p-6">
+                        <div class="relative w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-md">
+                            <div class="absolute inset-0 bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center text-white text-5xl">
+                                K
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3 p-6">
+                        <h3 class="text-2xl font-bold text-purple-700 mb-4 flex items-center gap-3">
+                            <i class="fas fa-envelope-open-text text-purple-500"></i> To My Dearest Khusbu
+                        </h3>
+                        <p class="text-gray-700 leading-relaxed font-serif">
+                            My Dearest Khusbu,<br><br>
+                            
+                            Every day with you is a blessing I cherish deeply. Your kindness, your laughter, and your unwavering support make my life complete. I promise to stand by your side through every joy and challenge that life brings our way.<br><br>
+                            
+                            You are my sunshine on cloudy days, my comfort in difficult times, and my greatest happiness. No words can truly express how much you mean to me, but I will spend my lifetime showing you.
+                        </p>
+                        <div class="flex items-center justify-between mt-6 pt-4 border-t border-purple-100">
+                            <div class="text-purple-600 text-sm flex items-center">
+                                <i class="far fa-calendar-alt mr-2"></i> March 15, 2023
+                            </div>
+                            <div class="flex space-x-3">
+                                <button class="text-purple-500 hover:text-purple-700 transition-colors" 
+                                        aria-label="Share this letter" 
+                                        type="button">
+                                    <i class="fas fa-share-alt"></i>
+                                </button>
+                                <button class="text-pink-500 hover:text-pink-700 transition-colors" 
+                                        aria-label="Save this letter" 
+                                        type="button">
+                                    <i class="fas fa-bookmark"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-purple-50 px-6 py-3 text-right">
+                    <span class="text-purple-700 font-medium italic">
+                        Forever yours,<br>
+                        Abhishek
+                    </span>
+                </div>
+            </article>
+            
+            <!-- Letter 3 - Interactive list with animations -->
+            <article class="bg-gradient-to-br from-rose-50 to-pink-50 border-2 border-rose-200 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 memory-card" 
+                     tabindex="0" 
+                     aria-label="Love letter titled 100 Reasons I Love You">
+                <h3 class="text-2xl font-bold text-rose-700 mb-6 flex items-center gap-3">
+                    <i class="fas fa-list-ul text-rose-500"></i> 100 Reasons I Love You
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-white bg-opacity-70 p-4 rounded-lg hover:bg-opacity-90 transition-all duration-200">
+                        <ol class="list-decimal list-inside text-gray-800 space-y-3 marker:text-rose-500 marker:font-bold">
+                            <li class="hover:text-rose-700 transition-colors">The way your eyes light up when you smile</li>
+                            <li class="hover:text-rose-700 transition-colors">Your kindness that touches everyone around you</li>
+                            <li class="hover:text-rose-700 transition-colors">How you make even ordinary moments feel special</li>
+                            <li class="hover:text-rose-700 transition-colors">Your strength and resilience in facing challenges</li>
+                            <li class="hover:text-rose-700 transition-colors">The sound of your laughter that fills my heart with joy</li>
+                        </ol>
+                    </div>
+                    <div class="bg-white bg-opacity-70 p-4 rounded-lg hover:bg-opacity-90 transition-all duration-200">
+                        <ol class="list-decimal list-inside text-gray-800 space-y-3 marker:text-rose-500 marker:font-bold" start="6">
+                            <li class="hover:text-rose-700 transition-colors">Your intelligence and the way you see the world</li>
+                            <li class="hover:text-rose-700 transition-colors">How you always know what to say to make me feel better</li>
+                            <li class="hover:text-rose-700 transition-colors">Your beautiful heart that loves so deeply</li>
+                            <li class="hover:text-rose-700 transition-colors">The way you fit perfectly in my arms</li>
+                            <li class="hover:text-rose-700 transition-colors">Simply because you're you - my one and only</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="mt-6 text-center">
+                    <button class="bg-gradient-to-r from-rose-400 to-pink-400 hover:from-rose-500 hover:to-pink-500 text-white font-semibold py-2 px-4 rounded-full text-sm shadow-md transition-all duration-300 inline-flex items-center gap-2 transform hover:scale-105">
+                        <i class="fas fa-plus"></i> Load More Reasons
+                    </button>
+                </div>
+            </article>
+            
+            <!-- New Letter - Anniversary Special -->
+            <article class="bg-gradient-to-br from-pink-200 to-red-100 border-2 border-pink-300 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 memory-card transform hover:rotate-1" 
+                     tabindex="0" 
+                     aria-label="Anniversary love letter">
+                <div class="absolute -top-4 -right-4 bg-red-500 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg">
+                    <i class="fas fa-gift"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-red-700 mb-4 flex items-center gap-3">
+                    <i class="fas fa-calendar-heart text-red-500"></i> Happy Anniversary, My Love
+                </h3>
+                <div class="relative">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-red-400 to-pink-400 rounded-full"></div>
+                    <div class="pl-6">
+                        <p class="text-gray-800 leading-relaxed font-serif italic">
+                            "Another year has passed, my love, and with each day my heart grows fonder of you. Remember our first date? How nervous we both were? Now look at us - stronger, happier, and more in love than ever before.
+                            
+                            Today, I promise you again what I promised you then: to love you unconditionally, to support you endlessly, and to cherish every moment we share."
+                        </p>
+                        <div class="mt-4 flex items-center justify-between">
+                            <div class="flex -space-x-2">
+                                <div class="w-8 h-8 rounded-full bg-red-300 border-2 border-white"></div>
+                                <div class="w-8 h-8 rounded-full bg-pink-300 border-2 border-white"></div>
+                                <div class="w-8 h-8 rounded-full bg-purple-300 border-2 border-white"></div>
+                            </div>
+                            <span class="text-red-600 font-medium">
+                                <i class="fas fa-heart mr-1"></i> 3 Years Together
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </article>
         </div>
         
         <!-- Call to Action -->
         <div class="mt-12 text-center">
-            <button id="write-new-letter" class="bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white font-bold py-4 px-8 rounded-full shadow-xl transition-all duration-300 inline-flex items-center gap-3 transform hover:scale-105 hover:shadow-2xl" 
+            <button class="bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white font-bold py-4 px-8 rounded-full shadow-xl transition-all duration-300 inline-flex items-center gap-3 transform hover:scale-105 hover:shadow-2xl" 
                     type="button" 
                     aria-label="Write new letter">
                 <i class="fas fa-feather-alt"></i> Write New Love Letter
             </button>
             
             <div class="mt-6 text-pink-600 flex items-center justify-center gap-4">
-                <button id="view-all-letters" class="flex items-center gap-2 hover:text-pink-800 transition-colors" type="button">
+                <button class="flex items-center gap-2 hover:text-pink-800 transition-colors">
                     <i class="fas fa-book-open"></i> View All Letters
                 </button>
                 <span class="text-pink-300">•</span>
-                <button id="print-collection" class="flex items-center gap-2 hover:text-pink-800 transition-colors" type="button">
+                <button class="flex items-center gap-2 hover:text-pink-800 transition-colors">
                     <i class="fas fa-print"></i> Print Collection
                 </button>
                 <span class="text-pink-300">•</span>
-                <button id="favorite-letters" class="flex items-center gap-2 hover:text-pink-800 transition-colors" type="button">
+                <button class="flex items-center gap-2 hover:text-pink-800 transition-colors">
                     <i class="fas fa-heart"></i> Favorite Letters
                 </button>
             </div>
@@ -823,26 +1098,95 @@
     </div>
 </section>
 
+<style>
+    /* Floating animation for hearts */
+    .heart {
+        position: absolute;
+        background-color: pink;
+        display: inline-block;
+        height: 20px;
+        width: 20px;
+        transform: rotate(-45deg);
+    }
+    
+    .heart:before, .heart:after {
+        content: "";
+        background-color: pink;
+        border-radius: 50%;
+        height: 20px;
+        position: absolute;
+        width: 20px;
+    }
+    
+    .heart:before {
+        top: -10px;
+        left: 0;
+    }
+    
+    .heart:after {
+        left: 10px;
+        top: 0;
+    }
+    
+    .floating-1 {
+        top: 10%;
+        left: 10%;
+        animation: float 8s ease-in-out infinite;
+    }
+    
+    .floating-2 {
+        top: 30%;
+        left: 80%;
+        animation: float 10s ease-in-out infinite 2s;
+    }
+    
+    .floating-3 {
+        top: 60%;
+        left: 15%;
+        animation: float 12s ease-in-out infinite 1s;
+    }
+    
+    .floating-4 {
+        top: 80%;
+        left: 70%;
+        animation: float 9s ease-in-out infinite 0.5s;
+    }
+    
+    .floating-5 {
+        top: 40%;
+        left: 50%;
+        animation: float 11s ease-in-out infinite 1.5s;
+    }
+    
+    @keyframes float {
+        0% { transform: rotate(-45deg) translateY(0) translateX(0); }
+        50% { transform: rotate(-45deg) translateY(-20px) translateX(10px); }
+        100% { transform: rotate(-45deg) translateY(0) translateX(0); }
+    }
+    
+    /* Header animation */
+    .animate-float {
+        animation: float-header 3s ease-in-out infinite alternate;
+    }
+    
+    @keyframes float-header {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-5px); }
+    }
+    
+    /* Hover effect for memory cards */
+    .memory-card:hover {
+        box-shadow: 0 10px 25px -5px rgba(244, 114, 182, 0.4);
+    }
+</style>
   </main>
   
   <!-- Fullscreen Photo Viewer -->
   <div id="photo-viewer" role="dialog" aria-modal="true" aria-label="Fullscreen photo viewer">
-   <img id="viewed-photo" alt="Fullscreen photo"/>
-   <div class="close-btn" id="photo-viewer-close" aria-label="Close photo viewer" role="button" tabindex="0">
+   <div class="close-btn" id="photo-viewer-close" aria-label="Close photo viewer">
     <i class="fas fa-times"></i>
    </div>
-  </div>
-
-  <!-- New Letter Modal -->
-  <div id="new-letter-modal" role="dialog" aria-modal="true" aria-labelledby="new-letter-title" aria-describedby="new-letter-desc">
-    <div id="new-letter-content">
-      <h2 id="new-letter-title">Write a New Love Letter</h2>
-      <textarea id="new-letter-text" aria-describedby="new-letter-desc" placeholder="Write your love letter here..."></textarea>
-      <div class="buttons">
-        <button id="save-letter-btn" type="button">Save Letter</button>
-        <button id="cancel-letter-btn" type="button" class="cancel-btn">Cancel</button>
-      </div>
-    </div>
+   <img id="viewed-photo" alt="Fullscreen photo"/>
   </div>
   
   <!-- Bottom Navigation -->
@@ -855,7 +1199,7 @@
      </button>
     </li>
     <li>
-     <button aria-label="About" class="nav-item flex flex-col items-center justify-center py-3 w-full text-gray-600 hover:text-pink-500 transition-all" data-target="about" type="button">
+     <button aria-label="About" class="nav-item active flex flex-col items-center justify-center py-3 w-full text-pink-500 transition-all" data-target="about" type="button">
       <i class="fas fa-heart text-xl sm:text-2xl"></i>
       <span class="text-xs sm:text-sm mt-1 font-semibold">About</span>
      </button>
@@ -873,7 +1217,7 @@
      </button>
     </li>
     <li>
-     <button aria-label="Works" class="nav-item flex flex-col items-center justify-center py-3 w-full text-pink-500 transition-all active" data-target="works" type="button">
+     <button aria-label="Works" class="nav-item flex flex-col items-center justify-center py-3 w-full text-gray-600 hover:text-pink-500 transition-all" data-target="works" type="button">
       <i class="fas fa-star text-xl sm:text-2xl"></i>
       <span class="text-xs sm:text-sm mt-1 font-semibold">Letters</span>
      </button>
@@ -891,14 +1235,10 @@
    </div>
   </div>
 
-  <!-- Audio Elements -->
-  <audio id="home-audio" src="a.mp3" loop preload="auto"></audio>
-
   <script>
    // Navigation and page switching
 const navButtons = document.querySelectorAll('nav button.nav-item');
 const pages = document.querySelectorAll('main section.page');
-const homeAudio = document.getElementById('home-audio');
 
 function setActivePage(targetId) {
   pages.forEach(page => {
@@ -920,14 +1260,6 @@ function setActivePage(targetId) {
       btn.classList.add('text-gray-600');
     }
   });
-
-  // Audio control based on page
-  if(targetId === 'home'){
-    homeAudio.play().catch(() => {});
-  } else {
-    homeAudio.pause();
-    homeAudio.currentTime = 0;
-  }
 }
 
 navButtons.forEach(button => {
@@ -936,7 +1268,7 @@ navButtons.forEach(button => {
   });
 });
 
-// Initialize default active page and play home audio
+// Initialize default active page
 setActivePage('home');
 
 // Flying hearts logic with 10s duration on page load
@@ -1122,12 +1454,6 @@ document.querySelectorAll('#photos img[data-photo]').forEach(photo => {
 });
 
 photoViewerClose.addEventListener('click', hidePhotoViewer);
-photoViewerClose.addEventListener('keydown', e => {
-  if(e.key === 'Enter' || e.key === ' '){
-    e.preventDefault();
-    hidePhotoViewer();
-  }
-});
 
 // Close photo viewer on overlay click (outside photo)
 photoViewer.addEventListener('click', e => {
@@ -1360,256 +1686,6 @@ document.addEventListener("DOMContentLoaded", () => {
     reelsContainer.scrollTo({ top: 0, behavior: "smooth" });
   });
 });
-
-// Home page song play/pause logic
-const playSongBtn = document.getElementById('play-our-song');
-let songPlaying = false;
-
-playSongBtn.addEventListener('click', () => {
-  if (!songPlaying) {
-    // Pause reels videos if any playing
-    document.querySelectorAll('#reels video').forEach(video => {
-      video.pause();
-      video.muted = true;
-      const btn = document.querySelector(`button[data-video-id="${video.id}"]`);
-      if(btn){
-        btn.querySelector('i').classList.remove('fa-pause');
-        btn.querySelector('i').classList.add('fa-play');
-      }
-    });
-    // Play home audio
-    homeAudio.play().catch(() => {});
-    songPlaying = true;
-    playSongBtn.querySelector('i').classList.remove('fa-play');
-    playSongBtn.querySelector('i').classList.add('fa-pause');
-  } else {
-    homeAudio.pause();
-    songPlaying = false;
-    playSongBtn.querySelector('i').classList.remove('fa-pause');
-    playSongBtn.querySelector('i').classList.add('fa-play');
-  }
-});
-
-// Pause home audio when reels video plays
-document.addEventListener('play', (e) => {
-  if(e.target.tagName === 'VIDEO' && e.target.closest('#reels-container')){
-    if(songPlaying){
-      homeAudio.pause();
-      songPlaying = false;
-      playSongBtn.querySelector('i').classList.remove('fa-pause');
-      playSongBtn.querySelector('i').classList.add('fa-play');
-    }
-  }
-});
-
-// Letters data storage and GitHub commit integration
-const lettersContainer = document.getElementById('letters-container');
-const newLetterModal = document.getElementById('new-letter-modal');
-const newLetterText = document.getElementById('new-letter-text');
-const saveLetterBtn = document.getElementById('save-letter-btn');
-const cancelLetterBtn = document.getElementById('cancel-letter-btn');
-const writeNewLetterBtn = document.getElementById('write-new-letter');
-const openNewLetterBtn = document.getElementById('open-new-letter');
-
-let letters = [];
-
-// Load letters from localStorage on start
-function loadLetters() {
-  const stored = localStorage.getItem('loveLetters');
-  if(stored){
-    try {
-      letters = JSON.parse(stored);
-    } catch {
-      letters = [];
-    }
-  }
-  renderLetters();
-}
-
-// Save letters to localStorage
-function saveLetters() {
-  localStorage.setItem('loveLetters', JSON.stringify(letters));
-}
-
-// Render letters in the container
-function renderLetters() {
-  if(letters.length === 0){
-    lettersContainer.innerHTML = `<p class="text-center text-gray-500 italic">No love letters yet. Write one to start!</p>`;
-    return;
-  }
-  lettersContainer.innerHTML = '';
-  letters.forEach((letter, index) => {
-    const article = document.createElement('article');
-    article.className = "bg-gradient-to-br from-pink-50 to-pink-100 border-2 border-pink-300 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 memory-card transform hover:-translate-y-1";
-    article.tabIndex = 0;
-    article.setAttribute('aria-label', `Love letter number ${index + 1}`);
-    article.innerHTML = `
-      <h3 class="text-2xl font-bold text-pink-700 mb-4 flex items-center gap-3">
-        <i class="fas fa-feather-alt text-pink-500"></i> Love Letter #${index + 1}
-      </h3>
-      <div class="pl-2 border-l-4 border-pink-400">
-        <p class="text-gray-800 leading-relaxed whitespace-pre-line italic font-serif text-lg">${escapeHtml(letter)}</p>
-      </div>
-    `;
-    lettersContainer.appendChild(article);
-  });
-}
-
-// Escape HTML to prevent injection
-function escapeHtml(text) {
-  const div = document.createElement('div');
-  div.textContent = text;
-  return div.innerHTML;
-}
-
-// Open new letter modal
-function openNewLetterModal() {
-  newLetterText.value = '';
-  newLetterModal.classList.add('active');
-  newLetterText.focus();
-}
-
-// Close new letter modal
-function closeNewLetterModal() {
-  newLetterModal.classList.remove('active');
-}
-
-// Save new letter and commit to GitHub
-async function saveNewLetter() {
-  const content = newLetterText.value.trim();
-  if(content.length === 0){
-    alert('Please write something before saving.');
-    return;
-  }
-  letters.unshift(content);
-  saveLetters();
-  renderLetters();
-  closeNewLetterModal();
-
-  // Commit to GitHub
-  try {
-    await commitLetterToGitHub(content);
-    alert('Love letter saved and committed to GitHub successfully!');
-  } catch (error) {
-    alert('Letter saved locally but failed to commit to GitHub. See console for details.');
-    console.error(error);
-  }
-}
-
-// GitHub commit function using GitHub REST API v3
-// Note: This requires a GitHub Personal Access Token with repo permissions.
-// For security, token should NOT be exposed in client-side code in production.
-// Here, for demonstration, user must enter token manually.
-async function commitLetterToGitHub(letterContent) {
-  const repoOwner = 'YOUR_GITHUB_USERNAME'; // Replace with your GitHub username
-  const repoName = 'YOUR_REPO_NAME'; // Replace with your repo name
-  const branch = 'main'; // or your default branch
-  const filePath = `love-letters/letter-${Date.now()}.txt`;
-  const commitMessage = `Add new love letter at ${new Date().toLocaleString()}`;
-
-  // Prompt user for GitHub token (for demo only)
-  const token = prompt('Please enter your GitHub Personal Access Token with repo permissions to save your letter permanently:');
-  if(!token){
-    throw new Error('GitHub token is required to commit the letter.');
-  }
-
-  // Get the SHA of the latest commit on the branch
-  const refRes = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/git/ref/heads/${branch}`, {
-    headers: {
-      Authorization: `token ${token}`,
-      Accept: 'application/vnd.github.v3+json'
-    }
-  });
-  if(!refRes.ok) throw new Error('Failed to get branch reference: ' + refRes.statusText);
-  const refData = await refRes.json();
-  const latestCommitSha = refData.object.sha;
-
-  // Get the tree SHA of the latest commit
-  const commitRes = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/git/commits/${latestCommitSha}`, {
-    headers: {
-      Authorization: `token ${token}`,
-      Accept: 'application/vnd.github.v3+json'
-    }
-  });
-  if(!commitRes.ok) throw new Error('Failed to get commit data: ' + commitRes.statusText);
-  const commitData = await commitRes.json();
-  const baseTreeSha = commitData.tree.sha;
-
-  // Create a new blob with the letter content (base64 encoded)
-  const contentBase64 = btoa(unescape(encodeURIComponent(letterContent)));
-
-  // Create a new tree with the new file
-  const newTreeRes = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/git/trees`, {
-    method: 'POST',
-    headers: {
-      Authorization: `token ${token}`,
-      Accept: 'application/vnd.github.v3+json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      base_tree: baseTreeSha,
-      tree: [
-        {
-          path: filePath,
-          mode: '100644',
-          type: 'blob',
-          content: letterContent
-        }
-      ]
-    })
-  });
-  if(!newTreeRes.ok) throw new Error('Failed to create new tree: ' + newTreeRes.statusText);
-  const newTreeData = await newTreeRes.json();
-
-  // Create a new commit
-  const newCommitRes = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/git/commits`, {
-    method: 'POST',
-    headers: {
-      Authorization: `token ${token}`,
-      Accept: 'application/vnd.github.v3+json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      message: commitMessage,
-      tree: newTreeData.sha,
-      parents: [latestCommitSha]
-    })
-  });
-  if(!newCommitRes.ok) throw new Error('Failed to create new commit: ' + newCommitRes.statusText);
-  const newCommitData = await newCommitRes.json();
-
-  // Update the branch reference to point to the new commit
-  const updateRefRes = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/git/refs/heads/${branch}`, {
-    method: 'PATCH',
-    headers: {
-      Authorization: `token ${token}`,
-      Accept: 'application/vnd.github.v3+json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      sha: newCommitData.sha
-    })
-  });
-  if(!updateRefRes.ok) throw new Error('Failed to update branch reference: ' + updateRefRes.statusText);
-}
-
-// Open new letter modal handlers
-writeNewLetterBtn.addEventListener('click', openNewLetterModal);
-openNewLetterBtn.addEventListener('click', openNewLetterModal);
-cancelLetterBtn.addEventListener('click', closeNewLetterModal);
-
-// Save letter button handler
-saveLetterBtn.addEventListener('click', saveNewLetter);
-
-// Close modal on Escape key
-window.addEventListener('keydown', e => {
-  if(e.key === 'Escape' && newLetterModal.classList.contains('active')){
-    closeNewLetterModal();
-  }
-});
-
-// Load letters on page load
-loadLetters();
   </script>
  </body>
 </html>
